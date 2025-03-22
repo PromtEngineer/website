@@ -15,7 +15,7 @@ Schedule a **45-minute paid consultation** to discuss your challenges, objective
 
 Reserve your paid consultation quickly via my scheduling system:
 
-[:material-calendar: Schedule Your Call](https://calendly.com/engineerprompt/consulting-call) { .md-button .md-button--primary }
+[Schedule Your Call](https://calendly.com/engineerprompt/consulting-call)
 
 ## Preparation Tips
 

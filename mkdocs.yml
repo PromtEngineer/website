@@ -1,12 +1,12 @@
-site_name: Jason Liu
-site_author: Jason Liu
+site_name: PromptX AI
+site_author: PromptX AI
 site_description: >-
   AI Consulting, RAG, and other personal notes.
 repo_name: blog
 repo_url: https://github.com/jxnl/blog/
 site_url: https://jxnl.co/
 edit_uri: edit/main/docs/
-copyright: Copyright &copy; 2024 Jason Liu 
+copyright: Copyright &copy; 2025 PromptX AI
 theme:
   name: material
   custom_dir: overrides
@@ -113,17 +113,12 @@ markdown_extensions:
       generic: true
 nav:
   - Home: 
-    - Introductions: 'index.md'
-    - Investments: "investments.md"
-    - User Manual: "user_manual.md"
-    - Books: 'books.md'
-    - Things: 'things.md'
-  - Learn to Improve Your RAG: "systematically-improve-your-rag.md"
+    - About Me: 'index.md'
+    - Services: 'services.md'
   - Consulting:
     - Consulting Services: "services.md"
-    - Jump on a Call: "expert-calls.md"
-    - Experts and Vendors: "experts-and-vendors.md"
-  - Job Board: "https://jobs.applied-llms.org"
+    - Book a Call: "book-call.md"
+  - YouTube Videos: "youtube.md"
   - Writing:
     - "writing/index.md"
 plugins:
@@ -158,11 +153,13 @@ extra:
     - icon: fontawesome/solid/rss
       link: feed_rss_created.xml
     - icon: fontawesome/brands/twitter
-      link: https://twitter.com/jxnlco
+      link: https://twitter.com/engineerrprompt
     - icon: fontawesome/brands/github
-      link: https://github.com/jxnl
+      link: https://github.com/PromtEngineer
     - icon: fontawesome/brands/linkedin
-      link: https://www.linkedin.com/in/jxnl
+      link: https://www.linkedin.com/in/engineerprompt
+    - icon: fontawesome/brands/youtube
+      link: https://www.youtube.com/@engineerprompt
 extra_css:
   - stylesheets/extra.css
 extra_javascript:
@@ -170,4 +167,4 @@ extra_javascript:
   - javascripts/analytics.js
   - https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
-copyright: Copyright &copy; 2023 Jason Liu
+copyright: Copyright &copy; 2025 PromptX AI
