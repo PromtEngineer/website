@@ -1,0 +1,34 @@
+site_name: PromptX AI
+site_author: PromptX AI
+site_description: >-
+  Personal website featuring consulting services and YouTube videos.
+repo_name: website
+repo_url: https://github.com/yourusername/website/
+site_url: https://yoursite.com/
+copyright: Copyright &copy; 2025 Muhammad Farooq
+
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - search.highlight
+
+nav:
+  - Home: 
+    - About Me: 'index.md'
+    - Services: 'services.md'
+  - Consulting:
+    - Consulting Services: "services.md"
+    - Book a Call: "book-call.md"
+  - Courses:
+    - RAG Beyond Basics: "rag-beyond-basics.md"
+  - YouTube Videos: "youtube.md"
+  - Examples:
+    - YouTube Embedding: "examples/youtube-embed.md"
+  - Writing:
+    - "writing/index.md"
+
+plugins:
+  - search
