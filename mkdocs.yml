@@ -2,18 +2,57 @@ site_name: PromptX AI
 site_author: PromptX AI
 site_description: >-
   AI Consulting, RAG, and other personal notes.
-repo_name: blog
-repo_url: https://github.com/jxnl/blog/
+# Repository configuration - this will display current stars and forks from GitHub
+repo_name: localGPT
+repo_url: https://github.com/PromtEngineer/localGPT
 site_url: https://jxnl.co/
 edit_uri: edit/main/docs/
 copyright: Copyright &copy; 2025 PromptX AI
+
+# Social links and additional site configuration
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/PromtEngineer/localGPT
+      name: localGPT on GitHub
 theme:
   name: material
   custom_dir: overrides
+  # Enable GitHub statistics (stars and forks)
+  features:
+    - content.action.edit
+    - navigation.expand
+    - navigation.indexes
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - search.highlight
+    - search.share
+    - search.suggest
+    - navigation.top
+    - header.autohide
+  palette:
+    # Light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # Dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
   icon:
     repo: fontawesome/brands/github
     edit: material/pencil 
     view: material/eye
+  # Enable real-time repository information (stars, forks)
     theme:
     admonition:
       note: octicons/tag-16

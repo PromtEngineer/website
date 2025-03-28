@@ -2,39 +2,72 @@
 description: Welcome to my personal website featuring consulting services and YouTube videos.
 ---
 
-# 👋 I'm Muhammad — Your AI Implementation Expert
 
-As an independent consultant, advisor, and Google Developer Expert with over 10 years of experience building high-performance machine learning systems, I transform complex AI challenges into business advantages. I guide organizations through the rapidly evolving AI landscape, turning technical possibilities into measurable business outcomes.
+# I'm Muhammad — Your AI Expert
 
-In a previous life, I earned my Ph.D. in Applied Machine Learning, where I specialized in building wearable sensors and applying machine learning to biomedical signal processing. You can explore my research and publications on [Google Scholar](https://scholar.google.com/citations?user=vQcpPPAAAAAJ&hl=en).
+I'm an independent consultant, advisor, and Google Developer Expert with over a decade of hands-on experience in building and scaling machine learning systems. I help businesses turn complex AI challenges into clear, actionable strategies that deliver real-world impact.
 
-I'm also passionate about open source and community building. I'm also the creator of [**localGPT**](https://github.com/PromtEngineer/localGPT), one of the earliest open-source implementations of Retrieval-Augmented Generation (RAG) for secure, private document interaction, with over **20k GitHub ⭐**.
+Whether you're navigating the ever-evolving landscape of Generative AI or trying to unlock the full potential of LLMs, I can guide you from ideation to execution—with a focus on measurable results.
 
-I regularly share my thoughts and practical tips and insights about LLMs, Generative AI, Agents, and more on my [YouTube channel](https://www.youtube.com/@engineerprompt) with **193k+ subscribers**. I also have an engaging community on [Discord](https://discord.gg/nMEEN2sS) of **4,500+ members**.
+Before diving into consulting, I earned a Ph.D. in Applied Machine Learning, specializing in wearable sensors and biomedical signal processing. You can browse my academic research and publications on [Google Scholar](https://scholar.google.com/citations?user=vQcpPPAAAAAJ\&hl=en).
 
-Ready to harness AI's full potential for your organization?
+I’m also deeply committed to open-source and community-driven learning. I created **[localGPT](https://github.com/PromtEngineer/localGPT)**, one of the first open-source Retrieval-Augmented Generation (RAG) projects for secure, private document interaction—now with over **20k GitHub ⭐**.
+
+On my [YouTube channel](https://www.youtube.com/@engineerprompt) with **193k+ subscribers**, I regularly share practical insights on LLMs, Generative AI, Agents, and more. Join the conversation on [Discord](https://discord.gg/nMEEN2sS), where 4,500+ members exchange ideas, ask questions, and build cool stuff together.
+
+---
+
+Ready to bring AI into your business in a meaningful way?
 
 [:material-calendar: Book a Consultation](./book-a-call.md) { .cta-button }
+
 ---
 
 ## Consulting
 
-My consulting practice empowers startups and established businesses to build effective machine learning systems, adapt rapidly to AI advancements, and drive measurable growth with strategic implementation. I bridge the gap between cutting-edge technology and practical business applications.
+I help startups and enterprise teams build high-impact machine learning systems, adapt quickly to emerging AI tools, and implement strategies that drive tangible business outcomes.
 
-| Service                                       | Description                               | Duration     |
-|-----------------------------------------------|-------------------------------------------|-------------|
-| Strategic Consulting                          | In-depth analysis and actionable recommendations | 4-8 weeks   |
-| Process Optimization                        | Streamline operations and improve efficiency  | 2-4 weeks   |
-| AI Team Training                            | Hands-on workshops for practical AI skills    | 1-5 days    |
-| Leadership Development                      | Executive coaching for AI-driven strategy     | Custom      |
+Here’s how I can support your organization:
 
-Every consulting engagement begins with a comprehensive discovery phase where I deeply analyze your specific challenges, goals, and existing systems to create precisely tailored solutions that deliver maximum impact.
+### Strategic Consulting  
+Get tailored, expert advice that helps you move from AI curiosity to clear, confident implementation. I’ll work with your team to analyze your needs, recommend the right technologies, and build an actionable roadmap.  
+**Ideal for:** Product strategy, R&D, AI integration  
+**Timeline:** 4–8 weeks
+
+### Process Optimization  
+Bring efficiency to your workflows by identifying opportunities for automation and smarter decision-making. Together, we’ll streamline what matters most.  
+**Ideal for:** Ops, customer support, internal tools  
+**Timeline:** 2–4 weeks
+
+### AI Team Training  
+Upskill your developers with hands-on workshops designed for real-world AI. I cover prompt engineering, RAG, LLM integration, and more—tailored to your stack and team.  
+**Ideal for:** Technical teams and engineers  
+**Timeline:** 1–5 days
+
+### Leadership Development  
+Equip your leadership with the mindset and knowledge to navigate the AI revolution. I offer 1:1 coaching and group sessions on building AI-first strategies.  
+**Ideal for:** Founders, CTOs, product leaders  
+**Timeline:** Custom
+
+Every engagement starts with a discovery phase where I dig into your systems, goals, and blockers—so we can design a high-impact, personalized solution.
+
+---
 
 ### New: AI Team Training Programs
 
-Empower your organization with the practical AI skills needed to thrive in today's technology landscape. My specialized training programs cover prompt engineering, RAG implementation, AI integration for developers, and AI ethics & governance. Each program is custom-tailored to your team's technical level and specific business context.
+Want to level up your internal capabilities?
+
+My custom training programs give your team practical skills in:
+
+- Prompt engineering
+- RAG implementation
+- AI integration for developers
+- AI ethics & governance
+
+Each session is customized based on your team's technical background and the specific challenges your business is facing.
 
 [:octicons-info-16: Learn More About My Services](./services.md) { .md-button .md-button--primary }
+
 
 ## RAG Beyond Basics Course
 

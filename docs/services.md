@@ -4,59 +4,85 @@ description: Tailored consulting to drive your success, solve key challenges, an
 
 # Strategic AI Consulting Services
 
-## Unlock AI-Powered Business Transformation
+## Unlock the Power of AI for Your Business
 
-- **Strategic AI Roadmapping** – Custom-engineered implementation plans aligned with your specific business objectives and competitive landscape
-- **AI-Powered Process Optimization** – Data-driven solutions that eliminate inefficiencies and deliver measurable productivity gains
-- **AI Team Training & Development** – Comprehensive workshops and hands-on programs to empower your teams with practical AI skills and knowledge
-- **Technical Leadership Development** – Executive coaching and team upskilling to strengthen AI capabilities and decision-making
-- **Implementation Excellence** – Hands-on technical guidance ensuring seamless execution of complex AI initiatives
-- **Continuous Innovation Partnership** – Ongoing advisory to sustain growth and navigate the rapidly evolving AI landscape
+Whether you're just starting to explore AI or looking to scale advanced capabilities, I offer customized solutions that align with your goals and deliver real business impact.
+
+- **Strategic AI Roadmapping** – I work closely with your team to create implementation plans tailored to your objectives, resources, and market landscape.
+- **Process Optimization** – Identify and eliminate inefficiencies using data-driven solutions that boost productivity and performance.
+- **AI Team Training & Development** – Build internal AI capability through hands-on workshops and custom programs designed for your team's experience level.
+- **Leadership & Strategy Coaching** – Equip executives and decision-makers with the mindset and tools to lead in the age of AI.
+- **Technical Implementation** – I’ll guide and support your team through the successful rollout of complex AI systems, step by step.
+- **Ongoing Innovation Support** – Stay ahead of the curve with ongoing advisory services to help you scale, iterate, and adapt.
 
 [Schedule a Consultation](./book-a-call.md) { .md-button .md-button--primary }
 
-## My Proven 5-Step Methodology For Transformative Results
+## How I Work: A Simple, Proven Process
 
-My systematic approach consistently delivers quantifiable business outcomes:
+I follow a clear, outcome-focused process that keeps your goals front and center—from first conversation to long-term results.
 
-1. **Deep Discovery** – Comprehensive analysis of your technical infrastructure, data assets, and strategic objectives
-2. **Strategic Diagnosis** – Expert identification of high-impact AI opportunities and implementation challenges
-3. **Solution Architecture** – Custom-designed implementation plans leveraging cutting-edge AI capabilities aligned with your vision and resources
-4. **Technical Implementation** – Expert-guided execution with systematic knowledge transfer to your team for sustainable adoption
-5. **Continuous Optimization** – Iterative refinement through data-driven assessment to maximize ROI and long-term value
+1. **Understand Your Landscape**  
+We start with a deep dive into your tech stack, workflows, and goals—so we can tailor everything to your specific needs.
 
-## AI Team Training Program
+2. **Find the Right Opportunities**  
+I help you identify the AI use cases that offer the biggest wins and flag any roadblocks early on.
 
-Empower your organization with practical AI skills through customized training programs designed for various roles and technical levels:
+3. **Design a Smart Solution**  
+We co-create a practical, scalable plan using the best-fit tools and techniques—no fluff.
 
-- **Executive AI Literacy** – Equipping leaders with the knowledge to make informed AI strategy decisions
-- **Prompt Engineering Mastery** – Teaching teams to effectively harness LLM capabilities through advanced prompting techniques
-- **RAG Implementation Workshop** – Hands-on training for developers to build and optimize Retrieval-Augmented Generation systems
-- **AI Integration for Developers** – Technical workshops on incorporating AI into existing products and workflows
-- **AI Ethics & Governance** – Guidelines for responsible AI implementation and risk management
+4. **Build and Deliver**  
+With hands-on support and knowledge sharing, we move from prototype to production smoothly and confidently.
 
-All training programs are tailored to your organization's specific industry context, technical stack, and business objectives. Formats range from intensive half-day workshops to comprehensive multi-week programs with hands-on projects.
+5. **Refine and Scale**  
+Once live, we iterate, optimize, and expand—so your solution continues to grow with your business.
 
-## Tailored Engagement Models
+## Practical AI Training That Sticks
 
-| Solution                 | Value Proposition                                | Typical Duration |
-|--------------------------|--------------------------------------------------|------------------|
-| Strategic Assessment     | Comprehensive analysis with clear growth roadmap | 2-4 weeks        |
-| Implementation Support   | Expert-led execution of strategic initiatives    | 1-3 months       |
-| Advisory Retainer        | Ongoing strategic guidance and problem-solving   | Monthly          |
-| AI Team Training         | Customized workshops and hands-on skill building | 1-5 days         |
-| Leadership Development   | Custom executive coaching and AI strategy        | Custom           |
-| Strategy Intensive       | High-impact planning sessions for rapid results  | 1-2 days         |
+Empower your teams with targeted AI skills through training programs customized for different roles and technical levels:
 
-## Pricing Overview
+- **Executive AI Literacy** – Help leaders make smart, informed decisions about AI strategy and adoption.
+- **Prompt Engineering Mastery** – Teach teams how to get the most out of LLMs with structured, effective prompts.
+- **RAG Implementation Workshop** – Equip developers with the skills to build and fine-tune RAG-powered systems.
+- **AI Integration for Developers** – Learn how to embed AI into your existing products, pipelines, and processes.
+- **AI Ethics & Governance** – Build responsible systems with frameworks for fairness, transparency, and accountability.
 
-**Strategic Assessment:** Starting from $X,XXX  
-**Implementation Support:** Starting from $X,XXX  
-**Advisory Retainer:** $X,XXX/month  
-**AI Team Training:** Starting from $X,XXX/day  
-**Executive Workshops:** $X,XXX/session  
+Workshops range from focused half-day intensives to comprehensive multi-week programs with projects, mentoring, and real use cases.
 
-Custom packages available to accommodate your specific needs and budget.
+## Learn RAG, End-to-End: 'RAG Beyond Basics' Course
+
+If you're serious about building real-world AI solutions, my flagship course, **RAG Beyond Basics**, is designed to take you from foundational concepts to full-scale, production-ready applications.
+
+This course is ideal for:
+
+- **Engineers** who want to master LLM-based search and retrieval systems
+    
+- **Product builders** looking to integrate RAG into their SaaS tools
+    
+- **Innovation teams** aiming to unlock value from internal document repositories
+    
+
+You’ll go far beyond simple demos—learning query expansion, re-ranking, ensemble retrieval, chunking strategies, and how to ship a polished, interactive app.
+
+[Explore the Course →](https://prompt-s-site.thinkific.com/courses/rag) { .md-button .md-button--primary }
+
+## Engagement Models That Fit Your Needs
+
+Every organization is different—so I offer flexible ways to work together depending on your goals, timeline, and internal capabilities.
+
+- **Strategic Assessments** provide a focused deep dive into your systems, identifying key AI opportunities and delivering a clear, actionable roadmap.
+- **Implementation Support** offers hands-on execution, helping your team bring complex AI solutions to life with expert guidance.
+- **Advisory Retainers** keep me on-call as your trusted AI partner, providing monthly strategic input and fast answers when you need them.
+- **AI Team Training** ranges from quick workshops to multi-day deep dives, tailored to your team’s skill level and real-world needs.
+- **Leadership Development** is available for executives and teams seeking to sharpen their AI thinking and build long-term capability.
+- **Strategy Intensives** are designed for fast-moving teams that need clarity, prioritization, and direction in just a day or two.
+
+## What About Pricing?
+
+Every project is different—so I offer flexible pricing tailored to your goals, team size, and project complexity.
+
+Whether you're looking for a quick strategic boost, hands-on implementation, or ongoing advisory support, we can find a model that works for your budget.
+
+Let’s start with a discovery call and build a plan that fits.
 
 [:material-email: Contact Me](mailto:contact@engineerprompt.com) |
 [:material-calendar: Schedule a Consultation](./book-a-call.md) { .cta-button }
