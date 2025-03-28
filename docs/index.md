@@ -25,9 +25,14 @@ My consulting practice empowers startups and established businesses to build eff
 |-----------------------------------------------|-------------------------------------------|-------------|
 | Strategic Consulting                          | In-depth analysis and actionable recommendations | 4-8 weeks   |
 | Process Optimization                        | Streamline operations and improve efficiency  | 2-4 weeks   |
-| Training & Development                      | Skill-building workshops and coaching        | Custom      |
+| AI Team Training                            | Hands-on workshops for practical AI skills    | 1-5 days    |
+| Leadership Development                      | Executive coaching for AI-driven strategy     | Custom      |
 
 Every consulting engagement begins with a comprehensive discovery phase where I deeply analyze your specific challenges, goals, and existing systems to create precisely tailored solutions that deliver maximum impact.
+
+### New: AI Team Training Programs
+
+Empower your organization with the practical AI skills needed to thrive in today's technology landscape. My specialized training programs cover prompt engineering, RAG implementation, AI integration for developers, and AI ethics & governance. Each program is custom-tailored to your team's technical level and specific business context.
 
 [:octicons-info-16: Learn More About My Services](./services.md) { .md-button .md-button--primary }
 
