@@ -19,7 +19,7 @@ In our **focused 45-minute consultation**, we'll:
 
 Taking the first step toward transformation is simple:
 
-[:material-calendar: Schedule Your Call →](https://calendly.com/engineerprompt/consulting-call) { .md-button .md-button--primary }
+[:material-calendar: Schedule Your Call →](https://calendly.com/engineerprompt/consulting-call) { .cta-button }
 
 ## How To Prepare For Maximum Value
 
@@ -45,4 +45,4 @@ I'm committed to providing exceptional value whether we decide to work together 
 
 ## Ready To Move Forward?
 
-[:material-calendar: Book Your Call Now](https://calendly.com/engineerprompt/consulting-call) { .md-button .md-button--primary }
+[:material-calendar: Book Your Call Now](https://calendly.com/engineerprompt/consulting-call) { .cta-button }

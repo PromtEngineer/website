@@ -165,6 +165,38 @@ h1, h2, h3 {
   color: var(--md-accent-fg-color);
 }
 
+/* Custom CTA Button Styling */
+.cta-button {
+  display: inline-block;
+  font-size: 1.1rem !important;
+  padding: 0.8rem 1.6rem !important;
+  text-align: center;
+  background: var(--md-primary-fg-color) !important;
+  color: white !important;
+  border-radius: 6px !important;
+  box-shadow: 0 4px 12px rgba(44, 62, 80, 0.2) !important;
+  margin: 1.5rem 0 !important;
+  border: none !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.03em;
+  transition: all 0.3s ease !important;
+  border-bottom: 3px solid rgba(0, 0, 0, 0.1) !important;
+}
+
+.cta-button:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 14px rgba(44, 62, 80, 0.25) !important;
+  background: var(--md-accent-fg-color) !important;
+  border-bottom-color: rgba(0, 0, 0, 0.15) !important;
+}
+
+.cta-button .twemoji {
+  vertical-align: -4px;
+  padding-right: 8px;
+  height: 1.2em;
+  width: 1.2em;
+}
+
 /* Consultation CTA */
 .consultation-cta {
   background: linear-gradient(135deg, #3498DB, #2C3E50);

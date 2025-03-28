@@ -14,7 +14,7 @@ I regularly share my thoughts and practical tips and insights about LLMs, Genera
 
 Ready to harness AI's full potential for your organization?
 
-[:material-calendar: Book a Consultation](./book-a-call.md) { .md-button .md-button--primary }
+[:material-calendar: Book a Consultation](./book-a-call.md) { .cta-button }
 ---
 
 ## Consulting

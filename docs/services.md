@@ -44,4 +44,4 @@ My systematic approach consistently delivers quantifiable business outcomes:
 Custom packages available to accommodate your specific needs and budget.
 
 [:material-email: Contact Me](mailto:contact@engineerprompt.com) |
-[:material-calendar: Schedule a Consultation](./book-a-call.md) { .md-button .md-button--primary }
+[:material-calendar: Schedule a Consultation](./book-a-call.md) { .cta-button }
