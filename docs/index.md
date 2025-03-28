@@ -39,11 +39,19 @@ Learn how to build powerful chat-with-documents applications using advanced Retr
 
 I create educational and informative videos on my YouTube channel. Here are some of my most popular videos:
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/vX3A96_F3FU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/tmiBae2goJM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-
+<div class="video-grid" style="grid-template-columns: repeat(2, 1fr); max-width: 100%;">
+  <div class="video-card" style="margin-bottom: 1rem;">
+    <div class="video-wrapper">
+      <iframe src="https://www.youtube.com/embed/vX3A96_F3FU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
+  
+  <div class="video-card" style="margin-bottom: 1rem;">
+    <div class="video-wrapper">
+      <iframe src="https://www.youtube.com/embed/tmiBae2goJM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
+</div>
 
 [:fontawesome-brands-youtube: See All Videos](./youtube.md) { .md-button .md-button--primary }
 
