@@ -117,7 +117,8 @@ nav:
     - Services: 'services.md'
   - Consulting:
     - Consulting Services: "services.md"
-    - Book a Call: "book-call.md"
+    - Book a Consultation: "book-a-call.md"
+  - RAG Course: "rag-beyond-basics.md"
   - YouTube Videos: "youtube.md"
   - Writing:
     - "writing/index.md"

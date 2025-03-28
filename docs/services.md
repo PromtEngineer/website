@@ -2,37 +2,37 @@
 description: Tailored consulting to drive your success, solve key challenges, and accelerate growth.
 ---
 
-# Consulting Services
+# Strategic AI Consulting Services
 
-## What I Offer
+## Unlock AI-Powered Business Transformation
 
-- **Strategic Insights & Planning** – Evaluate your current position and deliver actionable roadmaps tailored to your goals.
-- **Operational Efficiency** – Identify bottlenecks, reduce overhead, and streamline workflows for optimal performance.
-- **Team Training & Development** – Custom programs designed to boost your team's skills, engagement, and productivity.
-- **Hands-On Execution Support** – Practical guidance and assistance to smoothly implement recommended strategies.
-- **Continuous Mentorship** – Ongoing advice and check-ins to maintain momentum and promptly resolve emerging issues.
+- **Strategic AI Roadmapping** – Custom-engineered implementation plans aligned with your specific business objectives and competitive landscape
+- **AI-Powered Process Optimization** – Data-driven solutions that eliminate inefficiencies and deliver measurable productivity gains
+- **Technical Leadership Development** – Executive coaching and team upskilling to strengthen AI capabilities and decision-making
+- **Implementation Excellence** – Hands-on technical guidance ensuring seamless execution of complex AI initiatives
+- **Continuous Innovation Partnership** – Ongoing advisory to sustain growth and navigate the rapidly evolving AI landscape
 
-[Request a Consultation](mailto:engineerprompt@gmail.com)
+[Schedule a Consultation](./book-a-call.md) { .md-button .md-button--primary }
 
-## My Proven Process
+## My Proven 5-Step Methodology For Transformative Results
 
-To ensure meaningful impact and sustainable results, my consulting approach involves:
+My systematic approach consistently delivers quantifiable business outcomes:
 
-1. **Understanding** – Deep dive into your unique challenges and ambitions.
-2. **Diagnosis** – Thorough assessment to pinpoint areas for improvement.
-3. **Action Planning** – Development of clear, targeted strategies.
-4. **Execution** – Collaborative implementation alongside your team.
-5. **Review & Optimize** – Regular evaluation of outcomes to continuously refine our approach.
+1. **Deep Discovery** – Comprehensive analysis of your technical infrastructure, data assets, and strategic objectives
+2. **Strategic Diagnosis** – Expert identification of high-impact AI opportunities and implementation challenges
+3. **Solution Architecture** – Custom-designed implementation plans leveraging cutting-edge AI capabilities aligned with your vision and resources
+4. **Technical Implementation** – Expert-guided execution with systematic knowledge transfer to your team for sustainable adoption
+5. **Continuous Optimization** – Iterative refinement through data-driven assessment to maximize ROI and long-term value
 
-## Consulting Options
+## Tailored Engagement Models
 
-| Package                  | Overview                                         | Duration     |
-|--------------------------|--------------------------------------------------|--------------|
-| Strategic Assessment     | In-depth review and clear strategic direction    | 2-4 weeks    |
-| Implementation Support   | Active guidance to put plans into action         | 1-3 months   |
-| Advisory Retainer        | Consistent ongoing strategic advice              | Monthly      |
-| Customized Training      | Tailored skill-building sessions for your team   | Custom       |
-| Strategic Retreat        | Focused sessions to align and accelerate growth  | 1-2 days     |
+| Solution                 | Value Proposition                                | Typical Duration |
+|--------------------------|--------------------------------------------------|------------------|
+| Strategic Assessment     | Comprehensive analysis with clear growth roadmap | 2-4 weeks        |
+| Implementation Support   | Expert-led execution of strategic initiatives    | 1-3 months       |
+| Advisory Retainer        | Ongoing strategic guidance and problem-solving   | Monthly          |
+| Leadership Development   | Custom executive coaching and team training      | Custom           |
+| Strategy Intensive       | High-impact planning sessions for rapid results  | 1-2 days         |
 
 ## Pricing Overview
 
@@ -43,5 +43,5 @@ To ensure meaningful impact and sustainable results, my consulting approach invo
 
 Custom packages available to accommodate your specific needs and budget.
 
-[Contact Me](mailto:engineerprompt@gmail.com) |
-[Schedule a Call](./book-call.md)
+[:material-email: Contact Me](mailto:contact@engineerprompt.com) |
+[:material-calendar: Schedule a Consultation](./book-a-call.md) { .md-button .md-button--primary }

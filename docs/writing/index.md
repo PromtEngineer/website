@@ -12,7 +12,7 @@ tags:
 - RAG
 ---
 
-# Writing and mumblings
+# Writing and Insights
 
 I write about a mix of consulting, open source, personal work, and applying llms. I won't email you more than twice a month, not every post I write is worth sharing but I'll do my best to share the most interesting stuff including my own writing, thoughts, and experiences.
 
@@ -26,7 +26,7 @@ For posts about RAG (Retrieval-Augmented Generation) or LLMs (Large Language Mod
 - [Advice for Young People](./posts/advice.md): Tips and insights for those starting their journey
 - [Losing My Hands](./posts/hands-part-1.md): My experience with a career-changing injury
 
-## RAG and LLM Insights
+## RAG and LLM Expertise
 
 - [Future of RAG](./posts/rag-plusplus.md): What's next for RAG?
 - [RAG: More Than Just Embeddings](./posts/rag.md): Understanding the full scope of RAG systems
@@ -37,7 +37,7 @@ For posts about RAG (Retrieval-Augmented Generation) or LLMs (Large Language Mod
 - [RAG Feedback Loop](./posts/rag-flywheel.md): Creating a self-improving RAG system
 - [RAG Search Metrics](./posts/rag-lgtmk.md): How to measure RAG search quality
 
-## Consulting and Tech Advice
+## Consulting and Tech Strategies
 
 - [Tools for Consulting](./posts/consulting-stack.md): Essential tech for consultants
 - [Solo Consulting Guide](./posts/consulting-indie.md): Tips for independent consultants

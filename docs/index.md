@@ -2,9 +2,9 @@
 description: Welcome to my personal website featuring consulting services and YouTube videos.
 ---
 
-# 👋 I am Muhammad!
+# 👋 I'm Muhammad — Your AI Implementation Expert
 
-I'm an independent consultant, advisor, and Google Developer Expert with over 10 years of experience building impactful machine learning systems. I help my clients achieve their business and personal goals by guiding them through the rapidly evolving AI landscape.
+As an independent consultant, advisor, and Google Developer Expert with over 10 years of experience building high-performance machine learning systems, I transform complex AI challenges into business advantages. I guide organizations through the rapidly evolving AI landscape, turning technical possibilities into measurable business outcomes.
 
 In a previous life, I earned my Ph.D. in Applied Machine Learning, where I specialized in building wearable sensors and applying machine learning to biomedical signal processing. You can explore my research and publications on [Google Scholar](https://scholar.google.com/citations?user=vQcpPPAAAAAJ&hl=en).
 
@@ -12,15 +12,14 @@ I'm also passionate about open source and community building. I'm also the creat
 
 I regularly share my thoughts and practical tips and insights about LLMs, Generative AI, Agents, and more on my [YouTube channel](https://www.youtube.com/@engineerprompt) with **193k+ subscribers**. I also have an engaging community on [Discord](https://discord.gg/nMEEN2sS) of **4,500+ members**.
 
-Interested in working together or just want to chat?
+Ready to harness AI's full potential for your organization?
 
-[**Book a Consulting Call**](./book-call.md)
-
+[:material-calendar: Book a Consultation](./book-a-call.md) { .md-button .md-button--primary }
 ---
 
 ## Consulting
 
-I run a consulting practice helping startups and established businesses build effective machine learning practices, adapt quickly to advancements in AI, and accelerate growth with smart, actionable strategies.
+My consulting practice empowers startups and established businesses to build effective machine learning systems, adapt rapidly to AI advancements, and drive measurable growth with strategic implementation. I bridge the gap between cutting-edge technology and practical business applications.
 
 | Service                                       | Description                               | Duration     |
 |-----------------------------------------------|-------------------------------------------|-------------|
@@ -28,9 +27,9 @@ I run a consulting practice helping startups and established businesses build ef
 | Process Optimization                        | Streamline operations and improve efficiency  | 2-4 weeks   |
 | Training & Development                      | Skill-building workshops and coaching        | Custom      |
 
-Each consulting engagement begins with a thorough discovery phase to understand your specific challenges and goals.
+Every consulting engagement begins with a comprehensive discovery phase where I deeply analyze your specific challenges, goals, and existing systems to create precisely tailored solutions that deliver maximum impact.
 
-[Learn more about my services](./services.md)
+[:octicons-info-16: Learn More About My Services](./services.md) { .md-button .md-button--primary }
 
 ## RAG Beyond Basics Course
 
@@ -59,7 +58,7 @@ I create educational and informative videos on my YouTube channel. Here are some
 
     Interested in working together? Schedule a free discovery call to discuss your needs and how I can help you achieve your goals.
 
-    [:octicons-arrow-right-24: Book a Call](./book-call.md)
+    [:octicons-arrow-right-24: Book a Consultation](./book-a-call.md)
 
 -   :material-account-group:{ .lg .middle } __Follow Me__
 
