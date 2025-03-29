@@ -24,20 +24,10 @@ For posts about RAG (Retrieval-Augmented Generation) or LLMs (Large Language Mod
 
 ## RAG and LLM Expertise
 - [Agents and Architecture](./posts/agents-architecture.md): Understanding the components of LLM Agents
-- [Future of RAG](./posts/rag-plusplus.md): What's next for RAG?
 
-## Consulting and Tech Strategies
-
-- [Tools for Consulting](./posts/consulting-stack.md): Essential tech for consultants
-- [Solo Consulting Guide](./posts/consulting-indie.md): Tips for independent consultants
-- [Consulting 101](./posts/consulting-everything-i-know.md): Key lessons from my consulting experience
-- [Building AI App MVPs](./posts/mvp.md): How to launch a basic AI application
-- [Common Engineering Errors](./posts/stochastic-software.md): Mistakes to avoid in software development
 
 ## Talks and Interviews
 
-- [Pydantic Keynote](https://www.youtube.com/watch?v=yj-wSRJwrrc&): Why Pydantic is crucial for Python developers
-- [Weaviate Podcast](https://www.youtube.com/watch?v=higlHgYDc5E): Discussion on vector databases
-- [AI Development Podcast](https://www.youtube.com/watch?v=RuLTElrphnk): Insights on building with AI
-- [Dagshub Interview](https://www.youtube.com/watch?v=rDP44EVpHTA): Exploring data science tools
-- [Talking Heads Podcast](https://www.youtube.com/watch?v=5-5jf3_mvBg): Thoughts on AI and tech trends
+- [Forcing LLMs to Think with "Think Tool"](https://youtu.be/Ofhx8ocr-cY):Forget Chain-of-Thought—This New Tool Might Be Better
+- [DIffusion LLMs](https://youtu.be/0B9EMddwlOQ): Diffusion LLMs Are Here! Is This the End of Autoregressive Techniques?
+- [Reward Hacking](https://youtu.be/uY7I1YrZB2M): Reward Hacking Explained
