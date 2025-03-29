@@ -6,19 +6,19 @@ description: Watch my educational videos on various topics related to my field o
 
 Access my curated collection of in-depth technical tutorials, strategic insights, and practical implementation guides that have helped over 193,000 professionals master AI, LLMs, and Generative AI. Each video distills complex concepts into actionable knowledge you can apply immediately.
 
-[:fontawesome-brands-youtube: Join 193K+ Subscribers](https://www.youtube.com/@engineerprompt){.md-button .md-button--primary}
+[:fontawesome-brands-youtube: Join 193K+ Subscribers](https://www.youtube.com/@engineerprompt){.md-button .md-button--secondary}
 
 ## Most Impactful Technical Tutorials
 
 <div class="video-grid">
   <div class="video-card">
     <div class="video-wrapper">
-      <iframe src="https://www.youtube.com/embed/T-D1OfcDW1M" title="Introduction to RAG Systems" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/g21royNJ4fw" title="Light-RAG: An Alternative to GraphRAG" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
     <div class="video-info">
       <span class="video-category">RAG</span>
-      <h3>Introduction to RAG Systems</h3>
-      <p>Learn the fundamentals of Retrieval-Augmented Generation (RAG) and how it can enhance your AI applications by providing accurate, contextual information from your documents.</p>
+      <h3>Local LightRAG: A GraphRAG Alternative but Fully Local with Ollama</h3>
+      <p>In this video, we explore how to set up and run LightRAG—a retrieval augmented generation (RAG) system that combines knowledge graphs with embedding-based retrieval—locally using OLLAMA. .</p>
       <div class="video-stats">
         <span>:material-eye: 58K views</span>
       </div>

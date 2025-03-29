@@ -8,14 +8,14 @@ description: Tailored consulting to drive your success, solve key challenges, an
 
 Whether you're just starting to explore AI or looking to scale advanced capabilities, I offer customized solutions that align with your goals and deliver real business impact.
 
-- **Strategic AI Roadmapping** – I work closely with your team to create implementation plans tailored to your objectives, resources, and market landscape.
-- **Process Optimization** – Identify and eliminate inefficiencies using data-driven solutions that boost productivity and performance.
-- **AI Team Training & Development** – Build internal AI capability through hands-on workshops and custom programs designed for your team's experience level.
-- **Leadership & Strategy Coaching** – Equip executives and decision-makers with the mindset and tools to lead in the age of AI.
-- **Technical Implementation** – I’ll guide and support your team through the successful rollout of complex AI systems, step by step.
-- **Ongoing Innovation Support** – Stay ahead of the curve with ongoing advisory services to help you scale, iterate, and adapt.
+- **Strategic AI Roadmapping** – We'll collaboratively build clear implementation plans, ensuring your AI investments directly fuel your business objectives and drive measurable growth.
+- **Process Optimization** – Pinpoint and eliminate inefficiencies using targeted AI solutions, significantly boosting productivity and reducing operational costs.
+- **AI Team Training & Development** – Elevate your internal AI capability through hands-on workshops, empowering your team to build, deploy, and manage AI solutions effectively.
+- **Leadership & Strategy Coaching** – Equip your executives with the strategic insights and AI fluency needed to lead confidently and gain a competitive advantage in the age of AI.
+- **Technical Implementation Guidance** – Navigate complex AI rollouts successfully with expert, step-by-step guidance and hands-on support for your technical teams.
+- **Ongoing Innovation Support** – Stay ahead of the curve. My ongoing advisory services help you scale solutions, iterate effectively, and adapt to the rapidly evolving AI landscape.
 
-[Schedule a Consultation](./book-a-call.md){.md-button .md-button--primary}
+[Schedule a Consultation](./book-a-call.md){.md-button .md-button--secondary}
 
 ## How I Work: A Simple, Proven Process
 
@@ -40,13 +40,13 @@ Once live, we iterate, optimize, and expand—so your solution continues to grow
 
 Empower your teams with targeted AI skills through training programs customized for different roles and technical levels:
 
-- **Executive AI Literacy** – Help leaders make smart, informed decisions about AI strategy and adoption.
-- **Prompt Engineering Mastery** – Teach teams how to get the most out of LLMs with structured, effective prompts.
-- **RAG Implementation Workshop** – Equip developers with the skills to build and fine-tune RAG-powered systems.
-- **AI Integration for Developers** – Learn how to embed AI into your existing products, pipelines, and processes.
-- **AI Ethics & Governance** – Build responsible systems with frameworks for fairness, transparency, and accountability.
+- **Executive AI Literacy** – Empower leaders to make strategic AI decisions that drive competitive advantage and foster an AI-first culture.
+- **Prompt Engineering Mastery** – Teach teams to craft effective prompts, enabling them to harness the full power of LLMs for consistent, high-quality outputs.
+- **RAG Implementation Workshop** – Equip developers with the practical skills to build, fine-tune, and deploy robust RAG systems for enhanced information retrieval.
+- **AI Integration for Developers** – Guide your developers in seamlessly embedding AI capabilities into existing products and workflows, creating smarter applications.
+- **AI Ethics & Governance** – Build trust and mitigate risk by implementing frameworks for responsible, fair, and transparent AI systems.
 
-Workshops range from focused half-day intensives to comprehensive multi-week programs with projects, mentoring, and real use cases.
+Workshops range from focused half-day intensives to comprehensive multi-week programs with projects, mentoring, and real use cases, ensuring skills are not just learned, but applied.
 
 ## Learn RAG, End-to-End: 'RAG Beyond Basics' Course
 
@@ -61,9 +61,9 @@ This course is ideal for:
 - **Innovation teams** aiming to unlock value from internal document repositories
     
 
-You’ll go far beyond simple demos—learning query expansion, re-ranking, ensemble retrieval, chunking strategies, and how to ship a polished, interactive app.
+You'll go far beyond simple demos—learning query expansion, re-ranking, ensemble retrieval, chunking strategies, and how to ship a polished, interactive app.
 
-[Explore the Course →](https://prompt-s-site.thinkific.com/courses/rag){.md-button .md-button--primary}
+[Explore the Course →](https://prompt-s-site.thinkific.com/courses/rag){.md-button .md-button--secondary}
 
 ## Engagement Models That Fit Your Needs
 
@@ -72,7 +72,7 @@ Every organization is different—so I offer flexible ways to work together depe
 - **Strategic Assessments** provide a focused deep dive into your systems, identifying key AI opportunities and delivering a clear, actionable roadmap.
 - **Implementation Support** offers hands-on execution, helping your team bring complex AI solutions to life with expert guidance.
 - **Advisory Retainers** keep me on-call as your trusted AI partner, providing monthly strategic input and fast answers when you need them.
-- **AI Team Training** ranges from quick workshops to multi-day deep dives, tailored to your team’s skill level and real-world needs.
+- **AI Team Training** ranges from quick workshops to multi-day deep dives, tailored to your team's skill level and real-world needs.
 - **Leadership Development** is available for executives and teams seeking to sharpen their AI thinking and build long-term capability.
 - **Strategy Intensives** are designed for fast-moving teams that need clarity, prioritization, and direction in just a day or two.
 
@@ -82,7 +82,7 @@ Every project is different—so I offer flexible pricing tailored to your goals,
 
 Whether you're looking for a quick strategic boost, hands-on implementation, or ongoing advisory support, we can find a model that works for your budget.
 
-Let’s start with a discovery call and build a plan that fits.
+Let's start with a discovery call and build a plan that fits.
 
-[:material-email: Contact Me](mailto:contact@engineerprompt.com) |
-[:material-calendar: Schedule a Consultation](./book-a-call.md) { .cta-button }
+[:material-email: Contact Me](mailto:contact@engineerprompt.com){.md-button .md-button--secondary} |
+[:material-calendar: Schedule a Consultation](./book-a-call.md){.md-button .md-button--secondary}

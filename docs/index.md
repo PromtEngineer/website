@@ -2,16 +2,26 @@
 description: Welcome to my personal website featuring consulting services and YouTube videos.
 ---
 
+<div class="hero" markdown>
+# Turn AI Complexity Into Business Advantage
 
-# I'm Muhammad — Your AI Expert
+## Independent AI Consultant & Google Developer Expert helping businesses build high-impact AI solutions
 
-I'm an independent consultant, advisor, and Google Developer Expert with over a decade of hands-on experience in building and scaling machine learning systems. I help businesses turn complex AI challenges into clear, actionable strategies that deliver real-world impact.
+With over a decade of experience in machine learning systems and a proven track record of transforming ideas into measurable results.
+
+[:material-calendar: Book a Consultation](./book-a-call.md){.md-button .md-button--secondary}
+[:octicons-info-16: Explore My Services](./services.md){.md-button .md-button--secondary}
+</div>
+
+# 👋 I'm Muhammad — Your AI Expert
+
+I'm an independent consultant, advisor, and Google Developer Expert with over a decade of hands-on experience in building and scaling machine learning systems. I partner with businesses like yours to turn complex AI challenges into clear, actionable strategies that deliver tangible results—boosting efficiency, unlocking new opportunities, and driving growth.
 
 Whether you're navigating the ever-evolving landscape of Generative AI or trying to unlock the full potential of LLMs, I can guide you from ideation to execution—with a focus on measurable results.
 
 Before diving into consulting, I earned a Ph.D. in Applied Machine Learning, specializing in wearable sensors and biomedical signal processing. You can browse my academic research and publications on [Google Scholar](https://scholar.google.com/citations?user=vQcpPPAAAAAJ\&hl=en).
 
-I’m also deeply committed to open-source and community-driven learning. I created **[localGPT](https://github.com/PromtEngineer/localGPT)**, one of the first open-source Retrieval-Augmented Generation (RAG) projects for secure, private document interaction—now with over **20k GitHub ⭐**.
+I'm also deeply committed to open-source and community-driven learning. I created **[localGPT](https://github.com/PromtEngineer/localGPT)**, one of the first open-source Retrieval-Augmented Generation (RAG) projects for secure, private document interaction—now with over **20k GitHub ⭐**.
 
 On my [YouTube channel](https://www.youtube.com/@engineerprompt) with **193k+ subscribers**, I regularly share practical insights on LLMs, Generative AI, Agents, and more. Join the conversation on [Discord](https://discord.gg/nMEEN2sS), where 4,500+ members exchange ideas, ask questions, and build cool stuff together.
 
@@ -19,7 +29,7 @@ On my [YouTube channel](https://www.youtube.com/@engineerprompt) with **193k+ su
 
 Ready to bring AI into your business in a meaningful way?
 
-[:material-calendar: Book a Consultation](./book-a-call.md){.cta-button}
+[:material-calendar: Book a Consultation](./book-a-call.md){.md-button .md-button--secondary}
 
 ---
 
@@ -27,25 +37,25 @@ Ready to bring AI into your business in a meaningful way?
 
 I help startups and enterprise teams build high-impact machine learning systems, adapt quickly to emerging AI tools, and implement strategies that drive tangible business outcomes.
 
-Here’s how I can support your organization:
+Here's how I can empower your organization:
 
 ### Strategic Consulting  
-Get tailored, expert advice that helps you move from AI curiosity to clear, confident implementation. I’ll work with your team to analyze your needs, recommend the right technologies, and build an actionable roadmap.  
+Navigate the AI landscape confidently. We'll co-create a custom roadmap ensuring your AI investments align directly with strategic goals, whether it's market leadership, product innovation, or operational excellence.  
 **Ideal for:** Product strategy, R&D, AI integration  
 **Timeline:** 4–8 weeks
 
 ### Process Optimization  
-Bring efficiency to your workflows by identifying opportunities for automation and smarter decision-making. Together, we’ll streamline what matters most.  
+Identify bottlenecks and unlock significant cost savings. I'll help you implement targeted AI solutions to automate key workflows and dramatically boost productivity.  
 **Ideal for:** Ops, customer support, internal tools  
 **Timeline:** 2–4 weeks
 
 ### AI Team Training  
-Upskill your developers with hands-on workshops designed for real-world AI. I cover prompt engineering, RAG, LLM integration, and more—tailored to your stack and team.  
+Transform your team's capabilities with practical, hands-on AI skills. We'll cover prompt engineering, RAG, LLM integration, and more—tailored to your stack—so your team can build and deploy with confidence.  
 **Ideal for:** Technical teams and engineers  
 **Timeline:** 1–5 days
 
 ### Leadership Development  
-Equip your leadership with the mindset and knowledge to navigate the AI revolution. I offer 1:1 coaching and group sessions on building AI-first strategies.  
+Equip your leaders to steer your organization through the AI revolution. Through 1:1 coaching and group sessions, we'll build the strategic mindset needed to foster an AI-first culture and gain a competitive edge.  
 **Ideal for:** Founders, CTOs, product leaders  
 **Timeline:** Custom
 
@@ -55,18 +65,18 @@ Every engagement starts with a discovery phase where I dig into your systems, go
 
 ### New: AI Team Training Programs
 
-Want to level up your internal capabilities?
+Want to build lasting AI expertise within your organization?
 
-My custom training programs give your team practical skills in:
+My custom training programs equip your team with practical skills to:
 
-- Prompt engineering
-- RAG implementation
-- AI integration for developers
-- AI ethics & governance
+- **Master prompt engineering:** Get consistent, high-quality results from LLMs.
+- **Implement advanced RAG:** Build powerful, context-aware AI applications.
+- **Integrate AI for developers:** Seamlessly embed AI into your existing products and pipelines.
+- **Champion AI ethics & governance:** Build responsible, trustworthy AI systems.
 
-Each session is customized based on your team's technical background and the specific challenges your business is facing.
+Each session is customized based on your team's technical background and the specific challenges your business is facing, ensuring immediate applicability and impact.
 
-[:octicons-info-16: Learn More About My Services](./services.md){.md-button .md-button--primary}
+[:octicons-info-16: Learn More About My Services](./services.md){.md-button .md-button--secondary}
 
 
 ## RAG Beyond Basics Course
@@ -91,7 +101,7 @@ I create educational and informative videos on my YouTube channel. Here are some
   </div>
 </div>
 
-[:fontawesome-brands-youtube: See All Videos](./youtube.md){.md-button .md-button--primary}
+[:fontawesome-brands-youtube: See All Videos](./youtube.md){.md-button .md-button--secondary}
 
 
 ## Connect With Me
