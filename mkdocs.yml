@@ -60,21 +60,21 @@ theme:
     - toc.follow
   palette:
     # Light mode
-    - media: "(prefers-color-scheme: light)"
-      scheme: default
-      primary: indigo
-      accent: indigo
-      toggle:
-        icon: material/brightness-7
-        name: Switch to dark mode
-    # Dark mode
-    - media: "(prefers-color-scheme: dark)"
-      scheme: slate
-      primary: indigo
-      accent: indigo
-      toggle:
-        icon: material/brightness-4
-        name: Switch to light mode
+    # - media: "(prefers-color-scheme: light)" # No longer needed if only one scheme
+    scheme: default
+    primary: indigo
+    accent: indigo
+    # toggle: # Remove toggle as there's only one scheme
+    #   icon: material/brightness-7
+    #   name: Switch to dark mode
+    # # Dark mode - REMOVE THIS SECTION
+    # - media: "(prefers-color-scheme: dark)"
+    #   scheme: slate
+    #   primary: indigo
+    #   accent: indigo
+    #   toggle:
+    #     icon: material/brightness-4
+    #     name: Switch to light mode
   icon:
     repo: fontawesome/brands/github
     edit: material/pencil 
