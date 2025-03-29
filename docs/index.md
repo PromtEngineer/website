@@ -19,7 +19,7 @@ On my [YouTube channel](https://www.youtube.com/@engineerprompt) with **193k+ su
 
 Ready to bring AI into your business in a meaningful way?
 
-[:material-calendar: Book a Consultation](./book-a-call.md) { .cta-button }
+[:material-calendar: Book a Consultation](./book-a-call.md){.cta-button}
 
 ---
 
@@ -66,7 +66,7 @@ My custom training programs give your team practical skills in:
 
 Each session is customized based on your team's technical background and the specific challenges your business is facing.
 
-[:octicons-info-16: Learn More About My Services](./services.md) { .md-button .md-button--primary }
+[:octicons-info-16: Learn More About My Services](./services.md){.md-button .md-button--primary}
 
 
 ## RAG Beyond Basics Course
@@ -91,7 +91,7 @@ I create educational and informative videos on my YouTube channel. Here are some
   </div>
 </div>
 
-[:fontawesome-brands-youtube: See All Videos](./youtube.md) { .md-button .md-button--primary }
+[:fontawesome-brands-youtube: See All Videos](./youtube.md){.md-button .md-button--primary}
 
 
 ## Connect With Me

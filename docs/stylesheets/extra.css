@@ -165,36 +165,89 @@ h1, h2, h3 {
   color: var(--md-accent-fg-color);
 }
 
+/* Material theme buttons */
+.md-typeset .md-button {
+  display: inline-block !important;
+  font-size: 0.9rem !important;
+  padding: 0.6rem 1.2rem !important;
+  text-align: center !important;
+  border-radius: 4px !important;
+  transition: all 0.3s ease !important;
+  margin: 0.5rem 0.2rem !important;
+  color: var(--md-primary-fg-color) !important;
+  border: 1px solid var(--md-primary-fg-color) !important;
+  min-width: 10rem;
+}
+
+.md-typeset .md-button:hover {
+  transform: translateY(-2px) !important;
+  background-color: var(--md-primary-fg-color) !important;
+  color: white !important;
+  text-decoration: none !important;
+}
+
+.md-typeset .md-button--primary {
+  background-color: var(--md-primary-fg-color) !important;
+  color: white !important;
+  border: 1px solid var(--md-primary-fg-color) !important;
+}
+
+.md-typeset .md-button--primary:hover {
+  background-color: var(--md-accent-fg-color) !important;
+  border-color: var(--md-accent-fg-color) !important;
+  text-decoration: none !important;
+}
+
+.md-typeset .md-button--secondary {
+  color: var(--md-primary-fg-color) !important;
+  border: 1px solid var(--md-primary-fg-color) !important;
+}
+
+.md-typeset .md-button--secondary:hover {
+  background-color: var(--md-primary-fg-color) !important;
+  color: white !important;
+  text-decoration: none !important;
+}
+
+.md-typeset .md-button .twemoji {
+  vertical-align: -0.2em !important;
+  padding-right: 0.4em !important;
+  height: 1.2em !important;
+  width: 1.2em !important;
+}
+
 /* Custom CTA Button Styling */
-.cta-button {
-  display: inline-block;
+.md-typeset .cta-button {
+  display: inline-block !important;
   font-size: 1.1rem !important;
   padding: 0.8rem 1.6rem !important;
-  text-align: center;
+  text-align: center !important;
   background: var(--md-primary-fg-color) !important;
   color: white !important;
   border-radius: 6px !important;
-  box-shadow: 0 4px 12px rgba(44, 62, 80, 0.2) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
   margin: 1.5rem 0 !important;
   border: none !important;
   font-weight: 600 !important;
   letter-spacing: 0.03em;
   transition: all 0.3s ease !important;
   border-bottom: 3px solid rgba(0, 0, 0, 0.1) !important;
+  min-width: 12rem;
 }
 
-.cta-button:hover {
+.md-typeset .cta-button:hover {
   transform: translateY(-2px) !important;
-  box-shadow: 0 6px 14px rgba(44, 62, 80, 0.25) !important;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25) !important;
   background: var(--md-accent-fg-color) !important;
   border-bottom-color: rgba(0, 0, 0, 0.15) !important;
+  text-decoration: none !important;
 }
 
-.cta-button .twemoji {
-  vertical-align: -4px;
-  padding-right: 8px;
-  height: 1.2em;
-  width: 1.2em;
+.md-typeset .cta-button .twemoji {
+  vertical-align: -0.2em !important;
+  padding-right: 0.4em !important;
+  height: 1.2em !important;
+  width: 1.2em !important;
 }
 
 /* Consultation CTA */
@@ -205,4 +258,25 @@ h1, h2, h3 {
   border-radius: 8px;
   text-align: center;
   margin: 2rem 0;
+}
+
+/* Dark mode adjustments */
+[data-md-color-scheme="slate"] .md-typeset .md-button--secondary {
+  color: white !important;
+  border-color: white !important;
+}
+
+[data-md-color-scheme="slate"] .md-typeset .md-button--secondary:hover {
+  background-color: white !important;
+  color: var(--md-primary-fg-color) !important;
+}
+
+[data-md-color-scheme="slate"] .md-typeset .cta-button,
+[data-md-color-scheme="slate"] .md-typeset .md-button--primary {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
+}
+
+[data-md-color-scheme="slate"] .md-typeset .cta-button:hover,
+[data-md-color-scheme="slate"] .md-typeset .md-button--primary:hover {
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.5) !important;
 }

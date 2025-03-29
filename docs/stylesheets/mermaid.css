@@ -1,0 +1,70 @@
+/* Mermaid diagram enhancements */
+
+/* Base styling for all Mermaid diagrams */
+.mermaid {
+  width: 100%;
+  max-width: 1000px;
+  margin: 2rem auto;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+  font-size: 16px !important;
+  min-height: 300px;
+}
+
+/* Make diagrams bigger on wider screens */
+@media (min-width: 1024px) {
+  .mermaid {
+    font-size: 18px !important;
+    min-height: 400px;
+  }
+}
+
+/* Center all Mermaid diagrams */
+.mermaid-wrapper {
+  text-align: center;
+  width: 100%;
+  margin: 2rem auto;
+}
+
+/* Hover effect for diagrams */
+.mermaid:hover {
+  transform: scale(1.02);
+}
+
+/* Expanded state for diagrams */
+.mermaid.expanded {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1.5);
+  z-index: 1000;
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  max-width: 95vw;
+  max-height: 95vh;
+  overflow: auto;
+  font-size: 20px !important;
+}
+
+/* Overlay for expanded diagrams */
+.mermaid-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  display: none;
+}
+
+.mermaid-overlay.active {
+  display: block;
+}
+
+/* Dark mode adjustments */
+[data-md-color-scheme="slate"] .mermaid.expanded {
+  background-color: #2e303e;
+}

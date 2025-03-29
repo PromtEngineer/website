@@ -189,6 +189,11 @@ extra:
   analytics:
     provider: google
     property: G-686PKP2V2V
+  css:
+    - stylesheets/extra.css
+    - stylesheets/mermaid.css
+  javascript:
+    - javascripts/mermaid-zoom.js
   social:
     - icon: fontawesome/solid/rss
       link: feed_rss_created.xml

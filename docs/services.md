@@ -15,7 +15,7 @@ Whether you're just starting to explore AI or looking to scale advanced capabili
 - **Technical Implementation** – I’ll guide and support your team through the successful rollout of complex AI systems, step by step.
 - **Ongoing Innovation Support** – Stay ahead of the curve with ongoing advisory services to help you scale, iterate, and adapt.
 
-[Schedule a Consultation](./book-a-call.md) { .md-button .md-button--primary }
+[Schedule a Consultation](./book-a-call.md){.md-button .md-button--primary}
 
 ## How I Work: A Simple, Proven Process
 
@@ -63,7 +63,7 @@ This course is ideal for:
 
 You’ll go far beyond simple demos—learning query expansion, re-ranking, ensemble retrieval, chunking strategies, and how to ship a polished, interactive app.
 
-[Explore the Course →](https://prompt-s-site.thinkific.com/courses/rag) { .md-button .md-button--primary }
+[Explore the Course →](https://prompt-s-site.thinkific.com/courses/rag){.md-button .md-button--primary}
 
 ## Engagement Models That Fit Your Needs
 

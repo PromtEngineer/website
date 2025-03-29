@@ -6,7 +6,7 @@ description: Watch my educational videos on various topics related to my field o
 
 Access my curated collection of in-depth technical tutorials, strategic insights, and practical implementation guides that have helped over 193,000 professionals master AI, LLMs, and Generative AI. Each video distills complex concepts into actionable knowledge you can apply immediately.
 
-[:fontawesome-brands-youtube: Join 193K+ Subscribers](https://www.youtube.com/@engineerprompt) { .md-button .md-button--primary }
+[:fontawesome-brands-youtube: Join 193K+ Subscribers](https://www.youtube.com/@engineerprompt){.md-button .md-button--primary}
 
 ## Most Impactful Technical Tutorials
 
@@ -127,6 +127,6 @@ Access my curated collection of in-depth technical tutorials, strategic insights
     <h3>Request a Topic You Need Help With</h3>
     <p>Working on a challenging AI implementation? Facing a technical obstacle? Suggest a topic you'd like me to decode in an upcoming video, and I'll consider adding it to my production schedule.</p>
     
-    [:material-email: Suggest a Technical Challenge](mailto:contact@engineerprompt.com) { .md-button .md-button--primary }
+    [:material-email: Suggest a Technical Challenge](mailto:contact@engineerprompt.com){.md-button .md-button--primary}
   </div>
 </div>

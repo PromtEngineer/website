@@ -16,26 +16,15 @@ tags:
 
 I write about a mix of consulting, open source, personal work, and applying llms. I won't email you more than twice a month, not every post I write is worth sharing but I'll do my best to share the most interesting stuff including my own writing, thoughts, and experiences.
 
-[:material-email: Subscribe to my Newsletter](https://dub.link/S4G5XGs) { .md-button .md-button--primary }
-[:material-twitter: Follow me on X](https://x.com/jxnlco) { .md-button .md-button--secondary }  
+[:material-email: Subscribe to my Newsletter](https://dub.link/S4G5XGs){.md-button .md-button--primary}
+[:material-twitter: Follow me on X](https://twitter.com/engineerprompt){.md-button .md-button--secondary}
 
 For posts about RAG (Retrieval-Augmented Generation) or LLMs (Large Language Models), check out the category labels in the sidebar. Here are some of my best posts on these topics:
 
-## Personal Stories
-
-- [Advice for Young People](./posts/advice.md): Tips and insights for those starting their journey
-- [Losing My Hands](./posts/hands-part-1.md): My experience with a career-changing injury
 
 ## RAG and LLM Expertise
-
+- [Agents and Architecture](./posts/agents-architecture.md): Understanding the components of LLM Agents
 - [Future of RAG](./posts/rag-plusplus.md): What's next for RAG?
-- [RAG: More Than Just Embeddings](./posts/rag.md): Understanding the full scope of RAG systems
-- [RAG Complexity Levels](./posts/rag-levels-of-rag.md): Breaking down the layers of RAG implementation
-- [Improving Your RAG System](./posts/rag-improving-rag.md): Steps to enhance RAG performance
-- [Common RAG Mistakes](./posts/rag-inverted.md): What not to do when building a RAG system
-- [Easy Wins for RAG](./posts/rag-low-hanging-fruit.md): Simple ways to boost your RAG system
-- [RAG Feedback Loop](./posts/rag-flywheel.md): Creating a self-improving RAG system
-- [RAG Search Metrics](./posts/rag-lgtmk.md): How to measure RAG search quality
 
 ## Consulting and Tech Strategies
 

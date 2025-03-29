@@ -1,36 +1,7 @@
 authors:
-  jxnl:
-    name: Jason Liu
+  muhammad:
+    name: Muhammad Farooq
     description: Creator
-    avatar: https://avatars.githubusercontent.com/u/4852235?v=4
+    avatar: https://avatars.githubusercontent.com/u/134474669?v=4
     url: https://twitter.com/intent/follow?screen_name=jxnlco
-  ivanleomk:
-    name: Ivan Leo
-    description: Contributor
-    avatar: https://pbs.twimg.com/profile_images/1524186822389026816/sWRHRIkY_400x400.jpg
-    url: https://twitter.com/intent/follow?screen_name=ivanleomk
-  jo:
-    name: Joseph Gleasure
-    description: Editor
-    avatar: https://i.imgur.com/wO6erNq.jpeg
-    url: https://josephgleasure.com/
-  eugene:
-    name: Eugene Yan
-    description: Writer
-    avatar: https://pbs.twimg.com/profile_images/1651817216629960706/lw4ZsN8u_400x400.jpg
-    url: https://eugeneyan.com/
-  skylar:
-    name: Skylar Payne
-    description: Leader
-    avatar: https://skylarbpayne.com/assets/images/profilepic.jpg
-    url: https://skylarbpayne.com/
-  cyrus:
-    name: Cyrus
-    description: Zenbase
-    avatar: https://bookface-images.s3.amazonaws.com/avatars/d576d4346acbf45fbb4ae0aadba7a8c33c73e92e.jpg
-    url: https://x.com/cyrusnewday 
-  amir:
-    name: Amir
-    description: Zenbase
-    avatar: https://bookface-images.s3.amazonaws.com/avatars/43ee1f41d3f47ead4f434713f094c8a0369af56a.jpg
-    url: https://x.com/ammirsm
+  

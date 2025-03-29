@@ -14,7 +14,7 @@ Retrieval-Augmented Generation (RAG) is revolutionizing how businesses interact 
 
 This comprehensive course bridges theory with hands-on implementation, taking you beyond basic RAG tutorials into professional-grade system architecture. You'll master both commercial APIs and fully private, on-premise solutions, giving you the flexibility to build systems that meet any security or customization requirement.
 
-[:material-school: Enroll Now](https://prompt-s-site.thinkific.com/courses/rag) { .md-button .md-button--primary }
+[:material-school: Enroll Now](https://prompt-s-site.thinkific.com/courses/rag){.md-button .md-button--primary}
 
 ## 👩‍💻 Who Will Get Transformative Value
 
@@ -82,4 +82,4 @@ By the final module, you'll have built a production-ready RAG system that you fu
 - **Creating Interactive GUI Applications**
 - **Deployment Options**
 
-[:material-school: Get Access Now](https://prompt-s-site.thinkific.com/courses/rag) { .md-button .md-button--primary } 
+[:material-school: Get Access Now](https://prompt-s-site.thinkific.com/courses/rag){.md-button .md-button--primary} 
