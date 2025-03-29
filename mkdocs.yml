@@ -11,10 +11,23 @@ copyright: Copyright &copy; 2025 PromptX AI
 
 # Social links and additional site configuration
 extra:
+  analytics:
+    provider: google
+    property: G-686PKP2V2V
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/PromtEngineer/localGPT
       name: localGPT on GitHub
+    - icon: fontawesome/solid/rss
+      link: feed_rss_created.xml
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/engineerrprompt
+    - icon: fontawesome/brands/github
+      link: https://github.com/PromtEngineer
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/engineerprompt
+    - icon: fontawesome/brands/youtube
+      link: https://www.youtube.com/@engineerprompt
 theme:
   name: material
   custom_dir: overrides
@@ -170,31 +183,16 @@ plugins:
       post_date_format: yyyy/MM/dd
       post_url_format: "{date}/{slug}"
       authors_file: "{blog}/.authors.yml"
-extra:
-  analytics:
-    provider: google
-    property: G-686PKP2V2V
-  css:
-    - stylesheets/extra.css
-    - stylesheets/mermaid.css
-  javascript:
-    - javascripts/mermaid-zoom.js
-  social:
-    - icon: fontawesome/solid/rss
-      link: feed_rss_created.xml
-    - icon: fontawesome/brands/twitter
-      link: https://twitter.com/engineerrprompt
-    - icon: fontawesome/brands/github
-      link: https://github.com/PromtEngineer
-    - icon: fontawesome/brands/linkedin
-      link: https://www.linkedin.com/in/engineerprompt
-    - icon: fontawesome/brands/youtube
-      link: https://www.youtube.com/@engineerprompt
+
+# Custom CSS and JavaScript
 extra_css:
   - stylesheets/extra.css
+  - stylesheets/mermaid.css
 extra_javascript:
+  - javascripts/mermaid-zoom.js
   - javascripts/mathjax.js
   - javascripts/analytics.js
   - https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
 copyright: Copyright &copy; 2025 PromptX AI
