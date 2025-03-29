@@ -55,8 +55,16 @@ h1, h2, h3 {
   margin: 2rem 0;
 }
 
-.md-typeset .card {
+/* Apply white background only in default (light) scheme */
+[data-md-color-scheme="default"] .md-typeset .card {
   background: white;
+}
+
+[data-md-color-scheme="default"] .video-card {
+  background: white;
+}
+
+.md-typeset .card {
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   padding: 2rem;
@@ -100,7 +108,6 @@ h1, h2, h3 {
 
 /* Video card container */
 .video-card {
-  background: white;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
   overflow: hidden;
