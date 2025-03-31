@@ -26,10 +26,11 @@ For posts about RAG (Retrieval-Augmented Generation) or LLMs (Large Language Mod
 
 ## RAG and LLM Expertise
 - [Agents and Architecture](./posts/agents-architecture.md): Understanding the components of LLM Agents
+- [Model Control Protocol - MPC](./posts/MCP_Tutorial_Anthropic.md) A Quick Introduction
 
 
 ## Talks and Interviews
 
-- [Forcing LLMs to Think with "Think Tool"](https://youtu.be/Ofhx8ocr-cY):Forget Chain-of-Thought—This New Tool Might Be Better
-- [DIffusion LLMs](https://youtu.be/0B9EMddwlOQ): Diffusion LLMs Are Here! Is This the End of Autoregressive Techniques?
+- [Forcing LLMs to Think with "Think Tool"](https://youtu.be/Ofhx8ocr-cY):Forget Chain-of-Thought—This 
+- [DIffusion LLMs](https://youtu.be/0B9EMddwlOQ): Diffusion LLMs Are Here!
 - [Reward Hacking](https://youtu.be/uY7I1YrZB2M): Reward Hacking Explained
