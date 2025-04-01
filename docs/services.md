@@ -84,5 +84,5 @@ Whether you're looking for a quick strategic boost, hands-on implementation, or 
 
 Let's start with a discovery call and build a plan that fits.
 
-[:material-email: Contact Me](mailto:contact@engineerprompt.com){.md-button .md-button--secondary} |
+[:material-email: Contact Me](mailto:engineerprompt@gmail.com){.md-button .md-button--secondary} |
 [:material-calendar: Schedule a Consultation](./book-a-call.md){.md-button .md-button--secondary}

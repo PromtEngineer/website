@@ -19,11 +19,11 @@ I'm an independent consultant, advisor, and Google Developer Expert with over a 
 
 Whether you're navigating the ever-evolving landscape of Generative AI or trying to unlock the full potential of LLMs, I can guide you from ideation to execution—with a focus on measurable results.
 
-Before diving into consulting, I earned a Ph.D. in Applied Machine Learning, specializing in wearable sensors and biomedical signal processing. You can browse my academic research and publications on [Google Scholar](https://scholar.google.com/citations?user=vQcpPPAAAAAJ\&hl=en).
+Before diving into consulting, I earned a Ph.D. in Applied Machine Learning, specializing in wearable sensors and biomedical signal processing. You can browse my academic research and publications on [Google Scholar](https://scholar.google.com/citations?user=vQcpPPAAAAAJ&hl=en).
 
 I'm also deeply committed to open-source and community-driven learning. I created **[localGPT](https://github.com/PromtEngineer/localGPT)**, one of the first open-source Retrieval-Augmented Generation (RAG) projects for secure, private document interaction—now with over **20k GitHub ⭐**.
 
-On my [YouTube channel](https://www.youtube.com/@engineerprompt) with **193k+ subscribers**, I regularly share practical insights on LLMs, Generative AI, Agents, and more. Join the conversation on [Discord](https://discord.gg/nMEEN2sS), where 4,500+ members exchange ideas, ask questions, and build cool stuff together.
+On my [YouTube channel](https://www.youtube.com/@engineerprompt) with ***196k+ subscribers***, I regularly share practical insights on LLMs, Generative AI, Agents, and more. Join the conversation on [Discord](https://discord.gg/stBh7PDA), where 4,500+ members exchange ideas, ask questions, and build cool stuff together.
 
 ---
 
