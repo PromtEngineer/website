@@ -26,7 +26,7 @@ For posts about RAG (Retrieval-Augmented Generation) or LLMs (Large Language Mod
 
 ## RAG and LLM Expertise
 - [Agents and Architecture](./posts/agents-architecture.md): Understanding the components of LLM Agents
-- [Model Control Protocol - MPC](./posts/MCP_Tutorial_Anthropic.md) A Quick Introduction
+- [Model Control Protocol - MPC](./posts/mcp_detailed_tutorial.md) An Introduction
 
 
 ## Talks and Interviews
