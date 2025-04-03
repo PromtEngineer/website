@@ -31,6 +31,10 @@ extra:
 theme:
   name: material
   custom_dir: overrides
+  # Add the logo configuration
+  logo: https://avatars.githubusercontent.com/u/134474669?v=4
+  # Add the favicon configuration
+  favicon: https://avatars.githubusercontent.com/u/134474669?v=4
   # Enable GitHub statistics (stars and forks)
   features:
     - announce.dismiss
