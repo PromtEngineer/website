@@ -12,11 +12,11 @@ tags:
 - RAG
 ---
 
-# Writing and Insights
+# Deeper Dives: Thoughts on AI, Code, and Building Better Systems
 
-I write about a mix of consulting, open source, personal work, and applying llms. I won't email you more than twice a month, not every post I write is worth sharing but I'll do my best to share the most interesting stuff including my own writing, thoughts, and experiences.
+This space gathers my thoughts and experiences at the intersection of AI consulting, open-source development, and the practical application of large language models (LLMs). Expect insights, reflections, and technical deep dives based on my ongoing work.
 
-If you find this content valuable, consider subscribing to my newsletter for regular updates on AI, technology trends, and insights into building impactful AI solutions.
+Find this valuable? Subscribe to my newsletter (max twice a month) for curated updates on AI trends, tech insights, and practical tips for building impactful solutions.
 
 [:material-email: Subscribe to my Newsletter](https://tally.so/r/3y9bb0){.md-button .md-button--secondary}
 [:material-twitter: Follow me on X](https://twitter.com/engineerprompt){.md-button .md-button--secondary}
@@ -26,11 +26,11 @@ For posts about RAG (Retrieval-Augmented Generation) or LLMs (Large Language Mod
 
 ## RAG and LLM Expertise
 - [Agents and Architecture](./posts/agents-architecture.md): Understanding the components of LLM Agents
-- [Model Control Protocol - MPC](./posts/mcp_detailed_tutorial.md) An Introduction
+- [Model Control Protocol - MPC](./posts/mcp_detailed_tutorial.md) A Detailed Introduction
 
 
 ## Talks and Interviews
 
-- [Forcing LLMs to Think with "Think Tool"](https://youtu.be/Ofhx8ocr-cY):Forget Chain-of-Thought—This 
+- [Forcing LLMs to Think with "Think Tool"](https://youtu.be/Ofhx8ocr-cY):Forget Chain-of-Thought 
 - [DIffusion LLMs](https://youtu.be/0B9EMddwlOQ): Diffusion LLMs Are Here!
 - [Reward Hacking](https://youtu.be/uY7I1YrZB2M): Reward Hacking Explained
