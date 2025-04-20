@@ -28,19 +28,6 @@ To ensure we hit the ground running:
 - Think about what success would look like in the next 3–6 months
 - Optional: Share any relevant docs or links that help explain your context
 
-## What Happens After Our Call
-
-You'll receive:
-
-- A **summary of key insights** from our discussion
-- **Tailored recommendations** to guide your next steps
-- A prioritized **action plan** to help you build momentum quickly
-- Any **relevant tools or resources** that match your situation
-
-Whether or not we work together long-term, you'll leave the call with more clarity, direction, and a practical plan to move forward.
-
-> *"Muhammad's guidance helped us implement an AI solution that reduced our processing time by 78% and dramatically improved customer satisfaction. His practical approach made all the difference."* — Previous Client
-
 ## Ready To Move Forward?
 
 [:material-calendar: Book Your Call Now](https://calendly.com/engineerprompt/consulting-call){.md-button .md-button--secondary}
