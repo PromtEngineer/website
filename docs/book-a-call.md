@@ -18,16 +18,3 @@ This isn't a sales call. It's a focused session designed to unlock clarity, fast
 ## Book Instantly. No Back-and-Forth.
 
 [:material-calendar: Schedule Your Call →](https://calendly.com/engineerprompt/consulting-call){.md-button .md-button--secondary}
-
-## Make the Most of Our Time Together
-
-To ensure we hit the ground running:
-
-- Come with a **brief summary of your current challenges or goals**
-- Have **1–3 key questions** ready that you'd like clarity on
-- Think about what success would look like in the next 3–6 months
-- Optional: Share any relevant docs or links that help explain your context
-
-## Ready To Move Forward?
-
-[:material-calendar: Book Your Call Now](https://calendly.com/engineerprompt/consulting-call){.md-button .md-button--secondary}
