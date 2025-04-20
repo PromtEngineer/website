@@ -58,14 +58,8 @@ My custom training programs equip your team with practical skills to:
 
 Each session is customized based on your team's technical background and the specific challenges your business is facing, ensuring immediate applicability and impact.
 
+---
+
 ## Connect With Me
 
-<div class="grid cards" markdown>
-
--   :material-account-group:{ .lg .middle } __Follow Me__
-
-    ---
-
-    Stay connected and get the latest updates by following me on [:fontawesome-brands-youtube: YouTube](https://www.youtube.com/@engineerprompt) and [:fontawesome-brands-twitter: Twitter](https://twitter.com/engineerrprompt).
-
-</div>
+Stay connected and get the latest updates by following me on [:fontawesome-brands-youtube: YouTube](https://www.youtube.com/@engineerprompt) and [:fontawesome-brands-twitter: Twitter](https://twitter.com/engineerrprompt).
