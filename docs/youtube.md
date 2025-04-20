@@ -6,7 +6,7 @@ description: Watch my educational videos on various topics related to my field o
 
 Access my curated collection of in-depth technical tutorials, strategic insights, and practical implementation guides that have helped over 193,000 professionals master AI, LLMs, and Generative AI. Each video distills complex concepts into actionable knowledge you can apply immediately.
 
-[:fontawesome-brands-youtube: Join 193K+ Subscribers](https://www.youtube.com/@engineerprompt){.md-button .md-button--secondary}
+[:fontawesome-brands-youtube: Join 199k+ Subscribers](https://www.youtube.com/@engineerprompt){.md-button .md-button--secondary}
 
 ## Retrieval Augmented Generation Tutorials
 
