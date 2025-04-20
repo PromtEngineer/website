@@ -21,9 +21,9 @@ Whether you're navigating the ever-evolving landscape of Generative AI or trying
 
 Before diving into consulting, I earned a Ph.D. in Applied Machine Learning, specializing in wearable sensors and biomedical signal processing. You can browse my academic research and publications on [Google Scholar](https://scholar.google.com/citations?user=vQcpPPAAAAAJ&hl=en).
 
-I'm also deeply committed to open-source and community-driven learning. I created **[localGPT](https://github.com/PromtEngineer/localGPT)**, one of the first open-source Retrieval-Augmented Generation (RAG) projects for secure, private document interaction—now with over **20k GitHub ⭐**.
+I'm also deeply committed to open-source and community-driven learning. I created [localGPT](https://github.com/PromtEngineer/localGPT), one of the first open-source Retrieval-Augmented Generation (RAG) projects for secure, private document interaction—now with over **20k GitHub ⭐**.
 
-On my [YouTube channel](https://www.youtube.com/@engineerprompt) with ***199k+ subscribers***, I regularly share practical insights on LLMs, Generative AI, Agents, and more. Join the conversation on [Discord](https://discord.gg/stBh7PDA), where 4,500+ members exchange ideas, ask questions, and build cool stuff together.
+On my [YouTube channel](https://www.youtube.com/@engineerprompt) with ***199k+ subscribers***, I regularly share practical insights on LLMs, Generative AI, Agents, and more. Join the conversation on [Discord](https://discord.gg/HuvDMXfCAf), where 4,500+ members exchange ideas, ask questions, and build cool stuff together.
 
 ---
 
@@ -57,8 +57,6 @@ My custom training programs equip your team with practical skills to:
 - **Champion AI ethics & governance:** Build responsible, trustworthy AI systems.
 
 Each session is customized based on your team's technical background and the specific challenges your business is facing, ensuring immediate applicability and impact.
-
-[:octicons-info-16: Learn More About My Services](./services.md){.md-button .md-button--secondary}
 
 ## Connect With Me
 
