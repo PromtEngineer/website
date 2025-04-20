@@ -25,37 +25,13 @@ This comprehensive course bridges theory with hands-on implementation, taking yo
 
 The only prerequisite is basic Python knowledge—everything else is covered step-by-step. Familiarity with LangChain or Streamlit is helpful but not essential.
 
-## 🛠 The Complete RAG System Architecture We'll Build Together
+## Key Topics & Advanced Techniques Covered
 
-We'll progress systematically from fundamental concepts to advanced implementation, constructing a production-ready RAG system that handles real-world document complexity with impressive accuracy.
+Go beyond basic tutorials and master the techniques needed for production-ready RAG:
 
-Here's a structured breakdown:
-
-### Lesson 1: Getting Started with RAG
-- Introduction: What is RAG?
-- Setup your virtual environment & API keys.
-- Building blocks of basic RAG applications.
-
-### Lesson 2: Building Your First RAG Pipeline (Code Time!)
-- Hands-on coding your initial RAG pipeline.
-- Chatting seamlessly with PDF documents.
-
-### Lesson 3: Advanced Query Techniques & Re-ranking
-- Supercharge retrieval accuracy with **Query Expansion**.
-- Refine results precisely using re-ranking techniques (**GPT-4, ColBERT, Cohere**).
-
-### Lesson 4: Hypothetical Document Embeddings & Retrieval Ensembles
-- Generate targeted "Hypothetical Documents" to enrich your retrieval.
-- Leverage ensemble retrieval methods (combining semantic & keyword-based searches).
-
-### Lesson 5: Hierarchical Chunking & Parent Document Retrieval
-- Implement **Hierarchical Chunking** to extract richer contexts.
-- Explore advanced parent-document retrieval methods for accurate answers.
-
-### Lesson 6: Creating Interactive GUI Applications
-- Build a beautiful, intuitive frontend with Streamlit.
-- Deploy a fully working GUI RAG application you can proudly showcase.
-
+-   **Advanced Query & Retrieval Strategies:** Implement Query Expansion, multi-model Re-ranking (GPT-4, ColBERT, Cohere), Hypothetical Document Embeddings (HyDE), and Ensemble Retrieval methods.
+-   **Optimized Document Processing:** Learn Hierarchical Chunking and Parent Document Retrieval for richer context and improved answer accuracy.
+-   **Practical Application Building:** Construct and deploy a fully interactive GUI RAG application using Streamlit.
 
 ## 📚 Learning Architecture: Theory + Implementation + Application
 
@@ -66,20 +42,5 @@ Each module follows a proven learning pattern that maximizes both understanding 
 3. **Real-World Application**: Apply what you've learned to actual document sets and see immediate results
 
 By the final module, you'll have built a production-ready RAG system that you fully understand and can confidently customize for any domain-specific challenge.
-
-## 📖 Course Curriculum Overview
-
-- **What is RAG?**
-- **Setup – Virtual Environment and API Keys**
-- **Building Blocks of RAG Applications**
-- **RAG Pipeline Implementation**
-- **Query Expansion Techniques**
-- **Re-ranking with Multiple Models**
-- **Hypothetical Document Embeddings**
-- **Ensemble Retrieval Methods**
-- **Hierarchical Chunking Strategies**
-- **Parent Document Retrieval**
-- **Creating Interactive GUI Applications**
-- **Deployment Options**
 
 [:material-school: Get Access Now](https://prompt-s-site.thinkific.com/courses/rag){.md-button .md-button--secondary} 
