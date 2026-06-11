@@ -1,0 +1,42 @@
+<svg viewBox="0 0 1200 540" xmlns="http://www.w3.org/2000/svg" font-family="Menlo, Consolas, monospace">
+  <rect width="1200" height="540" fill="#FAF9F5"/>
+
+  <!-- framework column -->
+  <text x="80" y="74" font-size="24" fill="#1C1A17">framework</text>
+  <text x="80" y="106" font-size="18" fill="#6E675E">parts for a human to assemble</text>
+
+  <rect x="80" y="136" width="460" height="280" rx="12" fill="none" stroke="#6E675E" stroke-width="1.5" stroke-dasharray="7 6"/>
+  <g font-size="19" fill="#1C1A17">
+    <rect x="116" y="170" width="150" height="56" rx="8" fill="#F1EFE7" stroke="#6E675E" stroke-width="1" transform="rotate(-2 191 198)"/>
+    <text x="191" y="204" text-anchor="middle" transform="rotate(-2 191 198)">chains</text>
+    <rect x="320" y="186" width="186" height="56" rx="8" fill="#F1EFE7" stroke="#6E675E" stroke-width="1" transform="rotate(3 413 214)"/>
+    <text x="413" y="220" text-anchor="middle" transform="rotate(3 413 214)">state graphs</text>
+    <rect x="146" y="266" width="150" height="56" rx="8" fill="#F1EFE7" stroke="#6E675E" stroke-width="1" transform="rotate(2 221 294)"/>
+    <text x="221" y="300" text-anchor="middle" transform="rotate(2 221 294)">memory</text>
+    <rect x="330" y="282" width="170" height="56" rx="8" fill="#F1EFE7" stroke="#6E675E" stroke-width="1" transform="rotate(-3 415 310)"/>
+    <text x="415" y="316" text-anchor="middle" transform="rotate(-3 415 310)">retrievers</text>
+  </g>
+  <text x="310" y="390" font-size="18" fill="#6E675E" text-anchor="middle">assembly required</text>
+
+  <text x="80" y="478" font-size="17" fill="#6E675E">LangChain · LangGraph · AutoGen · CrewAI</text>
+
+  <!-- divider -->
+  <line x1="600" y1="60" x2="600" y2="480" stroke="#1C1A17" stroke-width="1" opacity="0.18"/>
+
+  <!-- harness column -->
+  <text x="660" y="74" font-size="24" fill="#1C1A17">harness</text>
+  <text x="660" y="106" font-size="18" fill="#6E675E">a working agent, already wired</text>
+
+  <rect x="660" y="136" width="460" height="280" rx="12" fill="#F1EFE7" stroke="#1D9E75" stroke-width="2"/>
+  <rect x="696" y="170" width="388" height="62" rx="8" fill="#161614"/>
+  <text x="890" y="208" font-size="19" fill="#F2EFE9" text-anchor="middle">the loop · read &#8594; act &#8594; observe</text>
+  <rect x="696" y="252" width="186" height="56" rx="8" fill="#FAF9F5" stroke="#6E675E" stroke-width="1"/>
+  <text x="789" y="286" font-size="19" fill="#1C1A17" text-anchor="middle">tool registry</text>
+  <rect x="898" y="252" width="186" height="56" rx="8" fill="#FAF9F5" stroke="#6E675E" stroke-width="1"/>
+  <text x="991" y="286" font-size="19" fill="#1C1A17" text-anchor="middle">permissions</text>
+  <line x1="789" y1="232" x2="789" y2="252" stroke="#6E675E" stroke-width="1"/>
+  <line x1="991" y1="232" x2="991" y2="252" stroke="#6E675E" stroke-width="1"/>
+  <text x="890" y="390" font-size="18" fill="#0F6E56" text-anchor="middle">you provide the goal</text>
+
+  <text x="660" y="478" font-size="17" fill="#6E675E">Claude Code · Codex · Cursor · Windsurf</text>
+</svg>

@@ -2,8 +2,6 @@
 title: 'Harness engineering: why agent performance now lives outside the model'
 description: 'Same model, same benchmark, six times the performance difference. Two March 2026 papers show the code around the model now matters more than the model. Here is what they found.'
 date: 2026-06-10
-video: 'Xxuxg8PcBvc'
-videoLength: '11 min'
 tags: ['agents', 'harness engineering']
 ---
 
@@ -17,17 +15,17 @@ tags: ['agents', 'harness engineering']
   </ul>
 </aside>
 
-Same model. Same benchmark. Six times the performance difference.
+How much of an agent's performance comes from the model, and how much from the code wrapped around it? The answer emerging from this year's research is uncomfortable for anyone whose roadmap amounts to "wait for the next model": the wrapper is winning. Stanford researchers measured more performance variation coming from orchestration code than from the choice of model. LangChain rebuilt only the infrastructure around their coding agent, touched no model, and jumped from outside the top 30 to rank five on Terminal-Bench 2. The spread between a good harness and a bad one on the same model can reach six times.
 
-Stanford researchers found that the orchestration code wrapping a language model now drives more performance variation than the model itself. LangChain saw the same thing in practice: by modifying only harness infrastructure, their coding agent jumped from outside the top 30 to rank five on Terminal-Bench 2. And in March 2026, two papers formalized the discipline from complementary directions: [Natural-Language Agent Harnesses](https://arxiv.org/abs/2603.25723) from Tsinghua and [Meta-Harness](https://arxiv.org/abs/2603.28052) from Stanford.
+In March 2026, two papers formalized this into a discipline, from complementary directions: [Natural-Language Agent Harnesses](https://arxiv.org/abs/2603.25723) from Tsinghua and [Meta-Harness](https://arxiv.org/abs/2603.28052) from Stanford.
 
-What they found redefines what we should actually be optimizing when we build agents.
+I covered what a harness is, and the nine components of a good one, in [a companion essay](/writing/what-is-an-agent-harness/). This one is about the evidence: what happens when researchers make the harness explicit, measure it, and let machines optimize it.
 
 ## An agent is a model plus a harness
 
 LangChain frames it with the sharpest line in the field: if you're not the model, you're the harness.
 
-The operating system analogy captures what that means. A raw LLM is a CPU: powerful but inert. No RAM, no disk, no IO. The context window acts as RAM, fast but limited. External databases serve as disk. Tool integrations are device drivers. The harness is the operating system, coordinating what the CPU sees and when.
+The division of labor maps neatly onto an operating system. The LLM plays the CPU. The context window is RAM, fast but scarce. External databases stand in for disk. Tool integrations are the device drivers. And the harness is the operating system: it schedules the processor, decides what reaches it, and turns raw cycles into finished work.
 
 <figure>
   <img src="/writing/harness-engineering/agent-anatomy.svg" alt="Diagram showing an agent as a small model core surrounded by a larger harness layer containing system prompts, tools, orchestration, memory, verification, and guardrails, mapped to an operating system analogy" width="1200" height="660" />
@@ -36,15 +34,15 @@ The operating system analogy captures what that means. A raw LLM is a CPU: power
 
 Concretely, the harness is everything that isn't model weights: system prompts, tool definitions, orchestration logic, memory management, verification loops, safety guardrails. Anthropic identified [five canonical patterns](https://www.anthropic.com/research/building-effective-agents) for it: prompt chaining, routing, parallelization, orchestrator-workers, and evaluator-optimizer loops. Each is a different strategy for when and how the model gets called, and every production agent combines them.
 
-Those architectural choices, not the model underneath, drive the six-times performance gaps.
+The six-times gaps come from these architectural choices, not from the weights underneath.
 
 ## The messy state of the art
 
-If harnesses matter this much, how are people building them? Messily.
+So how is this layer actually built today? Mostly by accretion.
 
-Harness logic today is scattered across controller code, framework defaults, and verifier scripts. The Tsinghua authors note that two systems which nominally differed by one design choice actually differed in prompts, tools, verification gates, and state semantics simultaneously. Nobody could run a controlled experiment.
+Harness logic ends up scattered across controller code, framework defaults, and verifier scripts. The Tsinghua authors note that two systems which nominally differed by one design choice actually differed in prompts, tools, verification gates, and state semantics simultaneously. Nobody could run a controlled experiment.
 
-Anthropic's own evolution exposes the pattern. Naive harnesses suffer two failure modes: one-shotting, where the agent tries everything at once and exhausts its context, and premature completion, where a later session sees partial progress and declares victory. Their fix evolved into a three-agent, GAN-inspired architecture: a planner, a generator, and an evaluator that clicks through the running app like a real user. It was twenty times more expensive, roughly $200 per run instead of $9. But the core thing worked instead of being broken.
+Anthropic's own evolution exposes the pattern. Naive harnesses suffer two failure modes: one-shotting, where the agent tries everything at once and exhausts its context, and premature completion, where a later session sees partial progress and declares victory. Their fix evolved into a three-agent, GAN-inspired architecture: a planner, a generator, and an evaluator that clicks through the running app like a real user. It was twenty times more expensive, roughly $200 per run instead of $9. But the system finally worked end to end.
 
 OpenAI converged independently. One internal effort produced a million lines of application logic, tests, CI, and tooling in five months with zero lines written by hand. Their discovery was that the engineering team's primary job became enabling agents to do useful work. Productive, but ad hoc, non-portable, and impossible to ablate.
 
@@ -58,7 +56,7 @@ The [Tsinghua team](https://arxiv.org/abs/2603.25723) builds exactly this. Their
 
 Why does the separation matter? It gives harness engineering something it never had: controlled experiments. Swap the NLAH while fixing the charter and you're testing harness design. Fix the NLAH while swapping the charter and you're testing runtime policy. Clean ablation, at last.
 
-Two mechanisms underpin it. Execution contracts turn fuzzy LLM completions into bounded agent calls with five elements: required inputs, budgets, permissions, completion conditions, and output paths. Think function signatures for agents. And file-backed state externalizes memory to path-addressable files that survive truncation, restarts, and delegation.
+Two mechanisms underpin it. Execution contracts turn fuzzy LLM completions into bounded agent calls with five elements: required inputs, budgets, permissions, completion conditions, and output paths. Contracts do for agent calls what function signatures do for code. And file-backed state externalizes memory to path-addressable files that survive truncation, restarts, and delegation.
 
 Does all this structure actually help? Here the results get uncomfortable. On SWE-bench Verified with GPT-5.4 at maximum reasoning, resolve rates clustered between 74% and 76% regardless of configuration. But the full harness burned 16.3 million prompt tokens per sample across 642 tool calls and 32 minutes. Stripped down: 1.2 million tokens, 51 calls, under 7 minutes. Same destination, fourteen times the compute.
 
@@ -73,7 +71,7 @@ Self-evolution was the only consistently helpful module: plus 4.8 points on SWE-
 
 The headline finding came from a different experiment. The researchers took OS-Symphony, a native code harness for desktop automation, and migrated its logic into NLAH representation. Same strategy, same model, different representation. Performance jumped from 30.4% to 47.2%. Runtime dropped from 361 minutes to 141. LLM calls collapsed from 1,200 to 34. The representation itself drove the gain, replacing brittle GUI repair loops with durable runtime state and artifact-backed completion.
 
-Two patterns crystallized from the full results. Roughly 90% of all compute flows through delegated child agents, not the parent: the harness is an orchestration pattern, not a reasoning pattern. It decomposes, delegates, and verifies. And the only module that consistently helps is the one that narrows the agent's own attempt loop. Disciplined narrowing beats expensive broadening, every time.
+Two patterns crystallized from the full results. Roughly 90% of all compute flows through delegated child agents, not the parent: the harness is an orchestration pattern, not a reasoning pattern. It decomposes, delegates, and verifies. And the only module that consistently helps is the one that narrows the agent's own attempt loop. In every configuration tested, narrowing the loop beat broadening the search.
 
 ## Optimizing the harness automatically
 
@@ -83,11 +81,11 @@ If representation alone can move a benchmark 16.8 points, can we find the right 
 
 The loop works like this. An agentic proposer (Claude Code running Opus 4.6) reads the failed execution traces of prior candidates, diagnoses what broke, and writes a complete new harness. Scores and raw traces accumulate in a growing file system. An evaluator tests each proposal. Repeat.
 
-The scale is striking: about 10 million tokens per iteration, 400 times more feedback than prior text-optimization methods, 82 files read per round. And those traces are irreplaceable. Remove them and accuracy drops from 50% to 34.6%. Replace them with summaries: 34.9%. The signal lives in the raw details.
+The scale is striking: about 10 million tokens per iteration, 400 times more feedback than prior text-optimization methods, 82 files read per round. And those traces turn out to be irreplaceable. Remove them and accuracy drops from 50% to 34.6%. Replace them with summaries: 34.9%. The signal is in the raw traces; compression destroys it.
 
 The results change the calculus of model choice. On Terminal-Bench 2, Meta-Harness scored 76.4%, the only automatically optimized system in a field of hand-engineered entries. It reached rank two with Opus and rank one with Haiku: a smaller model outranking larger ones through harness optimization alone. On a 215-class text classification task it hit 48.6% accuracy, 7.7 points above the prior state of the art, using four times fewer tokens. And a harness optimized on one model transferred to five others, improving all of them.
 
-The reusable asset isn't the model. It's the harness.
+The asset that transfers, it turns out, is not the model. It's the harness.
 
 ## Constraints and safety complete the picture
 
@@ -97,7 +95,7 @@ Four systems, four facets of the same discipline: representation, optimization, 
 
 ## Three eras, and a craft of subtraction
 
-Prompt engineering. Context engineering. Harness engineering. Three eras in four years, each one swallowing the last. Harness engineering absorbs the prior two and adds what the model can't do on its own: orchestration, memory, verification, safety.
+Prompt engineering. Context engineering. Harness engineering. Three eras in four years, each absorbing the one before it. Harness engineering contains the prior two and adds what the model can't do on its own: orchestration, memory, verification, safety.
 
 <figure>
   <img src="/writing/harness-engineering/three-eras.svg" alt="Nested diagram showing prompt engineering inside context engineering inside harness engineering, labeled with the capability each era adds" width="1200" height="480" />
@@ -106,7 +104,7 @@ Prompt engineering. Context engineering. Harness engineering. Three eras in four
 
 In practice the discipline takes on an odd shape. Anthropic named the dynamic: every harness component encodes an assumption about what the model can't do alone, and those assumptions expire. When Opus 4.6 stopped needing context resets, Anthropic dropped them entirely. Manus rewrote their harness five times in six months. Vercel removed 80% of an agent's tools and got better results.
 
-The harness space doesn't shrink as models improve. It moves. Which is why mature harness work looks less like building structure up and more like pruning it down: a craft of subtraction as much as addition.
+The harness space doesn't shrink as models improve. It moves. Which is why mature harness work looks less like adding structure and more like deleting it on schedule, as the assumptions underneath expire.
 
 ## If you build agents, you are a harness engineer
 
@@ -114,7 +112,7 @@ The practical takeaway is unambiguous. Investing in your harness yields larger, 
 
 Open problems remain. Portable harness logic lowers the barrier to spreading risky workflows: prompt injection buried in harness text, malicious tools grafted into shared artifacts. One audit found that one in four community-contributed agent skills contains a vulnerability. And the most consequential open question: can harness and model weights be co-evolved, letting strategy shape what the model learns and the model reshape the strategy that wraps it?
 
-The field is moving from artisanal construction to systematic science. What sits between a language model and useful work has always mattered. We're finally learning how to engineer it.
+Harness engineering is graduating from folklore to measurement. The layer between a language model and useful work was always carrying more weight than it got credit for. Now it has a name, two papers, and a benchmark trail, and it rewards careful engineering like any other system.
 
 ## Sources
 
@@ -122,3 +120,4 @@ The field is moving from artisanal construction to systematic science. What sits
 - [Meta-Harness: End-to-End Optimization of Model Harnesses](https://arxiv.org/abs/2603.28052), Lee, Nair, Zhang, Lee, Khattab, and Finn, March 2026 ([code](https://github.com/stanford-iris-lab/meta-harness))
 - [Building effective agents](https://www.anthropic.com/research/building-effective-agents), Anthropic
 - [AGENTS.md](https://agents.md), the emerging convention for agent-readable project instructions
+- PY's video survey [Rethinking AI Agents: The Rise of Harness Engineering](https://www.youtube.com/watch?v=Xxuxg8PcBvc), which first connected these papers for me
