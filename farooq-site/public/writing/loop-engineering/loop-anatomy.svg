@@ -1,0 +1,77 @@
+<svg viewBox="0 0 1200 700" xmlns="http://www.w3.org/2000/svg" font-family="Menlo, Consolas, monospace">
+  <rect width="1200" height="700" fill="#FAF9F5"/>
+
+  <!-- seed -->
+  <rect x="56" y="84" width="300" height="120" rx="10" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+  <text x="86" y="128" font-size="20" fill="#1C1A17">the seed</text>
+  <text x="86" y="158" font-size="16" fill="#6E675E">goal + specs +</text>
+  <text x="86" y="182" font-size="16" fill="#6E675E">stopping criteria</text>
+
+  <line x1="356" y1="144" x2="430" y2="144" stroke="#6E675E" stroke-width="1.5"/>
+  <path d="M430 144 l-10 -5 v10 z" fill="#6E675E"/>
+
+  <!-- orchestrator -->
+  <rect x="440" y="84" width="300" height="120" rx="10" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+  <text x="470" y="128" font-size="20" fill="#1C1A17">orchestrator</text>
+  <text x="470" y="158" font-size="16" fill="#6E675E">writes the next prompt</text>
+  <text x="470" y="182" font-size="16" fill="#6E675E">from the current state</text>
+
+  <line x1="740" y1="144" x2="820" y2="144" stroke="#6E675E" stroke-width="1.5"/>
+  <path d="M820 144 l-10 -5 v10 z" fill="#6E675E"/>
+
+  <!-- agent -->
+  <rect x="830" y="84" width="300" height="120" rx="10" fill="#161614"/>
+  <text x="860" y="128" font-size="20" fill="#F2EFE9">agent</text>
+  <text x="860" y="158" font-size="16" fill="#A8A39A">does the work:</text>
+  <text x="860" y="182" font-size="16" fill="#A8A39A">edit, run, commit</text>
+
+  <line x1="980" y1="204" x2="980" y2="290" stroke="#6E675E" stroke-width="1.5"/>
+  <path d="M980 290 l-5 -10 h10 z" fill="#6E675E"/>
+
+  <!-- verifier (the one green idea) -->
+  <rect x="830" y="300" width="300" height="120" rx="10" fill="#F1EFE7" stroke="#1D9E75" stroke-width="2.5"/>
+  <text x="860" y="344" font-size="20" fill="#0F6E56">verifier</text>
+  <text x="860" y="374" font-size="16" fill="#6E675E">independent check:</text>
+  <text x="860" y="398" font-size="16" fill="#6E675E">tests, review, criteria</text>
+
+  <line x1="830" y1="360" x2="750" y2="360" stroke="#6E675E" stroke-width="1.5"/>
+  <path d="M750 360 l10 -5 v10 z" fill="#6E675E"/>
+
+  <!-- decision -->
+  <rect x="440" y="300" width="300" height="120" rx="10" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+  <text x="470" y="344" font-size="20" fill="#1C1A17">done?</text>
+  <text x="470" y="374" font-size="16" fill="#6E675E">criteria met, budget hit,</text>
+  <text x="470" y="398" font-size="16" fill="#6E675E">or iteration cap reached</text>
+
+  <!-- not yet: back up to orchestrator -->
+  <line x1="590" y1="300" x2="590" y2="204" stroke="#6E675E" stroke-width="1.5" stroke-dasharray="6 5"/>
+  <path d="M590 204 l-5 10 h10 z" fill="#6E675E"/>
+  <text x="608" y="258" font-size="15" fill="#6E675E">not yet</text>
+
+  <!-- stop -->
+  <line x1="440" y1="360" x2="366" y2="360" stroke="#6E675E" stroke-width="1.5"/>
+  <path d="M366 360 l10 -5 v10 z" fill="#6E675E"/>
+  <rect x="56" y="300" width="300" height="120" rx="10" fill="#FAF9F5" stroke="#1C1A17" stroke-width="1.5"/>
+  <text x="86" y="344" font-size="20" fill="#1C1A17">stop</text>
+  <text x="86" y="374" font-size="16" fill="#6E675E">ship it, or kill it</text>
+  <text x="86" y="398" font-size="16" fill="#6E675E">and fix the seed</text>
+
+  <!-- supporting parts -->
+  <text x="56" y="512" font-size="16" letter-spacing="4" fill="#6E675E">AROUND THE LOOP</text>
+
+  <rect x="56" y="540" width="260" height="104" rx="10" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+  <text x="82" y="582" font-size="18" fill="#1C1A17">worktrees</text>
+  <text x="82" y="612" font-size="15" fill="#6E675E">isolated repo copies</text>
+
+  <rect x="342" y="540" width="260" height="104" rx="10" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+  <text x="368" y="582" font-size="18" fill="#1C1A17">skills</text>
+  <text x="368" y="612" font-size="15" fill="#6E675E">reusable instructions</text>
+
+  <rect x="628" y="540" width="260" height="104" rx="10" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+  <text x="654" y="582" font-size="18" fill="#1C1A17">connectors</text>
+  <text x="654" y="612" font-size="15" fill="#6E675E">PRs, tickets, deploys</text>
+
+  <rect x="914" y="540" width="260" height="104" rx="10" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+  <text x="940" y="582" font-size="18" fill="#1C1A17">memory on disk</text>
+  <text x="940" y="612" font-size="15" fill="#6E675E">state survives runs</text>
+</svg>
