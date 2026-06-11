@@ -1,0 +1,45 @@
+<svg viewBox="0 0 1200 650" xmlns="http://www.w3.org/2000/svg" font-family="Menlo, Consolas, monospace">
+  <rect width="1200" height="650" fill="#FAF9F5"/>
+
+  <text x="56" y="52" font-size="24" fill="#1C1A17">same resolve rate, fourteen times the cost</text>
+  <text x="56" y="84" font-size="17" fill="#6E675E">SWE-bench Verified, GPT-5.4 at maximum reasoning, full vs stripped harness (NLAH paper)</text>
+
+  <!-- resolve rate: both 74-76% (equal bars) -->
+  <text x="56" y="184" font-size="20" fill="#1C1A17">resolve rate</text>
+  <text x="348" y="162" font-size="16" fill="#6E675E" text-anchor="end">full harness</text>
+  <rect x="360" y="140" width="420" height="32" fill="#8A8377"/>
+  <text x="794" y="163" font-size="19" fill="#1C1A17">74-76%</text>
+  <text x="348" y="204" font-size="16" fill="#6E675E" text-anchor="end">stripped</text>
+  <rect x="360" y="182" width="420" height="32" fill="#1D9E75"/>
+  <text x="794" y="205" font-size="19" fill="#1C1A17">74-76%</text>
+  <text x="880" y="163" font-size="15" fill="#6E675E">every configuration tested</text>
+  <text x="880" y="187" font-size="15" fill="#6E675E">lands in this band</text>
+
+  <!-- prompt tokens per sample: 16.3M vs 1.2M (560px : 41px) -->
+  <text x="56" y="298" font-size="20" fill="#1C1A17">prompt tokens</text>
+  <text x="56" y="324" font-size="20" fill="#1C1A17">per sample</text>
+  <text x="348" y="292" font-size="16" fill="#6E675E" text-anchor="end">full harness</text>
+  <rect x="360" y="270" width="560" height="32" fill="#8A8377"/>
+  <text x="934" y="293" font-size="19" fill="#1C1A17">16.3M</text>
+  <text x="348" y="334" font-size="16" fill="#6E675E" text-anchor="end">stripped</text>
+  <rect x="360" y="312" width="41" height="32" fill="#1D9E75"/>
+  <text x="415" y="335" font-size="19" fill="#1C1A17">1.2M</text>
+
+  <!-- tool calls per sample: 642 vs 51 (560px : 44px) -->
+  <text x="56" y="444" font-size="20" fill="#1C1A17">tool calls</text>
+  <text x="348" y="422" font-size="16" fill="#6E675E" text-anchor="end">full harness</text>
+  <rect x="360" y="400" width="560" height="32" fill="#8A8377"/>
+  <text x="934" y="423" font-size="19" fill="#1C1A17">642</text>
+  <text x="348" y="464" font-size="16" fill="#6E675E" text-anchor="end">stripped</text>
+  <rect x="360" y="442" width="44" height="32" fill="#1D9E75"/>
+  <text x="418" y="465" font-size="19" fill="#1C1A17">51</text>
+
+  <!-- wall-clock per sample: 32 min vs under 7 min (560px : 122px) -->
+  <text x="56" y="574" font-size="20" fill="#1C1A17">wall-clock</text>
+  <text x="348" y="552" font-size="16" fill="#6E675E" text-anchor="end">full harness</text>
+  <rect x="360" y="530" width="560" height="32" fill="#8A8377"/>
+  <text x="934" y="553" font-size="19" fill="#1C1A17">32 min</text>
+  <text x="348" y="594" font-size="16" fill="#6E675E" text-anchor="end">stripped</text>
+  <rect x="360" y="572" width="122" height="32" fill="#1D9E75"/>
+  <text x="496" y="595" font-size="19" fill="#1C1A17">under 7 min</text>
+</svg>

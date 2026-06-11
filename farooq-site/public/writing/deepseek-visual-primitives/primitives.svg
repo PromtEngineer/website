@@ -1,0 +1,68 @@
+<svg viewBox="0 0 1200 640" xmlns="http://www.w3.org/2000/svg" font-family="Menlo, Consolas, monospace">
+  <rect width="1200" height="640" fill="#FAF9F5"/>
+
+  <text x="600" y="42" font-size="22" fill="#1C1A17" text-anchor="middle">three visual primitives</text>
+
+  <!-- card 1: box -->
+  <g>
+    <rect x="50" y="70" width="340" height="270" rx="10" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+    <text x="78" y="110" font-size="20" fill="#1C1A17">box</text>
+    <text x="78" y="138" font-size="16" fill="#6E675E">refers to an object</text>
+
+    <rect x="95" y="185" width="44" height="44" rx="4" fill="#FAF9F5" stroke="#6E675E" stroke-width="1.5"/>
+    <rect x="190" y="205" width="44" height="44" rx="4" fill="#FAF9F5" stroke="#6E675E" stroke-width="1.5"/>
+    <rect x="285" y="175" width="44" height="44" rx="4" fill="#FAF9F5" stroke="#6E675E" stroke-width="1.5"/>
+    <rect x="180" y="195" width="64" height="64" rx="4" fill="none" stroke="#1D9E75" stroke-width="2.5"/>
+
+    <text x="78" y="318" font-size="15" fill="#6E675E">box(180,195,244,259)</text>
+  </g>
+
+  <!-- card 2: point -->
+  <g>
+    <rect x="430" y="70" width="340" height="270" rx="10" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+    <text x="458" y="110" font-size="20" fill="#1C1A17">point</text>
+    <text x="458" y="138" font-size="16" fill="#6E675E">refers to a location</text>
+
+    <circle cx="520" cy="215" r="24" fill="#FAF9F5" stroke="#6E675E" stroke-width="1.5"/>
+    <circle cx="610" cy="240" r="24" fill="#FAF9F5" stroke="#6E675E" stroke-width="1.5"/>
+    <circle cx="700" cy="200" r="24" fill="#FAF9F5" stroke="#6E675E" stroke-width="1.5"/>
+    <line x1="590" y1="240" x2="630" y2="240" stroke="#1D9E75" stroke-width="1.5"/>
+    <line x1="610" y1="220" x2="610" y2="260" stroke="#1D9E75" stroke-width="1.5"/>
+    <circle cx="610" cy="240" r="6" fill="#1D9E75"/>
+
+    <text x="458" y="318" font-size="15" fill="#6E675E">point(610,240)</text>
+  </g>
+
+  <!-- card 3: point sequence -->
+  <g>
+    <rect x="810" y="70" width="340" height="270" rx="10" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+    <text x="838" y="110" font-size="20" fill="#1C1A17">point sequence</text>
+    <text x="838" y="138" font-size="16" fill="#6E675E">describes a path</text>
+
+    <rect x="860" y="170" width="240" height="120" fill="none" stroke="#6E675E" stroke-width="1.5"/>
+    <line x1="940" y1="170" x2="940" y2="250" stroke="#6E675E" stroke-width="1.5"/>
+    <line x1="1020" y1="290" x2="1020" y2="210" stroke="#6E675E" stroke-width="1.5"/>
+
+    <polyline points="880,262 925,262 965,262 985,230 995,192 1040,192 1080,192"
+      fill="none" stroke="#1D9E75" stroke-width="1.5" stroke-dasharray="4 4"/>
+    <circle cx="880" cy="262" r="4" fill="#1D9E75"/>
+    <circle cx="925" cy="262" r="4" fill="#1D9E75"/>
+    <circle cx="965" cy="262" r="4" fill="#1D9E75"/>
+    <circle cx="985" cy="230" r="4" fill="#1D9E75"/>
+    <circle cx="995" cy="192" r="4" fill="#1D9E75"/>
+    <circle cx="1040" cy="192" r="4" fill="#1D9E75"/>
+    <circle cx="1080" cy="192" r="4" fill="#1D9E75"/>
+
+    <text x="838" y="318" font-size="15" fill="#6E675E">(880,262) &#8594; ... &#8594; (1080,192)</text>
+  </g>
+
+  <!-- reasoning trace -->
+  <rect x="50" y="380" width="1100" height="200" rx="12" fill="#161614"/>
+  <text x="86" y="416" font-size="15" fill="#A8A39A">reasoning trace</text>
+  <text x="86" y="452" font-size="17" fill="#F2EFE9">q: how many mugs are on the desk?</text>
+  <text x="86" y="486" font-size="17" fill="#F2EFE9">words would drift here. mark each mug first:</text>
+  <text x="86" y="520" font-size="17" fill="#1D9E75">box(180,195,244,259)   box(412,198,471,260)   box(604,214,663,278)</text>
+  <text x="86" y="554" font-size="17" fill="#F2EFE9">count the marked boxes: <tspan fill="#1D9E75">3</tspan></text>
+
+  <text x="600" y="616" font-size="16" fill="#6E675E" text-anchor="middle">primitives are placed inside the chain of thought, not after the answer</text>
+</svg>
