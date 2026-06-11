@@ -1,0 +1,346 @@
+---
+import Base from '../layouts/Base.astro';
+import { profile } from '../data/profile';
+
+const chapters = [
+  {
+    year: '2013',
+    voice: 'serif',
+    title: 'University of Alabama',
+    note: 'A PhD begins: wearable sensors that watch how people eat, move, and live.',
+  },
+  {
+    year: '2014',
+    voice: 'serif',
+    title: 'First major paper',
+    note: 'The Automatic Ingestion Monitor, in IEEE Transactions on Biomedical Engineering.',
+  },
+  {
+    year: '2016',
+    voice: 'serif',
+    title: 'PhD, applied machine learning',
+    note: 'Wins the three-minute dissertation competition, an early lesson in compressing complexity.',
+  },
+  {
+    year: '2016 →',
+    voice: 'mono',
+    title: 'into industry',
+    note: 'shipping machine-learning systems in production, from sensors to cloud.',
+  },
+  {
+    year: '2020',
+    voice: 'serif',
+    title: 'COVID-ResNet',
+    note: 'Pandemic-era screening from chest radiographs. The most-cited work, with 650+ citations.',
+  },
+  {
+    year: '2023',
+    voice: 'mono',
+    title: 'localGPT',
+    note: 'chat with your documents, fully offline. 22,000+ stars on GitHub.',
+  },
+  {
+    year: '2023',
+    voice: 'mono',
+    title: 'Prompt Engineering',
+    note: 'the YouTube channel, now 200,000+ engineers strong.',
+  },
+  {
+    year: '2024',
+    voice: 'mono',
+    title: 'RAG Beyond Basics',
+    note: 'a course on production-grade retrieval systems.',
+  },
+  {
+    year: '2025',
+    voice: 'mono',
+    title: 'Google Cloud NEXT',
+    note: 'on stage: building AI agents that work.',
+  },
+  {
+    year: 'now',
+    voice: 'now',
+    title: 'whryte · writing · advising',
+    note: 'private-by-default AI products, essays on retrieval and reasoning, and consulting for teams building with LLMs. Google Developer Expert, AI/ML.',
+  },
+];
+---
+
+<Base title={`About · ${profile.name}`}>
+  <main class="page">
+    <a class="back" href="/">&larr; home</a>
+
+    <header class="head">
+      <img class="portrait" src="/portrait.jpg" alt={`Portrait of ${profile.name}`} width="72" height="72" />
+      <div>
+        <p class="label">About</p>
+        <h1 class="name">{profile.name}</h1>
+      </div>
+    </header>
+
+    <p class="intro">
+      I'm a researcher, builder, and Google Developer Expert with over a decade of hands-on
+      experience building and scaling machine learning systems. These days that work centers on
+      retrieval systems, large language models, and generative AI.
+    </p>
+    <p class="intro">
+      Before any of that, I earned a PhD in applied machine learning, specializing in wearable
+      sensors and biomedical signal processing. My research has been cited more than 2,000 times;
+      you can browse it on <a href={profile.links.scholar}>Google Scholar</a>.
+    </p>
+    <p class="intro">
+      I'm deeply committed to open source and community-driven learning. I created
+      <a href="https://github.com/PromtEngineer/localGPT">localGPT</a>, one of the first
+      open-source retrieval-augmented generation projects for secure, private document
+      interaction, now past 22,000 stars on GitHub. Today I'm building
+      <a href="https://whryte.com">whryte</a>, a fully offline voice-to-text app for the Mac.
+    </p>
+    <p class="intro">
+      On my YouTube channel, <a href={profile.links.youtube}>Prompt Engineering</a>, I share
+      practical insights on LLMs, generative AI, and agents with more than 200,000 subscribers.
+      Join the conversation on <a href="https://discord.gg/HuvDMXfCAf">Discord</a>, where 4,500+
+      members exchange ideas, ask questions, and build together.
+    </p>
+
+    <ol class="chapters">
+      {
+        chapters.map((c) => (
+          <li class:list={['chapter', `chapter--${c.voice}`]}>
+            <span class="year">{c.year}</span>
+            <span class="dot" aria-hidden="true" />
+            <div class="body">
+              <p class="c-title">{c.title}</p>
+              <p class="c-note">{c.note}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+
+    <nav class="links" aria-label="Continue">
+      <a class="more" href="/writing">Writing<span class="arrow">&nbsp;&rarr;</span></a>
+      <a class="more" href={`mailto:${profile.email}?subject=AI%20consulting`}>AI consulting<span class="arrow">&nbsp;&rarr;</span></a>
+    </nav>
+  </main>
+</Base>
+
+<style>
+  .page {
+    min-height: 100vh;
+    min-height: 100svh;
+    background: var(--paper);
+    color: var(--ink);
+    padding: 3rem clamp(1.5rem, 6vw, 4rem) 5rem;
+    max-width: 44rem;
+    margin: 0 auto;
+  }
+
+  .back {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+    text-decoration: none;
+  }
+
+  .back:hover,
+  .back:focus-visible {
+    color: var(--ink);
+  }
+
+  .head {
+    display: flex;
+    align-items: center;
+    gap: 1.1rem;
+    margin: 3rem 0 2.2rem;
+  }
+
+  .portrait {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 0 0 1px rgba(110, 103, 94, 0.5);
+  }
+
+  .label {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin: 0 0 0.3rem;
+  }
+
+  .name {
+    font-family: var(--serif);
+    font-size: 1.8rem;
+    font-weight: 480;
+    letter-spacing: 0.02em;
+    margin: 0;
+  }
+
+  .intro {
+    font-size: 1.08rem;
+    line-height: 1.65;
+    margin: 0 0 1.2rem;
+    max-width: 38rem;
+  }
+
+  .intro a {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    text-decoration-color: var(--rule-ink);
+    transition: text-decoration-color 0.25s ease;
+  }
+
+  .intro a:hover,
+  .intro a:focus-visible {
+    text-decoration-color: var(--ink);
+  }
+
+  /* ——— the two threads ——— */
+
+  .chapters {
+    list-style: none;
+    margin: 3.2rem 0 0;
+    padding: 0;
+  }
+
+  .chapter {
+    position: relative;
+    display: grid;
+    grid-template-columns: 4.5rem 1.5rem 1fr;
+    padding-bottom: 2.1rem;
+  }
+
+  .chapter::before {
+    content: '';
+    position: absolute;
+    left: calc(4.5rem + 0.7rem);
+    top: 0.55rem;
+    bottom: -0.55rem;
+    width: 1px;
+    background: var(--rule-ink);
+  }
+
+  .chapter:last-child::before {
+    display: none;
+  }
+
+  .year {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--ink-soft);
+    text-align: right;
+    padding: 0.3rem 1rem 0 0;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+
+  .dot {
+    position: absolute;
+    left: calc(4.5rem + 0.7rem - 2.5px);
+    top: 0.42rem;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--ink-soft);
+  }
+
+  .chapter--now .dot {
+    background: var(--phosphor);
+    box-shadow: 0 0 0 4px rgba(147, 217, 177, 0.18);
+  }
+
+  .body {
+    grid-column: 3;
+    padding-left: 0.6rem;
+  }
+
+  .c-title {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    margin: 0 0 0.2rem;
+  }
+
+  .c-note {
+    font-size: 0.85rem;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin: 0;
+    max-width: 30rem;
+  }
+
+  .chapter--mono .c-title,
+  .chapter--now .c-title {
+    font-family: var(--mono);
+    font-size: 0.92rem;
+    padding-top: 0.12rem;
+  }
+
+  .chapter--mono .c-note,
+  .chapter--now .c-note {
+    font-family: var(--mono);
+    font-size: 0.76rem;
+    line-height: 1.6;
+  }
+
+  /* ——— continue ——— */
+
+  .links {
+    display: flex;
+    gap: 1.8rem;
+    margin-top: 3rem;
+  }
+
+  .more {
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .more:hover,
+  .more:focus-visible {
+    color: var(--ink);
+  }
+
+  .arrow {
+    display: inline-block;
+    transition: transform 0.3s ease;
+  }
+
+  .more:hover .arrow,
+  .more:focus-visible .arrow {
+    transform: translateX(4px);
+  }
+
+  @media (max-width: 560px) {
+    .chapter {
+      grid-template-columns: 3.4rem 1.3rem 1fr;
+    }
+
+    .chapter::before {
+      left: calc(3.4rem + 0.6rem);
+    }
+
+    .dot {
+      left: calc(3.4rem + 0.6rem - 2.5px);
+    }
+
+    .year {
+      padding-right: 0.7rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .arrow,
+    .more {
+      transition: none;
+    }
+  }
+</style>

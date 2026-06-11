@@ -1,0 +1,93 @@
+---
+import { profile } from '../data/profile';
+---
+
+<div class="seam">
+  <img class="portrait" src="/portrait.jpg" alt={`Portrait of ${profile.name}`} width="144" height="144" />
+  <p class="name">{profile.name}</p>
+  <p class="tagline">{profile.tagline}</p>
+  <div class="hire-row">
+    <a class="hire" href="/about">About&nbsp;&rarr;</a>
+    <a class="hire" href={`mailto:${profile.email}?subject=AI%20consulting`}>AI consulting&nbsp;&rarr;</a>
+  </div>
+</div>
+
+<style>
+  /* no transform / z-index here: either would create a stacking context and
+     trap the children's mix-blend-mode away from the page backdrop */
+  .seam {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    pointer-events: none;
+  }
+
+  .portrait {
+    width: 144px;
+    height: 144px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    box-shadow:
+      0 0 0 1px rgba(110, 103, 94, 0.5),
+      0 0 0 7px var(--paper-or-coal, transparent);
+  }
+
+  /* ink on paper, bone on coal — one rule handles both halves */
+  .name,
+  .tagline,
+  .hire {
+    color: #fff;
+    mix-blend-mode: difference;
+  }
+
+  .name {
+    font-family: var(--serif);
+    font-size: 1.55rem;
+    font-weight: 480;
+    letter-spacing: 0.045em;
+    margin: 1.1rem 0 0.3rem;
+  }
+
+  .tagline {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    margin: 0;
+    opacity: 0.72;
+  }
+
+  .hire-row {
+    display: flex;
+    gap: 1.6rem;
+    margin-top: 1rem;
+  }
+
+  .hire {
+    pointer-events: auto;
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-decoration: none;
+    opacity: 0.6;
+    transition: opacity 0.25s ease;
+  }
+
+  .hire:hover,
+  .hire:focus-visible {
+    opacity: 1;
+  }
+
+  @supports not (mix-blend-mode: difference) {
+    .name,
+    .tagline,
+    .hire {
+      color: var(--ink);
+      text-shadow: 0 0 12px var(--paper);
+    }
+  }
+</style>

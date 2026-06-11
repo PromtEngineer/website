@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "mkdocs",
+      "runtimeExecutable": "mkdocs",
+      "runtimeArgs": ["serve", "-f", ".mkdocs-preview.yml", "-a", "127.0.0.1:8001"],
+      "port": 8001
+    },
+    {
+      "name": "astro",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "/Users/prompt/Documents/Github/engineerprompt_website/farooq-site", "run", "dev"],
+      "port": 4321
+    }
+  ]
+}
