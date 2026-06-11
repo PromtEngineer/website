@@ -1,0 +1,65 @@
+<svg viewBox="0 0 1200 540" xmlns="http://www.w3.org/2000/svg" font-family="Menlo, Consolas, monospace">
+  <rect width="1200" height="540" fill="#FAF9F5"/>
+
+  <!-- indexing lane -->
+  <text x="56" y="64" font-size="16" letter-spacing="4" fill="#6E675E">INDEXING, ONCE</text>
+
+  <rect x="56" y="92" width="230" height="96" rx="10" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+  <text x="82" y="132" font-size="18" fill="#1C1A17">documents</text>
+  <text x="82" y="160" font-size="15" fill="#6E675E">pdfs, wikis, docs</text>
+
+  <line x1="286" y1="140" x2="346" y2="140" stroke="#6E675E" stroke-width="1.5"/>
+  <path d="M346 140 l-10 -5 v10 z" fill="#6E675E"/>
+
+  <rect x="356" y="92" width="230" height="96" rx="10" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+  <text x="382" y="132" font-size="18" fill="#1C1A17">chunks</text>
+  <text x="382" y="160" font-size="15" fill="#6E675E">fixed-size splits</text>
+
+  <line x1="586" y1="140" x2="646" y2="140" stroke="#6E675E" stroke-width="1.5"/>
+  <path d="M646 140 l-10 -5 v10 z" fill="#6E675E"/>
+
+  <rect x="656" y="92" width="230" height="96" rx="10" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+  <text x="682" y="132" font-size="18" fill="#1C1A17">embeddings</text>
+  <text x="682" y="160" font-size="15" fill="#6E675E">one vector per chunk</text>
+
+  <line x1="886" y1="140" x2="946" y2="140" stroke="#6E675E" stroke-width="1.5"/>
+  <path d="M946 140 l-10 -5 v10 z" fill="#6E675E"/>
+
+  <rect x="956" y="92" width="188" height="96" rx="10" fill="#161614"/>
+  <text x="982" y="132" font-size="18" fill="#F2EFE9">vector store</text>
+  <text x="982" y="160" font-size="15" fill="#A8A39A">nearest neighbors</text>
+
+  <!-- query lane -->
+  <text x="56" y="304" font-size="16" letter-spacing="4" fill="#6E675E">EVERY QUERY</text>
+
+  <rect x="56" y="332" width="230" height="96" rx="10" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+  <text x="82" y="372" font-size="18" fill="#1C1A17">user query</text>
+  <text x="82" y="400" font-size="15" fill="#6E675E">embedded the same way</text>
+
+  <line x1="286" y1="380" x2="346" y2="380" stroke="#6E675E" stroke-width="1.5"/>
+  <path d="M346 380 l-10 -5 v10 z" fill="#6E675E"/>
+
+  <rect x="356" y="332" width="230" height="96" rx="10" fill="#F1EFE7" stroke="#1D9E75" stroke-width="2"/>
+  <text x="382" y="372" font-size="18" fill="#0F6E56">similarity search</text>
+  <text x="382" y="400" font-size="15" fill="#6E675E">top-k nearest chunks</text>
+
+  <line x1="586" y1="380" x2="646" y2="380" stroke="#6E675E" stroke-width="1.5"/>
+  <path d="M646 380 l-10 -5 v10 z" fill="#6E675E"/>
+
+  <rect x="656" y="332" width="230" height="96" rx="10" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+  <text x="682" y="372" font-size="18" fill="#1C1A17">prompt</text>
+  <text x="682" y="400" font-size="15" fill="#6E675E">chunks pasted in</text>
+
+  <line x1="886" y1="380" x2="946" y2="380" stroke="#6E675E" stroke-width="1.5"/>
+  <path d="M946 380 l-10 -5 v10 z" fill="#6E675E"/>
+
+  <rect x="956" y="332" width="188" height="96" rx="10" fill="#161614"/>
+  <text x="982" y="372" font-size="18" fill="#F2EFE9">model</text>
+  <text x="982" y="400" font-size="15" fill="#A8A39A">answers, unchecked</text>
+
+  <!-- store feeds search -->
+  <line x1="1050" y1="188" x2="1050" y2="240" stroke="#6E675E" stroke-width="1" stroke-dasharray="6 5"/>
+  <path d="M520 268 q-50 40 -49 64" stroke="#6E675E" stroke-width="1" stroke-dasharray="6 5" fill="none"/>
+  <line x1="1050" y1="240" x2="520" y2="268" stroke="#6E675E" stroke-width="1" stroke-dasharray="6 5"/>
+  <text x="790" y="238" font-size="15" fill="#6E675E" text-anchor="middle">searched at query time</text>
+</svg>
