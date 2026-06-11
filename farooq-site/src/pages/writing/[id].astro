@@ -1,0 +1,361 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { profile } from '../../data/profile';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('writing', ({ data }) => !data.draft);
+  return posts.map((post) => ({ params: { id: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const words = post.body ? post.body.split(/\s+/).length : 0;
+const minutes = Math.max(1, Math.round(words / 220));
+
+const dateLabel = post.data.date.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+  timeZone: 'UTC',
+});
+---
+
+<Base title={`${post.data.title} · ${profile.name}`} description={post.data.description}>
+  <main class="page">
+    <a class="back" href="/writing/">&larr; writing</a>
+
+    <article>
+      <header class="head">
+        <h1 class="title">{post.data.title}</h1>
+        <p class="meta">
+          <span>{dateLabel}</span>
+          <span class="sep">·</span>
+          <span>{minutes} min read</span>
+          {
+            post.data.video && (
+              <>
+                <span class="sep">·</span>
+                <a href="#video">video version{post.data.videoLength ? `, ${post.data.videoLength}` : ''}</a>
+              </>
+            )
+          }
+        </p>
+      </header>
+
+      <div class="prose">
+        <Content />
+      </div>
+
+      {
+        post.data.video && (
+          <section id="video" class="video">
+            <h2>Watch the full walkthrough</h2>
+            <p>
+              This essay is the written companion to a video on
+              <a href={profile.links.youtube}> Prompt Engineering</a>. The video goes deeper on
+              the visuals and the numbers.
+            </p>
+            <div class="frame">
+              <iframe
+                src={`https://www.youtube-nocookie.com/embed/${post.data.video}`}
+                title={post.data.title}
+                loading="lazy"
+                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              />
+            </div>
+          </section>
+        )
+      }
+
+      <footer class="foot">
+        <div class="who">
+          <img src="/portrait.jpg" alt={`Portrait of ${profile.name}`} width="52" height="52" />
+          <div>
+            <p class="who-name">{profile.name}</p>
+            <p class="who-line">{profile.tagline}</p>
+          </div>
+        </div>
+        <nav class="links" aria-label="Continue">
+          <a class="more" href="/writing/">More writing<span class="arrow">&nbsp;&rarr;</span></a>
+          <a class="more" href={`mailto:${profile.email}?subject=AI%20consulting`}>AI consulting<span class="arrow">&nbsp;&rarr;</span></a>
+        </nav>
+      </footer>
+    </article>
+  </main>
+</Base>
+
+<style>
+  .page {
+    min-height: 100vh;
+    min-height: 100svh;
+    background: var(--paper);
+    color: var(--ink);
+    padding: 3rem clamp(1.5rem, 6vw, 4rem) 5rem;
+    max-width: 46rem;
+    margin: 0 auto;
+  }
+
+  .back {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+    text-decoration: none;
+  }
+
+  .back:hover,
+  .back:focus-visible {
+    color: var(--ink);
+  }
+
+  .head {
+    margin: 3rem 0 2.5rem;
+  }
+
+  .title {
+    font-family: var(--serif);
+    font-size: clamp(1.7rem, 4.5vw, 2.3rem);
+    font-weight: 480;
+    line-height: 1.22;
+    letter-spacing: 0.01em;
+    margin: 0 0 1rem;
+    text-wrap: balance;
+  }
+
+  .meta {
+    font-family: var(--mono);
+    font-size: 0.74rem;
+    letter-spacing: 0.05em;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  .meta .sep {
+    margin: 0 0.5rem;
+  }
+
+  .meta a {
+    color: var(--ink-soft);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+
+  .meta a:hover {
+    color: var(--ink);
+  }
+
+  /* ——— markdown body ——— */
+
+  .prose {
+    font-size: 1.02rem;
+    line-height: 1.72;
+  }
+
+  .prose :global(p) {
+    margin: 0 0 1.25rem;
+  }
+
+  .prose :global(h2) {
+    font-family: var(--serif);
+    font-size: 1.42rem;
+    font-weight: 500;
+    line-height: 1.3;
+    margin: 2.6rem 0 1rem;
+  }
+
+  .prose :global(a) {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    text-decoration-color: var(--rule-ink);
+    transition: text-decoration-color 0.25s ease;
+  }
+
+  .prose :global(a:hover) {
+    text-decoration-color: var(--ink);
+  }
+
+  .prose :global(ul),
+  .prose :global(ol) {
+    margin: 0 0 1.25rem;
+    padding-left: 1.3rem;
+  }
+
+  .prose :global(li) {
+    margin-bottom: 0.45rem;
+  }
+
+  .prose :global(code) {
+    font-family: var(--mono);
+    font-size: 0.85em;
+    background: #f1efe7;
+    padding: 0.12em 0.4em;
+    border-radius: 4px;
+  }
+
+  .prose :global(figure) {
+    margin: 2.2rem 0;
+  }
+
+  .prose :global(figure img) {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .prose :global(figcaption) {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    color: var(--ink-soft);
+    margin-top: 0.7rem;
+    text-align: center;
+  }
+
+  .prose :global(aside.tldr) {
+    border: 1px solid var(--rule-ink);
+    border-radius: 10px;
+    padding: 1.2rem 1.4rem 0.6rem;
+    margin: 0 0 2.2rem;
+    font-size: 0.92rem;
+    line-height: 1.6;
+  }
+
+  .prose :global(aside.tldr > p) {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    color: var(--ink-soft);
+    margin: 0 0 0.7rem;
+  }
+
+  .prose :global(aside.tldr li) {
+    margin-bottom: 0.55rem;
+  }
+
+  /* ——— video companion ——— */
+
+  .video {
+    margin-top: 3rem;
+    border-top: 1px solid var(--rule-ink);
+    padding-top: 2rem;
+  }
+
+  .video h2 {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin: 0 0 0.6rem;
+  }
+
+  .video p {
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    margin: 0 0 1.2rem;
+  }
+
+  .video p a {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+
+  .frame {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--coal);
+  }
+
+  .frame iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  /* ——— footer ——— */
+
+  .foot {
+    margin-top: 3rem;
+    border-top: 1px solid var(--rule-ink);
+    padding-top: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .who {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+  }
+
+  .who img {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 0 0 1px rgba(110, 103, 94, 0.5);
+  }
+
+  .who-name {
+    font-family: var(--serif);
+    font-size: 1rem;
+    margin: 0;
+  }
+
+  .who-line {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    color: var(--ink-soft);
+    margin: 0.15rem 0 0;
+  }
+
+  .links {
+    display: flex;
+    gap: 1.6rem;
+  }
+
+  .more {
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .more:hover,
+  .more:focus-visible {
+    color: var(--ink);
+  }
+
+  .arrow {
+    display: inline-block;
+    transition: transform 0.3s ease;
+  }
+
+  .more:hover .arrow,
+  .more:focus-visible .arrow {
+    transform: translateX(4px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .more,
+    .arrow {
+      transition: none;
+    }
+  }
+</style>

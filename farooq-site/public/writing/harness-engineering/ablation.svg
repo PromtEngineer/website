@@ -1,0 +1,33 @@
+<svg viewBox="0 0 1200 620" xmlns="http://www.w3.org/2000/svg" font-family="Menlo, Consolas, monospace">
+  <rect width="1200" height="620" fill="#FAF9F5"/>
+  <!-- zero axis -->
+  <line x1="640" y1="70" x2="640" y2="540" stroke="#1C1A17" stroke-width="1.5"/>
+  <text x="640" y="585" font-size="18" fill="#6E675E" text-anchor="middle">0</text>
+  <text x="640" y="48" font-size="19" fill="#6E675E" text-anchor="middle">change in resolve rate vs base harness (points)</text>
+
+  <!-- self-evolution: +4.8 SWE, +2.7 OSWorld (28px per point) -->
+  <text x="60" y="148" font-size="22" fill="#1C1A17">self-evolution</text>
+  <rect x="640" y="112" width="134" height="32" fill="#1D9E75"/>
+  <text x="788" y="135" font-size="19" fill="#1C1A17">+4.8 · SWE-bench Verified</text>
+  <rect x="640" y="154" width="76" height="32" fill="#5DCAA5"/>
+  <text x="730" y="177" font-size="19" fill="#6E675E">+2.7 · OSWorld</text>
+
+  <!-- verifiers: -0.8 SWE, -8.4 OSWorld -->
+  <text x="60" y="318" font-size="22" fill="#1C1A17">verifiers</text>
+  <rect x="618" y="282" width="22" height="32" fill="#1C1A17"/>
+  <text x="604" y="305" font-size="19" fill="#1C1A17" text-anchor="end">-0.8 · SWE-bench Verified</text>
+  <rect x="405" y="324" width="235" height="32" fill="#8A8377"/>
+  <text x="391" y="347" font-size="19" fill="#6E675E" text-anchor="end">-8.4 · OSWorld</text>
+
+  <!-- multi-candidate search: -2.4 SWE, -5.6 OSWorld -->
+  <text x="60" y="488" font-size="22" fill="#1C1A17">multi-candidate</text>
+  <text x="60" y="514" font-size="22" fill="#1C1A17">search</text>
+  <rect x="573" y="452" width="67" height="32" fill="#1C1A17"/>
+  <text x="559" y="475" font-size="19" fill="#1C1A17" text-anchor="end">-2.4 · SWE-bench Verified</text>
+  <rect x="483" y="494" width="157" height="32" fill="#8A8377"/>
+  <text x="469" y="517" font-size="19" fill="#6E675E" text-anchor="end">-5.6 · OSWorld</text>
+
+  <!-- helps / hurts markers -->
+  <text x="1140" y="585" font-size="18" fill="#1D9E75" text-anchor="end">helps &#8594;</text>
+  <text x="140" y="585" font-size="18" fill="#6E675E">&#8592; hurts</text>
+</svg>

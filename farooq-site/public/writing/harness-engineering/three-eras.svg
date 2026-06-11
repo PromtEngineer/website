@@ -1,0 +1,20 @@
+<svg viewBox="0 0 1200 480" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="480" fill="#FAF9F5"/>
+  <!-- harness engineering (outer) -->
+  <rect x="40" y="40" width="1120" height="400" rx="16" fill="#F1EFE7" stroke="#1D9E75" stroke-width="2"/>
+  <text x="84" y="98" font-family="Georgia, serif" font-size="30" fill="#1C1A17">Harness engineering</text>
+  <text x="84" y="132" font-family="Menlo, Consolas, monospace" font-size="19" fill="#6E675E">2026 · orchestration, memory, verification, safety</text>
+
+  <!-- context engineering (middle) -->
+  <rect x="84" y="168" width="760" height="232" rx="12" fill="#FAF9F5" stroke="#6E675E" stroke-width="1.5"/>
+  <text x="120" y="222" font-family="Georgia, serif" font-size="27" fill="#1C1A17">Context engineering</text>
+  <text x="120" y="254" font-family="Menlo, Consolas, monospace" font-size="18" fill="#6E675E">2024 · what the model sees</text>
+
+  <!-- prompt engineering (inner) -->
+  <rect x="120" y="284" width="450" height="84" rx="10" fill="#F1EFE7" stroke="#6E675E" stroke-width="1" stroke-dasharray="6 5"/>
+  <text x="152" y="322" font-family="Georgia, serif" font-size="24" fill="#1C1A17">Prompt engineering</text>
+  <text x="152" y="350" font-family="Menlo, Consolas, monospace" font-size="17" fill="#6E675E">2023 · what you say to the model</text>
+
+  <text x="975" y="376" font-family="Menlo, Consolas, monospace" font-size="18" fill="#6E675E" text-anchor="middle">each era absorbs</text>
+  <text x="975" y="402" font-family="Menlo, Consolas, monospace" font-size="18" fill="#6E675E" text-anchor="middle">the one before it</text>
+</svg>

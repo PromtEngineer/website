@@ -1,0 +1,176 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { profile } from '../../data/profile';
+
+const posts = (await getCollection('writing', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+
+const fmt = (d: Date) =>
+  d
+    .toLocaleDateString('en-US', { month: 'short', year: 'numeric', timeZone: 'UTC' })
+    .toLowerCase();
+---
+
+<Base title={`Writing · ${profile.name}`} description="Essays on retrieval systems, large language models, agents, and the engineering around them.">
+  <main class="page">
+    <a class="back" href="/">&larr; home</a>
+
+    <header class="head">
+      <p class="label">Writing</p>
+      <p class="dek">
+        Essays on retrieval, language models, and the engineering around them. Most pair with a
+        video on <a href={profile.links.youtube}>the channel</a>.
+      </p>
+    </header>
+
+    <ol class="posts">
+      {
+        posts.map((post) => (
+          <li>
+            <a class="post" href={`/writing/${post.id}/`}>
+              <span class="date">{fmt(post.data.date)}</span>
+              <span class="body">
+                <span class="title">{post.data.title}</span>
+                <span class="desc">{post.data.description}</span>
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ol>
+
+    <p class="rss"><a href="/rss.xml">rss feed</a></p>
+  </main>
+</Base>
+
+<style>
+  .page {
+    min-height: 100vh;
+    min-height: 100svh;
+    background: var(--paper);
+    color: var(--ink);
+    padding: 3rem clamp(1.5rem, 6vw, 4rem) 5rem;
+    max-width: 46rem;
+    margin: 0 auto;
+  }
+
+  .back {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+    text-decoration: none;
+  }
+
+  .back:hover,
+  .back:focus-visible {
+    color: var(--ink);
+  }
+
+  .head {
+    margin: 3rem 0 1rem;
+  }
+
+  .label {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin: 0 0 0.8rem;
+  }
+
+  .dek {
+    font-family: var(--serif);
+    font-size: 1.08rem;
+    line-height: 1.6;
+    margin: 0;
+    max-width: 36rem;
+  }
+
+  .dek a {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    text-decoration-color: var(--rule-ink);
+  }
+
+  .posts {
+    list-style: none;
+    margin: 2.5rem 0 0;
+    padding: 0;
+  }
+
+  .posts li {
+    border-top: 1px solid var(--rule-ink);
+  }
+
+  .post {
+    display: grid;
+    grid-template-columns: 5.5rem 1fr;
+    gap: 1rem;
+    padding: 1.4rem 0;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .date {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--ink-soft);
+    padding-top: 0.35rem;
+    white-space: nowrap;
+  }
+
+  .title {
+    display: block;
+    font-family: var(--serif);
+    font-size: 1.18rem;
+    line-height: 1.4;
+    transition: color 0.25s ease;
+  }
+
+  .desc {
+    display: block;
+    font-size: 0.88rem;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin-top: 0.3rem;
+    max-width: 34rem;
+  }
+
+  .post:hover .title,
+  .post:focus-visible .title {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+    text-decoration-color: var(--ink-soft);
+  }
+
+  .rss {
+    margin-top: 2.5rem;
+  }
+
+  .rss a {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+    text-decoration: none;
+  }
+
+  .rss a:hover,
+  .rss a:focus-visible {
+    color: var(--ink);
+  }
+
+  @media (max-width: 560px) {
+    .post {
+      grid-template-columns: 1fr;
+      gap: 0.3rem;
+    }
+  }
+</style>
