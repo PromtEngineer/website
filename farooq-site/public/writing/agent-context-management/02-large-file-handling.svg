@@ -1,14 +1,100 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="2048" height="1210" viewBox="0 0 2048 1210">
-  <rect width="2048" height="1210" fill="#ffffff"/>
-  <style>text{font-family:Arial,Helvetica,sans-serif;fill:#363a42}.title{font-size:52px;font-weight:800}.h{font-size:38px;font-weight:800;fill:#3f9a45}.sub{font-size:23px;fill:#9aa0a6;font-weight:700}.item{font-size:26px;font-weight:700}.panel{fill:#fbfff2;stroke:#dfeedd;stroke-width:4}.red{fill:#fff0f0;stroke:#cf3d3d}.purple{fill:#f1e8ff;stroke:#84319a}.orange{fill:#fff7ec;stroke:#d76522}.blue{fill:#e8f4ff;stroke:#2c73b8}.green{fill:#f7ffe8;stroke:#68952a}.gray{fill:#f4f5f6;stroke:#9aa0a6;stroke-dasharray:6 9}</style>
-  <text x="1024" y="75" text-anchor="middle" class="title">How Four Harnesses Handle Large Files</text>
-  <g transform="translate(35,130)"><rect width="470" height="930" rx="45" class="panel"/><text x="235" y="55" text-anchor="middle" class="h">Pi</text><text x="235" y="90" text-anchor="middle" class="sub">Harness-first</text></g>
-  <g transform="translate(540,130)"><rect width="470" height="930" rx="45" class="panel"/><text x="235" y="55" text-anchor="middle" class="h">OpenClaw</text><text x="235" y="90" text-anchor="middle" class="sub">Defense in depth</text></g>
-  <g transform="translate(1045,130)"><rect width="470" height="930" rx="45" class="panel"/><text x="235" y="55" text-anchor="middle" class="h">Claude Code</text><text x="235" y="90" text-anchor="middle" class="sub">Harness-first + remote</text></g>
-  <g transform="translate(1550,130)"><rect width="470" height="930" rx="45" class="panel"/><text x="235" y="55" text-anchor="middle" class="h">Letta</text><text x="235" y="90" text-anchor="middle" class="sub">Memory-first</text></g>
-  <g transform="translate(70,260)"><rect width="400" height="72" rx="12" class="red" stroke-width="4"/><text x="200" y="47" text-anchor="middle" class="item" fill="#cf3d3d">2K lines / 50KB cap</text><rect y="95" width="400" height="72" rx="12" class="purple" stroke-width="4"/><text x="200" y="142" text-anchor="middle" class="item" fill="#84319a">Head truncation</text><rect y="190" width="400" height="72" rx="12" class="orange" stroke-width="4"/><text x="200" y="237" text-anchor="middle" class="item" fill="#d76522">Continuation nudge</text><rect y="285" width="400" height="72" rx="12" class="purple" stroke-width="4"/><text x="200" y="332" text-anchor="middle" class="item" fill="#84319a">Offset / limit pagination</text><rect y="380" width="400" height="72" rx="12" class="gray" stroke-width="4"/><text x="200" y="427" text-anchor="middle" class="item" fill="#8a8f96">Bash fallback (sed)</text><text x="0" y="600" class="sub">On oversize error says:</text><rect y="630" width="400" height="72" rx="12" class="orange" stroke-width="4"/><text x="200" y="677" text-anchor="middle" class="item" fill="#d76522">"Use offset/limit"</text></g>
-  <g transform="translate(575,260)"><rect width="400" height="72" rx="12" class="red" stroke-width="4"/><text x="200" y="47" text-anchor="middle" class="item" fill="#cf3d3d">2K lines / 50KB cap</text><rect y="95" width="400" height="72" rx="12" class="red" stroke-width="4"/><text x="200" y="142" text-anchor="middle" class="item" fill="#cf3d3d">Bootstrap file char caps</text><rect y="190" width="400" height="72" rx="12" class="red" stroke-width="4"/><text x="200" y="237" text-anchor="middle" class="item" fill="#cf3d3d">Tool result budget</text><rect y="285" width="400" height="72" rx="12" class="purple" stroke-width="4"/><text x="200" y="332" text-anchor="middle" class="item" fill="#84319a">Head+tail truncation</text><rect y="380" width="400" height="72" rx="12" class="purple" stroke-width="4"/><text x="200" y="427" text-anchor="middle" class="item" fill="#84319a">75/25 head/tail split</text><rect y="475" width="400" height="72" rx="12" class="purple" stroke-width="4"/><text x="200" y="522" text-anchor="middle" class="item" fill="#84319a">Offset / limit pagination</text><rect y="630" width="400" height="72" rx="12" class="orange" stroke-width="4"/><text x="200" y="677" text-anchor="middle" class="item" fill="#d76522">"Use offset=N to continue"</text></g>
-  <g transform="translate(1080,260)"><rect width="400" height="72" rx="12" class="red" stroke-width="4"/><text x="200" y="47" text-anchor="middle" class="item" fill="#cf3d3d">256KB byte gate</text><rect y="95" width="400" height="72" rx="12" class="red" stroke-width="4"/><text x="200" y="142" text-anchor="middle" class="item" fill="#cf3d3d">25K token budget</text><rect y="190" width="400" height="72" rx="12" class="purple" stroke-width="4"/><text x="200" y="237" text-anchor="middle" class="item" fill="#84319a">File dedup (mtime check)</text><rect y="285" width="400" height="72" rx="12" class="purple" stroke-width="4"/><text x="200" y="332" text-anchor="middle" class="item" fill="#84319a">Offset / limit pagination</text><rect y="380" width="400" height="72" rx="12" class="green" stroke-width="4"/><text x="200" y="427" text-anchor="middle" class="item" fill="#68952a">Feature flags (remote)</text><rect y="475" width="400" height="72" rx="12" class="purple" stroke-width="4"/><text x="200" y="522" text-anchor="middle" class="item" fill="#84319a">Persist oversize to disk</text><rect y="630" width="400" height="72" rx="12" class="red" stroke-width="4"/><text x="200" y="677" text-anchor="middle" class="item" fill="#cf3d3d">"Search instead of reading"</text></g>
-  <g transform="translate(1585,260)"><rect width="400" height="72" rx="12" class="blue" stroke-width="4"/><text x="200" y="47" text-anchor="middle" class="item" fill="#2c73b8">Parse + chunk + embed</text><rect y="95" width="400" height="72" rx="12" class="blue" stroke-width="4"/><text x="200" y="142" text-anchor="middle" class="item" fill="#2c73b8">Vector store</text><rect y="190" width="400" height="72" rx="12" class="purple" stroke-width="4"/><text x="200" y="237" text-anchor="middle" class="item" fill="#84319a">Semantic search</text><rect y="285" width="400" height="72" rx="12" class="orange" stroke-width="4"/><text x="200" y="332" text-anchor="middle" class="item" fill="#d76522">Context-scaled view</text><rect y="380" width="400" height="72" rx="12" class="gray" stroke-width="4"/><text x="200" y="427" text-anchor="middle" class="item" fill="#8a8f96">LRU eviction</text><rect y="475" width="400" height="72" rx="12" class="purple" stroke-width="4"/><text x="200" y="522" text-anchor="middle" class="item" fill="#84319a">Offset / limit pagination</text><rect y="630" width="400" height="72" rx="12" class="orange" stroke-width="4"/><text x="200" y="677" text-anchor="middle" class="item" fill="#d76522">"Use functions to view"</text></g>
-  <text x="1024" y="1130" text-anchor="middle" class="sub">Legend: red = hard cap, purple = transform, blue = storage, orange = model hint, green = remote</text>
+<svg viewBox="0 0 1200 640" xmlns="http://www.w3.org/2000/svg" font-family="Menlo, Consolas, monospace">
+  <rect width="1200" height="640" fill="#FAF9F5"/>
+
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#6E675E"/>
+    </marker>
+  </defs>
+
+  <text x="600" y="52" font-size="16" fill="#6E675E" text-anchor="middle">the model asks to read a file bigger than the available context</text>
+  <line x1="168" y1="70" x2="168" y2="98" stroke="#6E675E" stroke-width="1.5" marker-end="url(#arr)"/>
+  <line x1="456" y1="70" x2="456" y2="98" stroke="#6E675E" stroke-width="1.5" marker-end="url(#arr)"/>
+  <line x1="744" y1="70" x2="744" y2="98" stroke="#6E675E" stroke-width="1.5" marker-end="url(#arr)"/>
+  <line x1="1032" y1="70" x2="1032" y2="98" stroke="#6E675E" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- Pi -->
+  <g>
+    <text x="168" y="134" font-size="20" fill="#1C1A17" text-anchor="middle">Pi</text>
+    <text x="168" y="158" font-size="15" fill="#6E675E" text-anchor="middle">harness-first</text>
+    <rect x="32" y="182" width="272" height="44" rx="8" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+    <text x="168" y="209" font-size="15" fill="#1C1A17" text-anchor="middle">2,000 lines / 50 KB cap</text>
+    <rect x="32" y="236" width="272" height="44" rx="8" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+    <text x="168" y="263" font-size="15" fill="#1C1A17" text-anchor="middle">head truncation</text>
+    <rect x="32" y="290" width="272" height="44" rx="8" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+    <text x="168" y="317" font-size="15" fill="#1C1A17" text-anchor="middle">continuation nudge</text>
+    <rect x="32" y="344" width="272" height="44" rx="8" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+    <text x="168" y="371" font-size="15" fill="#1C1A17" text-anchor="middle">offset/limit pagination</text>
+    <rect x="32" y="398" width="272" height="44" rx="8" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+    <text x="168" y="425" font-size="15" fill="#1C1A17" text-anchor="middle">bash fallback (sed)</text>
+  </g>
+
+  <!-- OpenClaw -->
+  <g>
+    <text x="456" y="134" font-size="20" fill="#1C1A17" text-anchor="middle">OpenClaw</text>
+    <text x="456" y="158" font-size="15" fill="#6E675E" text-anchor="middle">defense in depth</text>
+    <rect x="320" y="182" width="272" height="44" rx="8" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+    <text x="456" y="209" font-size="15" fill="#1C1A17" text-anchor="middle">2,000 lines / 50 KB cap</text>
+    <rect x="320" y="236" width="272" height="44" rx="8" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+    <text x="456" y="263" font-size="15" fill="#1C1A17" text-anchor="middle">bootstrap file char caps</text>
+    <rect x="320" y="290" width="272" height="44" rx="8" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+    <text x="456" y="317" font-size="15" fill="#1C1A17" text-anchor="middle">tool result budget</text>
+    <rect x="320" y="344" width="272" height="44" rx="8" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+    <text x="456" y="371" font-size="15" fill="#1C1A17" text-anchor="middle">head+tail truncation</text>
+    <rect x="320" y="398" width="272" height="44" rx="8" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+    <text x="456" y="425" font-size="15" fill="#1C1A17" text-anchor="middle">75/25 head/tail split</text>
+    <rect x="320" y="452" width="272" height="44" rx="8" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+    <text x="456" y="479" font-size="15" fill="#1C1A17" text-anchor="middle">offset/limit pagination</text>
+  </g>
+
+  <!-- Claude Code -->
+  <g>
+    <text x="744" y="134" font-size="20" fill="#1C1A17" text-anchor="middle">Claude Code</text>
+    <text x="744" y="158" font-size="15" fill="#6E675E" text-anchor="middle">harness-first + remote</text>
+    <rect x="608" y="182" width="272" height="44" rx="8" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+    <text x="744" y="209" font-size="15" fill="#1C1A17" text-anchor="middle">256 KB byte gate</text>
+    <rect x="608" y="236" width="272" height="44" rx="8" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+    <text x="744" y="263" font-size="15" fill="#1C1A17" text-anchor="middle">25K token budget</text>
+    <rect x="608" y="290" width="272" height="44" rx="8" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+    <text x="744" y="317" font-size="15" fill="#1C1A17" text-anchor="middle">file dedup (mtime check)</text>
+    <rect x="608" y="344" width="272" height="44" rx="8" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+    <text x="744" y="371" font-size="15" fill="#1C1A17" text-anchor="middle">offset/limit pagination</text>
+    <rect x="608" y="398" width="272" height="44" rx="8" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+    <text x="744" y="425" font-size="15" fill="#1C1A17" text-anchor="middle">persist oversize to disk</text>
+    <rect x="608" y="452" width="272" height="44" rx="8" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+    <text x="744" y="479" font-size="15" fill="#1C1A17" text-anchor="middle">feature flags (remote)</text>
+  </g>
+
+  <!-- Letta -->
+  <g>
+    <text x="1032" y="134" font-size="20" fill="#1C1A17" text-anchor="middle">Letta</text>
+    <text x="1032" y="158" font-size="15" fill="#6E675E" text-anchor="middle">memory-first</text>
+    <rect x="896" y="182" width="272" height="44" rx="8" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+    <text x="1032" y="209" font-size="15" fill="#1C1A17" text-anchor="middle">parse + chunk + embed</text>
+    <rect x="896" y="236" width="272" height="44" rx="8" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+    <text x="1032" y="263" font-size="15" fill="#1C1A17" text-anchor="middle">vector store</text>
+    <rect x="896" y="290" width="272" height="44" rx="8" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+    <text x="1032" y="317" font-size="15" fill="#1C1A17" text-anchor="middle">semantic search</text>
+    <rect x="896" y="344" width="272" height="44" rx="8" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+    <text x="1032" y="371" font-size="15" fill="#1C1A17" text-anchor="middle">context-scaled view</text>
+    <rect x="896" y="398" width="272" height="44" rx="8" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+    <text x="1032" y="425" font-size="15" fill="#1C1A17" text-anchor="middle">LRU eviction</text>
+    <rect x="896" y="452" width="272" height="44" rx="8" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+    <text x="1032" y="479" font-size="15" fill="#1C1A17" text-anchor="middle">offset/limit pagination</text>
+  </g>
+
+  <!-- the nudge each harness gives the model -->
+  <text x="600" y="532" font-size="15" fill="#6E675E" text-anchor="middle">what each harness tells the model on an oversize read</text>
+
+  <rect x="32" y="552" width="272" height="48" rx="8" fill="#FAF9F5" stroke="#1D9E75" stroke-width="1.5"/>
+  <text x="168" y="581" font-size="15" fill="#0F6E56" text-anchor="middle">use offset/limit</text>
+
+  <rect x="320" y="552" width="272" height="48" rx="8" fill="#FAF9F5" stroke="#1D9E75" stroke-width="1.5"/>
+  <text x="456" y="581" font-size="15" fill="#0F6E56" text-anchor="middle">use offset=N to continue</text>
+
+  <rect x="608" y="552" width="272" height="48" rx="8" fill="#FAF9F5" stroke="#1D9E75" stroke-width="1.5"/>
+  <text x="744" y="581" font-size="15" fill="#0F6E56" text-anchor="middle">search instead of reading</text>
+
+  <rect x="896" y="552" width="272" height="48" rx="8" fill="#FAF9F5" stroke="#1D9E75" stroke-width="1.5"/>
+  <text x="1032" y="581" font-size="15" fill="#0F6E56" text-anchor="middle">use functions to view</text>
 </svg>

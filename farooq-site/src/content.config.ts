@@ -10,6 +10,7 @@ const writing = defineCollection({
     video: z.string().optional(),
     videoLength: z.string().optional(),
     tags: z.array(z.string()).default([]),
+    pinned: z.boolean().default(false),
     draft: z.boolean().default(false),
   }),
 });

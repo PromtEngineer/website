@@ -84,8 +84,35 @@ const dateLabel = post.data.date.toLocaleDateString('en-US', {
         </nav>
       </footer>
     </article>
+
+    <div class="lightbox" id="lightbox" hidden>
+      <img alt="" />
+    </div>
   </main>
 </Base>
+
+<script>
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = lightbox ? lightbox.querySelector('img') : null;
+  if (lightbox && lightboxImg) {
+    for (const img of document.querySelectorAll('.prose figure img')) {
+      img.addEventListener('click', () => {
+        lightboxImg.setAttribute('src', img.getAttribute('src') || '');
+        lightboxImg.setAttribute('alt', img.getAttribute('alt') || '');
+        lightbox.hidden = false;
+        document.body.style.overflow = 'hidden';
+      });
+    }
+    const close = () => {
+      lightbox.hidden = true;
+      document.body.style.overflow = '';
+    };
+    lightbox.addEventListener('click', close);
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') close();
+    });
+  }
+</script>
 
 <style>
   .page {
@@ -206,6 +233,30 @@ const dateLabel = post.data.date.toLocaleDateString('en-US', {
     width: 100%;
     height: auto;
     display: block;
+    cursor: zoom-in;
+  }
+
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    background: rgba(22, 22, 20, 0.93);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(1rem, 4vw, 3rem);
+    cursor: zoom-out;
+  }
+
+  .lightbox[hidden] {
+    display: none;
+  }
+
+  .lightbox img {
+    max-width: 100%;
+    max-height: 100%;
+    background: var(--paper);
+    border-radius: 10px;
   }
 
   .prose :global(figcaption) {

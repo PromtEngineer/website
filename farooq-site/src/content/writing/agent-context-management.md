@@ -32,7 +32,7 @@ Think about what sits in the window on any given turn:
 All of it competes with the one budget you cannot touch: room for the model to answer.
 
 <figure>
-  <img src="/writing/agent-context-management/01-context-window-fill.svg" alt="Diagram of a context window stacked with system prompt and tool definitions, conversation history, file contents, tool results, sub-agent responses, and session memory, with file reads of 10K to 250K tokens flowing in and a column of harness countermeasures: cap file reads, truncate tool results, compact history, evict stale data, nudge to search, restore after compaction" width="2048" height="1440" />
+  <img src="/writing/agent-context-management/01-context-window-fill.svg" alt="Diagram of a context window stacked with system prompt and tool definitions, conversation history, file contents, tool results, sub-agent responses, session memory, and a reserved slice for model output, with file reads of 10K to 250K tokens flowing in and a column of harness countermeasures: cap file reads, truncate tool results, compact history, evict stale data, nudge to search, restore after compaction" width="1200" height="700" />
   <figcaption>The window fills from all sides. The model sees only what the harness lets through.</figcaption>
 </figure>
 
@@ -55,7 +55,7 @@ Here is how each harness combines them:
 - **Letta** takes a different path. It parses, chunks, and embeds files into a vector store. The model gets direct viewing, exact search, and semantic search, and the window only ever shows a managed view of the file.
 
 <figure>
-  <img src="/writing/agent-context-management/02-large-file-handling.svg" alt="Four-column comparison of how Pi, OpenClaw, Claude Code, and Letta handle large files: Pi caps reads at 2K lines or 50KB with a continuation nudge, OpenClaw adds bootstrap file caps and head plus tail truncation, Claude Code gates reads by size, budgets tokens, and dedupes repeated reads with remotely tunable limits, and Letta chunks and embeds files into a vector store with semantic search" width="2048" height="1210" />
+  <img src="/writing/agent-context-management/02-large-file-handling.svg" alt="Four-column comparison of how Pi, OpenClaw, Claude Code, and Letta handle large files: Pi caps reads at 2K lines or 50KB with a continuation nudge, OpenClaw adds bootstrap file caps and head plus tail truncation, Claude Code gates reads by size, budgets tokens, and dedupes repeated reads with remotely tunable limits, and Letta chunks and embeds files into a vector store with semantic search" width="1200" height="640" />
   <figcaption>Four harnesses, four mixes of cap, slice, search, and store. None of them dumps the file into the model.</figcaption>
 </figure>
 
@@ -89,7 +89,7 @@ Sub-agents reveal another convergence. Most harnesses do not copy the parent con
 None of this is a coding-agent quirk. A data exploration agent hits the same wall with tables, traces, JSON, notebooks, and charts. Arize's Alyx converged on near-identical answers: cap tool results, binary-search for the largest slice that fits, deduplicate repeated previews, keep full payloads server-side, expose drill-down tools, and force checkpoints when token pressure climbs. Cursor, Aider, Continue, LangGraph, and OpenAI's Agents SDK all point in the same direction.
 
 <figure>
-  <img src="/writing/agent-context-management/05-feature-matrix.svg" alt="Feature matrix comparing Pi, OpenClaw, Claude Code, and Letta across file context, tool context, sub-agent context, and session management, with rows for read caps, pagination, result offloading, deduplication, isolation, and summarization triggers" width="1400" height="2000" />
+  <img src="/writing/agent-context-management/05-feature-matrix.svg" alt="Feature matrix comparing Pi, OpenClaw, Claude Code, and Letta across file context, tool context, sub-agent context, and session management, with rows for read caps, pagination, result offloading, deduplication, isolation, and summarization triggers, where green checks mark features all four harnesses share" width="1200" height="900" />
   <figcaption>The full feature matrix. Four very different architectures converge on the same context primitives.</figcaption>
 </figure>
 
