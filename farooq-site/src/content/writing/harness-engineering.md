@@ -15,9 +15,11 @@ tags: ['agents', 'harness engineering']
   </ul>
 </aside>
 
-How much of an agent's performance comes from the model, and how much from the code wrapped around it? The answer emerging from this year's research is uncomfortable for anyone whose roadmap amounts to "wait for the next model": the wrapper is winning. Stanford researchers measured more performance variation coming from orchestration code than from the choice of model. LangChain rebuilt only the infrastructure around their coding agent, touched no model, and jumped from outside the top 30 to rank five on Terminal-Bench 2. The spread between a good harness and a bad one on the same model can reach six times.
+An agent's performance depends on two things: the model and the harness around it. The model gets all the attention. The evidence now says the harness matters more.
 
-In March 2026, two papers formalized this into a discipline, from complementary directions: [Natural-Language Agent Harnesses](https://arxiv.org/abs/2603.25723) from Tsinghua and [Meta-Harness](https://arxiv.org/abs/2603.28052) from Stanford.
+Stanford researchers measured more performance variation coming from orchestration code than from the choice of model. LangChain rebuilt only the infrastructure around their coding agent, touched no model, and jumped from outside the top 30 to rank five on Terminal-Bench 2. On the same model, the gap between a good harness and a bad one can reach six times.
+
+In March 2026, two papers formalized this into a discipline: [Natural-Language Agent Harnesses](https://arxiv.org/abs/2603.25723) from Tsinghua and [Meta-Harness](https://arxiv.org/abs/2603.28052) from Stanford.
 
 I covered what a harness is, and the nine components of a good one, in [a companion essay](/writing/what-is-an-agent-harness/). This one is about the evidence: what happens when researchers make the harness explicit, measure it, and let machines optimize it.
 
@@ -58,7 +60,7 @@ Why does the separation matter? It gives harness engineering something it never 
 
 Two mechanisms underpin it. Execution contracts turn fuzzy LLM completions into bounded agent calls with five elements: required inputs, budgets, permissions, completion conditions, and output paths. Contracts do for agent calls what function signatures do for code. And file-backed state externalizes memory to path-addressable files that survive truncation, restarts, and delegation.
 
-Does all this structure actually help? Here the results get uncomfortable. On SWE-bench Verified with GPT-5.4 at maximum reasoning, resolve rates clustered between 74% and 76% regardless of configuration. But the full harness burned 16.3 million prompt tokens per sample across 642 tool calls and 32 minutes. Stripped down: 1.2 million tokens, 51 calls, under 7 minutes. Same destination, fourteen times the compute.
+Does all this structure actually help? The results are surprising. On SWE-bench Verified with GPT-5.4 at maximum reasoning, resolve rates clustered between 74% and 76% regardless of configuration. But the full harness burned 16.3 million prompt tokens per sample across 642 tool calls and 32 minutes. Stripped down: 1.2 million tokens, 51 calls, under 7 minutes. Same destination, fourteen times the compute.
 
 Then the module-by-module ablation found something stranger.
 
@@ -112,7 +114,7 @@ The practical takeaway is unambiguous. Investing in your harness yields larger, 
 
 Open problems remain. Portable harness logic lowers the barrier to spreading risky workflows: prompt injection buried in harness text, malicious tools grafted into shared artifacts. One audit found that one in four community-contributed agent skills contains a vulnerability. And the most consequential open question: can harness and model weights be co-evolved, letting strategy shape what the model learns and the model reshape the strategy that wraps it?
 
-Harness engineering is graduating from folklore to measurement. The layer between a language model and useful work was always carrying more weight than it got credit for. Now it has a name, two papers, and a benchmark trail, and it rewards careful engineering like any other system.
+Harness engineering is moving from folklore to measurement. The layer between a language model and useful work always carried more weight than it got credit for. Now it has a name, two papers, and a benchmark trail. And like any other system, it rewards careful engineering.
 
 ## Sources
 
