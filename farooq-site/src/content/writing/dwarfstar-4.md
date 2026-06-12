@@ -1,6 +1,6 @@
 ---
-title: 'DwarfStar 4: a quasi-frontier model on your own machine'
-description: 'Notes on antirez''s DwarfStar (DS4), a single-model inference engine that fits DeepSeek V4 Flash into 96 GB of RAM with an aggressively asymmetric 2/8-bit quantization recipe.'
+title: 'DwarfStar 4: how a 284B model runs on a MacBook'
+description: 'A 284B parameter model needs 568 GB stored normally. DwarfStar runs it on 128 GB machines at usable speeds. The quantization recipe, SSD streaming, and the numbers.'
 date: 2026-06-11
 tags: ['research notes', 'local ai']
 ---
@@ -8,65 +8,81 @@ tags: ['research notes', 'local ai']
 <aside class="tldr">
   <p>TL;DR</p>
   <ul>
-    <li>Salvatore Sanfilippo (antirez), the creator of Redis, built DwarfStar (DS4): a self-contained inference engine for exactly one model, DeepSeek V4 Flash, with Metal, CUDA, and ROCm backends.</li>
-    <li>The trick is asymmetric quantization: the routed MoE experts drop to 2-bit while the shared experts, projections, and routing stay untouched. Antirez calls it a 2/8 bit recipe. 284B parameters fit in 96 GB of RAM.</li>
-    <li>On a MacBook Pro M5 Max with 128 GB it generates at 25.90 tokens per second on a long prompt, and it speaks OpenAI- and Anthropic-compatible APIs, so it slots under existing harnesses.</li>
-    <li>The limits: a 96 GB hardware floor, quality benchmarks still pending from the project itself, and a single-model engine is only as current as its model.</li>
+    <li>DwarfStar (ds4), by Redis creator Salvatore Sanfilippo, runs DeepSeek V4 Flash, 284B parameters, on a 128 GB MacBook Pro or NVIDIA DGX Spark at usable speeds.</li>
+    <li>The recipe: quantize the routed experts to roughly 2 bits, leave everything load-bearing at 8. Calibrate with an importance matrix, then validate token by token against the official API.</li>
+    <li>SSD streaming changes the mental model: RAM stops being a wall that a model fits inside or does not, and becomes a dial that trades memory for speed.</li>
+    <li>This is the strongest local-first result so far: quasi-frontier intelligence with no API keys, no rate limits, and your data staying on your desk.</li>
   </ul>
 </aside>
 
-Salvatore Sanfilippo, who created Redis, has released an inference engine built for exactly one model. DwarfStar, still `ds4` on GitHub, runs DeepSeek V4 Flash on machines with 96 to 128 GB of memory, and Sanfilippo (antirez) writes that it is the first time he has used a local model for the serious work he would normally send to a frontier API. The repository stands at 13.5k stars, and the launch post drew 440 points and 190 comments on Hacker News.
+A maxed-out MacBook Pro has 128 GB of unified memory. NVIDIA's DGX Spark, a small box that sits on a desk, has the same. DeepSeek V4 Flash, one of the most capable open-weight models released, has 284 billion parameters, and stored the normal way it needs 568 GB of memory: more than four times what either machine has. It should not fit. It runs on both, at real, usable speeds, and how it runs is some of the most interesting systems engineering I have seen this year.
 
-This note covers what DS4 is, why a bespoke single-model engine beats a general-purpose runtime for this job, how the asymmetric quantization recipe works in plain terms, what it changes for local-first systems like the ones I build, and the limits.
+The project is DwarfStar, still `ds4` [on GitHub](https://github.com/antirez/ds4), by Salvatore Sanfilippo (antirez), the creator of Redis. He [writes](https://antirez.com/news/165) that it is the first time he has used a local model for the serious work he would normally send to a frontier API. The repo sits at 13.5k stars and the launch post drew 440 points on Hacker News. This note covers the problem, the quantization recipe, the validation, SSD streaming, and what the numbers look like on hardware you can actually buy.
 
-## One model, one engine
+## The RAM cliff
 
-Most local inference goes through general-purpose runtimes that try to run every model ever released. DwarfStar is the opposite, and the README is explicit about it: not a generic GGUF runner, not a wrapper around another runtime, but a self-contained engine that runs DeepSeek V4 Flash, plus DeepSeek V4 PRO on very high-memory machines, and nothing else.
+Local inference has a brutal property: it is binary. Store 284 billion parameters as 16-bit numbers and you need 568 GB for the weights alone. Cut every weight to 8 bits and you are still at 284 GB, more than double what a 128 GB machine has. And there is no partial credit. Either the model fits in memory or it does not run at all. There is no "runs a bit slower." I think of it as the RAM cliff: small models stand safely on top, and the models actually worth running fall straight off the edge into API-only territory.
 
-The rationale is stated just as plainly. New models are released continuously, and attention immediately gets captured by the next model to implement. DS4 takes what the README calls a deliberately narrow bet: one model at a time. Every kernel, memory layout, and quantization decision gets to assume a single architecture. And because the scope is narrow, the engine can afford to be complete: an integrated coding agent, an OpenAI- and Anthropic-compatible server API, a disk-based KV cache, SSD streaming for machines with less RAM than the model, and distributed inference that splits transformer layers across machines.
+The standard escape hatch is quantization: store each weight with fewer bits. At 4 bits, models hold up surprisingly well. The problem is that 4 bits is not enough here. To get 284B parameters under 128 GB, you need to push toward 2 bits, which leaves exactly four representable levels per weight. Historically that is where quality falls off a cliff of its own: important weights get snapped to wrong values, the error feeds the next layer, and 43 layers later a small rounding error has compounded into a different, worse model. Naive 2-bit quantization saves the memory and throws away the intelligence.
 
-The name tells the same story. The project launched as ds4, became DwarfStar 4 because, as antirez put it, you can put a lot of mass into a tiny space, and is now just DwarfStar. The dropped 4 matters: the README says the engine is optimized first for DeepSeek V4 Flash, and antirez writes that the model can change over time, with coding, legal, and medical variants imaginable later. The specialization is per model, not permanent.
+Unless you don't quantize everything.
 
-## The asymmetric quantization recipe
+## Quantize the furniture, not the walls
 
-DeepSeek V4 Flash is a mixture-of-experts model. DeepSeek's release notes give the shape: 284B total parameters, 13B active per token, a 1M context window, open weights. Those two parameter numbers are the whole opportunity. For any given token, the vast majority of the weight sits in routed experts the router did not pick.
+DeepSeek V4 Flash is a mixture-of-experts model. Inside each of its 43 layers, a router chooses among 256 experts, small feed-forward networks, and only a handful fire per token, plus one shared expert that every token passes through. Add it up and the model is 284B parameters total but only about 13B active per token. The model is huge; per token, it is small.
 
-The recipe quantizes only those routed experts, and aggressively: up and gate projections at IQ2_XXS, down projections at Q2_K, both 2-bit formats. Everything every token must pass through, meaning the shared experts, the projections, and the routing itself, is left untouched. Antirez sums it up as an extremely asymmetric quants recipe of 2/8 bit.
-
-The bet is easy to state. A routed expert contributes only occasionally, so the damage from squeezing it to 2 bits is diluted across the many experts a long generation consults. The shared path has no such dilution; an error there touches every token. So the bits go where every token flows, and the savings come from the mass that mostly waits. That is how 284B parameters fit into 96 GB of RAM, or less with SSD streaming, where experts load from disk on cache misses.
+That anatomy is what makes the trick possible. Think of the model as a building. Attention, the routers, the shared experts, the output head: those are the load-bearing walls. Every token flows through them, so damage there propagates everywhere. The routed experts are the furniture: they are most of the building by mass, but each token only ever touches a few pieces.
 
 <figure>
-  <img src="/writing/dwarfstar-4/asymmetric-quantization.svg" alt="Asymmetric quantization in DwarfStar: a DeepSeek V4 Flash panel with a large grid of routed MoE experts and a small card for shared experts, projections, and routing; a green arrow sends the experts to 2-bit IQ2_XXS and Q2_K while the rest stays at 8-bit, landing in a dark machine block that fits 284B parameters in 96 GB of RAM, with MacBook Pro M5 Max speeds and Metal, CUDA, ROCm backends" width="1200" height="560" />
-  <figcaption>The recipe: 2-bit for the routed experts, 8-bit for everything every token must pass through.</figcaption>
+  <img src="/writing/dwarfstar-4/asymmetric-quantization.svg" alt="Diagram of DwarfStar's asymmetric quantization: DeepSeek V4 Flash's routed mixture-of-experts weights, most of the mass and mostly idle, are quantized to 2-bit, while shared experts, projections, and routing stay at 8-bit, fitting 284B parameters into 96 GB of RAM on consumer hardware" width="1200" height="560" />
+  <figcaption>Most of the mass goes to 2-bit. Everything every token touches stays precise.</figcaption>
 </figure>
 
-## What it looks like in practice
+The recipe, straight from the repo: routed experts get crushed to roughly 2 bits (IQ2_XXS for up and gate projections, Q2_K for down). Everything load-bearing stays at 8 bits, effectively untouched. It survives for two reasons. With 256 experts per layer there is redundancy. And any single token meets only a few quantized experts, sandwiched between high-precision layers, so the error never gets the chance to compound the way it does in a dense model. The result: the model drops from 568 GB to about 81, under the 128 GB of a MacBook Pro. The thing that could not fit, fits. As the README puts it, these 2-bit quants are not a joke.
 
-The repo publishes its own benchmarks. On a MacBook Pro M5 Max with 128 GB, the q2 build prefills a short prompt at 87.25 tokens per second and generates at 34.27. With an 11,707-token prompt, prefill rises to 463.44 t/s and generation settles at 25.90. A Mac Studio M3 Ultra with 512 GB runs DeepSeek V4 PRO at q2: 138.82 t/s prefill and 9.56 t/s generation at 32,768 tokens. There are also 4-bit builds for 256 GB machines.
+## Quantize with your eyes open, then prove it
 
-Metal is the primary target. CUDA is supported, including the DGX Spark, and ROCm covers AMD Strix Halo machines. The CPU path exists for diagnostics only. The license is MIT.
+There is a second layer to the trick: the difference between guessing and measuring. Before quantizing, the project runs the model over a calibration corpus of about 4,700 real prompts, roughly 2.9 million tokens of code review, contest math, long documents, and agent tool calls, and records which weight columns actually carry signal. The quantizer then protects the heavily used columns and lets the rarely used ones absorb the error. The detail I like most: the calibration set includes tool-calling prompts in DeepSeek's own format. The quantization is tuned for agentic work, exactly where cheap quants usually fall apart first.
 
-## What this means for local-first AI
+Then comes the part most quantization projects skip: proof. DwarfStar validates against continuation vectors captured from the official DeepSeek API, measuring token by token how much probability the local 2-bit model assigns to the exact tokens the full model produces. If the quant were damaged, the curves would split. They track. On top of that sits a built-in 92-question evaluation gate, 25 GPQA Diamond, 25 audited SuperGPQA, 25 AIME 2025, and 17 security code review items, run as the engine evolves. "The model survived" is a measured claim here, not a vibe.
 
-Everything I build starts from the same premise: your documents and your voice should not have to leave your machine to be useful. The [localGPT pipeline](/writing/rag-beyond-similarity-search/) already runs end to end on local models, with small models doing the routine work and an 8B model holding the judgment seat for generation and verification. The bottleneck in that stack has always been the judgment seat. DS4 raises the ceiling on what can sit in it: a 284B-parameter mixture-of-experts model, on hardware a serious individual can own.
+## The cliff becomes a dial
 
-The integration story matters as much as the model. Because DS4 exposes OpenAI- and Anthropic-compatible endpoints, it can sit under an existing [agent harness](/writing/what-is-an-agent-harness/) without the harness knowing or caring that the model never left the room. The loops, tools, and verification we build around frontier APIs carry over unchanged. A local model behind a standard API is just a model.
+All of that assumes 128 GB. What if you have 64? The old answer is the cliff again: 81 into 64 does not go. DwarfStar's answer is SSD streaming, and it is my favorite part of the system.
 
-## The honest limits
+In streaming mode, the load-bearing weights stay permanently resident in RAM, because every token needs them. Next to them, the engine carves out a pinned cache of slots, each holding one complete expert. The full set of experts, all eleven thousand or so across 43 layers, stays on the SSD inside the model file. When the router picks experts that are already cached, that is a hit: fast path, no disk. When one is missing, the engine reads that single expert off the SSD, drops it into a slot, and evicts whichever expert has been cold the longest. Expert usage follows a power law, some experts are simply popular, so a profiled hotlist preloads the popular ones at startup and the cache starts warm.
 
-The hardware floor is real. 96 GB of unified memory is a high-end machine, not a typical laptop, and the PRO model wants 512 GB. SSD streaming lowers the floor, at the price of pulling experts from disk on cache misses.
+<figure>
+  <img src="/writing/dwarfstar-4/ram-cliff-to-dial.svg" alt="Two panels: before, a cliff where a model either fits in RAM and runs or does not fit and does not run at all; after, with SSD streaming, a smooth curve where 128 GB runs at full speed, 96 GB slightly slower, and 64 GB slower still, but the model always runs" width="1200" height="560" />
+  <figcaption>SSD streaming replaces the fits-or-nothing cliff with a speed dial.</figcaption>
+</figure>
 
-The quality evidence is still mostly the project's own. The throughput numbers above are the repo's benchmarks, and antirez lists proper quality benchmarks as upcoming work. He was also still swapping in better 2-bit quants, built with an in-house iMatrix recipe, in the same breath as renaming the project. That is encouraging and also a sign the recipe is not settled. Two-bit experts are an aggressive compression, and the honest claim today is that the model handles antirez's serious work, not that it matches the hosted version of V4 Flash.
+This reframes the whole problem. RAM stops being a hard cutoff and becomes a continuous spectrum of speed levels: 128 GB runs everything resident at full speed, 96 GB runs a big cache slightly slower, 64 GB runs a smaller cache with more misses, slower still, but it always runs. The question is no longer "can I run this model?" It is "how fast?" Your laptop's SSD just joined the memory hierarchy for AI.
 
-The specialization cuts both ways. A single-model engine is only as relevant as its model. When something clearly better than DeepSeek V4 Flash ships, a generic runtime will pick it up in days; a bespoke engine gets it when its author commits the weeks.
+## Your conversation is a file
 
-The takeaway fits in one sentence. Antirez says this is the first time local inference has handled his serious work, and for once the entire stack, weights and engine alike, is open enough for the rest of us to check.
+Weights are only half the memory story. The other half is the KV cache, the model's working memory of your session, which on a classic architecture can outgrow the model itself at long context. DeepSeek V4's layered attention design keeps the most recent 128 tokens raw at full resolution and compresses older history along time, alternating by layer between pooling four tokens into one (with an indexer that attends to the most relevant 512 rows) and compressing 128 into one. A million tokens of context lands around 26 GB: big, but something a laptop can hold.
+
+Because the cache is compact, DwarfStar treats it as a first-class disk citizen. Sessions are saved as checkpoint files and resume with zero re-processing of the prompt. A two-hour coding session with a 284B model is a file you can come back to tomorrow.
+
+## Two MacBooks, one model
+
+DwarfStar also does distributed inference. Connect two MacBooks with a Thunderbolt 5 cable (0.45 ms ping), split the model by layers, and prompt processing becomes an assembly line: while machine B chews on chunk one, machine A is already on chunk two. The pipeline genuinely pays on prefill: 1.38x at 9k tokens, 1.66x at 28k, 1.85x at 64k. Generation is the honest footnote: one token at a time collapses the pipeline into ping-pong across the cable, about 19% slower. This trick is for fitting bigger models and processing long prompts faster, not for faster typing.
+
+The payoff at the top end: two Mac Studios run DeepSeek V4 PRO, the full 1.6 trillion parameter model, at around 11.5 tokens per second. And a single 512 GB Mac Studio runs the PRO 2-bit build at 9.6 tokens per second with 32k context. Frontier-scale weights, on a desk.
+
+## The scoreboard
+
+From the repo's published benchmarks for the 2-bit Flash build, long prompts: an M3 Max MacBook generates around 21.5 tokens per second, an M5 Max around 25.9, an M3 Ultra Studio 27.4, and the DGX Spark 13.8. Prefill is where these machines fly: 250 to 468 tokens per second. Readable speeds, for a model this size, on hardware you own.
+
+## Why this matters
+
+Three things stand out beyond the single project. First, it shows what you get when one team owns the whole stack, the engine, the quantization, the validation, even the coding agent, and tunes them for each other instead of trying to be maximally general. That is the same lesson the [harness world](/writing/what-is-an-agent-harness/) keeps teaching: the integration is the product. Second, the cliff-to-dial reframing quietly changes what "consumer hardware" means for AI, because the SSD is now part of the memory hierarchy. And third, this is quasi-frontier intelligence running fully local: no API keys, no rate limits, your data never leaves the machine. That is the bet I have been making since [localGPT](/writing/rag-beyond-similarity-search/), and DwarfStar is the strongest evidence yet that the bet is right.
 
 ## Sources
 
-- [A few words on DS4](https://antirez.com/news/165), antirez, the launch retrospective
-- [DwarfStar repository](https://github.com/antirez/ds4), antirez/ds4 on GitHub
-- [DeepSeek-V4 preview release](https://api-docs.deepseek.com/news/news260424), DeepSeek API news, April 24, 2026
-- [DeepSeek's release announcement](https://x.com/deepseek_ai/status/2047516922263285776) with the V4-Flash and V4-Pro parameter counts
-- [Hacker News discussion](https://news.ycombinator.com/item?id=48142108) of the launch post
-- [antirez on the DwarfStar name](https://x.com/antirez/status/2053797156155163108)
+- [DwarfStar (ds4) on GitHub](https://github.com/antirez/ds4), the engine, benchmarks, and validation suite
+- [A few words on DS4](https://antirez.com/news/165), antirez's launch post
+- [DeepSeek V4 announcement](https://api-docs.deepseek.com/news/news260424), Flash: 284B total, 13B active, 1M context, open weights
+- [Hacker News discussion](https://news.ycombinator.com/item?id=48142108)
+- [What is an agent harness?](/writing/what-is-an-agent-harness/) and [RAG beyond similarity search](/writing/rag-beyond-similarity-search/), companion essays on this site
