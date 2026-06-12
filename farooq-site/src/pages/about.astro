@@ -16,30 +16,47 @@ import { profile } from '../data/profile';
     </header>
 
     <p class="intro">
-      I'm a researcher and builder at heart, with over a decade of experience building and
-      scaling machine learning systems. That journey runs from wearable sensors to
-      retrieval-augmented generation and, today, scalable agentic systems.
+      I'm a researcher who became a builder. Over more than a decade building and scaling
+      machine learning systems, one idea kept getting stronger: the most powerful AI should
+      run on hardware you own. Your documents, your voice, your models, all on your machine,
+      with nothing leaving it.
     </p>
     <p class="intro">
-      Before that, I earned a PhD in applied machine learning, specializing in wearable sensors
-      and biomedical signal processing. My research has been cited more than 2,000 times, and
-      along the way I published a book and hold a patent. You can browse the work on
-      <a href={profile.links.scholar}>Google Scholar</a>.
+      That bet runs through everything I make. <a href="https://github.com/PromtEngineer/localGPT">localGPT</a>
+      was an early proof that a private, fully offline retrieval system could actually be good.
+      <a href="https://whryte.com">whryte</a> is the same idea for voice, transcription that never
+      sends your audio anywhere. The wager doesn't change: you shouldn't have to hand your data to
+      a server to use frontier-grade AI.
     </p>
     <p class="intro">
-      I'm deeply committed to open source. I created
-      <a href="https://github.com/PromtEngineer/localGPT">localGPT</a>, one of the first
-      open-source retrieval-augmented generation projects for secure, private document
-      interaction, now past 22,000 stars on GitHub. Today I'm building
-      <a href="https://whryte.com">whryte</a>, a fully offline voice-to-text app for the Mac.
+      I came to this through research. I earned a PhD in applied machine learning, working on
+      wearable sensors and biomedical signal processing, problems where the data is about your own
+      body and keeping it on-device isn't a preference but a requirement. That work led to a patent
+      and a decade of published research, and the path from there runs through retrieval-augmented
+      generation to the agentic systems I build today.
     </p>
     <p class="intro">
-      These days, I help companies build agentic systems and evolve with them. I have worked
-      with startups as a consultant and an advisor, and I love exploring new applications of
-      agentic systems. On my YouTube channel,
-      <a href={profile.links.youtube}>Prompt Engineering</a>, I share what I learn along the way
-      with more than 200,000 subscribers.
+      These days I help companies build agentic systems and grow with them, as a consultant and an
+      advisor, and I'm always chasing new things these systems can do. I share what I learn on my
+      YouTube channel, <a href={profile.links.youtube}>Prompt Engineering</a>, where a community of
+      engineers follows along.
     </p>
+
+    <p class="proof-kicker">the record</p>
+    <ul class="proof">
+      <li><span class="k">PhD</span> applied machine learning</li>
+      <li>
+        <a href={profile.links.scholar}><span class="k">2,154</span> citations, h-index 21</a>
+      </li>
+      <li>
+        <a href="https://github.com/PromtEngineer/localGPT"><span class="k">22,000&#9733;</span> localGPT on GitHub</a>
+      </li>
+      <li>
+        <a href={profile.links.youtube}><span class="k">200,000</span> subscribers on YouTube</a>
+      </li>
+      <li><span class="k">Google Developer Expert</span>, AI/ML</li>
+      <li><span class="k">Google Cloud NEXT 2025</span> speaker</li>
+    </ul>
 
     <nav class="links" aria-label="Continue">
       <a class="more" href="/writing">Writing<span class="arrow">&nbsp;&rarr;</span></a>
@@ -123,6 +140,59 @@ import { profile } from '../data/profile';
   .intro a:hover,
   .intro a:focus-visible {
     text-decoration-color: var(--ink);
+  }
+
+  /* ——— the record ——— */
+
+  .proof-kicker {
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin: 3rem 0 1rem;
+  }
+
+  .proof {
+    list-style: none;
+    margin: 0;
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--rule-ink);
+    border-bottom: 1px solid var(--rule-ink);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem 2.5rem;
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    line-height: 1.4;
+    color: var(--ink-soft);
+  }
+
+  .proof li {
+    margin: 0;
+  }
+
+  .proof .k {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .proof a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .proof a:hover .k,
+  .proof a:focus-visible .k {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  @media (max-width: 560px) {
+    .proof {
+      grid-template-columns: 1fr;
+      gap: 0.85rem;
+    }
   }
 
   /* ——— continue ——— */
