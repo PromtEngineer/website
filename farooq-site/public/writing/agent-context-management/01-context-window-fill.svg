@@ -1,0 +1,105 @@
+<svg viewBox="0 0 1200 700" xmlns="http://www.w3.org/2000/svg" font-family="Menlo, Consolas, monospace">
+  <rect width="1200" height="700" fill="#FAF9F5"/>
+
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#6E675E"/>
+    </marker>
+  </defs>
+
+  <!-- column headings -->
+  <text x="50" y="74" font-size="16" fill="#6E675E">inflows</text>
+  <text x="610" y="48" font-size="20" fill="#1C1A17" text-anchor="middle">context window</text>
+  <text x="610" y="74" font-size="15" fill="#6E675E" text-anchor="middle">128K-200K tokens</text>
+  <text x="870" y="74" font-size="16" fill="#6E675E">harness countermeasures</text>
+
+  <!-- left column: inflows -->
+  <g>
+    <rect x="50" y="120" width="300" height="86" rx="10" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+    <text x="70" y="154" font-size="17" fill="#1C1A17">file reads</text>
+    <text x="70" y="180" font-size="15" fill="#6E675E">10K-250K tokens each</text>
+
+    <rect x="50" y="230" width="300" height="86" rx="10" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+    <text x="70" y="264" font-size="17" fill="#1C1A17">tool call results</text>
+    <text x="70" y="290" font-size="15" fill="#6E675E">grep, bash, search</text>
+
+    <rect x="50" y="340" width="300" height="86" rx="10" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+    <text x="70" y="374" font-size="17" fill="#1C1A17">sub-agent results</text>
+    <text x="70" y="400" font-size="15" fill="#6E675E">forked task output</text>
+
+    <rect x="50" y="450" width="300" height="86" rx="10" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+    <text x="70" y="484" font-size="17" fill="#1C1A17">session state</text>
+    <text x="70" y="510" font-size="15" fill="#6E675E">memory, summaries</text>
+  </g>
+
+  <!-- arrows: inflows into the window -->
+  <line x1="354" y1="163" x2="390" y2="163" stroke="#6E675E" stroke-width="1.5" marker-end="url(#arr)"/>
+  <line x1="354" y1="273" x2="390" y2="273" stroke="#6E675E" stroke-width="1.5" marker-end="url(#arr)"/>
+  <line x1="354" y1="383" x2="390" y2="383" stroke="#6E675E" stroke-width="1.5" marker-end="url(#arr)"/>
+  <line x1="354" y1="493" x2="390" y2="493" stroke="#6E675E" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- center: the window and its occupants -->
+  <rect x="400" y="88" width="420" height="480" rx="14" fill="none" stroke="#1C1A17" stroke-width="1.5"/>
+
+  <rect x="420" y="108" width="380" height="56" rx="8" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+  <text x="440" y="131" font-size="17" fill="#1C1A17">system prompt + tool definitions</text>
+  <text x="440" y="152" font-size="15" fill="#6E675E">loaded once at session start</text>
+
+  <rect x="420" y="170" width="380" height="56" rx="8" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+  <text x="440" y="193" font-size="17" fill="#1C1A17">conversation history</text>
+  <text x="440" y="214" font-size="15" fill="#6E675E">grows every turn, without bound</text>
+
+  <rect x="420" y="232" width="380" height="72" rx="8" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+  <text x="440" y="263" font-size="17" fill="#1C1A17">file contents</text>
+  <text x="440" y="287" font-size="15" fill="#6E675E">often the largest occupant</text>
+
+  <rect x="420" y="310" width="380" height="56" rx="8" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+  <text x="440" y="333" font-size="17" fill="#1C1A17">tool results</text>
+  <text x="440" y="354" font-size="15" fill="#6E675E">accumulate fast</text>
+
+  <rect x="420" y="372" width="380" height="48" rx="8" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+  <text x="440" y="401" font-size="17" fill="#1C1A17">sub-agent responses</text>
+
+  <rect x="420" y="426" width="380" height="56" rx="8" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+  <text x="440" y="449" font-size="17" fill="#1C1A17">session memory</text>
+  <text x="440" y="470" font-size="15" fill="#6E675E">compaction summaries</text>
+
+  <rect x="420" y="496" width="380" height="56" rx="8" fill="none" stroke="#1D9E75" stroke-width="2"/>
+  <text x="440" y="519" font-size="17" fill="#0F6E56">reserved for model output</text>
+  <text x="440" y="540" font-size="15" fill="#6E675E">the one budget you cannot touch</text>
+
+  <!-- right column: what the harness does about it -->
+  <g>
+    <rect x="870" y="120" width="280" height="56" rx="10" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+    <text x="890" y="153" font-size="16" fill="#1C1A17">cap file reads</text>
+
+    <rect x="870" y="192" width="280" height="56" rx="10" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+    <text x="890" y="225" font-size="16" fill="#1C1A17">truncate tool results</text>
+
+    <rect x="870" y="264" width="280" height="56" rx="10" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+    <text x="890" y="297" font-size="16" fill="#1C1A17">compact history</text>
+
+    <rect x="870" y="336" width="280" height="56" rx="10" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+    <text x="890" y="369" font-size="16" fill="#1C1A17">evict stale data</text>
+
+    <rect x="870" y="408" width="280" height="56" rx="10" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+    <text x="890" y="441" font-size="16" fill="#1C1A17">nudge to search/grep</text>
+
+    <rect x="870" y="480" width="280" height="56" rx="10" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+    <text x="890" y="513" font-size="16" fill="#1C1A17">restore after compaction</text>
+  </g>
+
+  <!-- arrows: countermeasures acting on the window -->
+  <line x1="864" y1="148" x2="830" y2="148" stroke="#6E675E" stroke-width="1.5" marker-end="url(#arr)"/>
+  <line x1="864" y1="220" x2="830" y2="220" stroke="#6E675E" stroke-width="1.5" marker-end="url(#arr)"/>
+  <line x1="864" y1="292" x2="830" y2="292" stroke="#6E675E" stroke-width="1.5" marker-end="url(#arr)"/>
+  <line x1="864" y1="364" x2="830" y2="364" stroke="#6E675E" stroke-width="1.5" marker-end="url(#arr)"/>
+  <line x1="864" y1="436" x2="830" y2="436" stroke="#6E675E" stroke-width="1.5" marker-end="url(#arr)"/>
+  <line x1="864" y1="508" x2="830" y2="508" stroke="#6E675E" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- bottom: the model -->
+  <line x1="610" y1="572" x2="610" y2="592" stroke="#6E675E" stroke-width="1.5" marker-end="url(#arr)"/>
+  <rect x="480" y="598" width="260" height="52" rx="10" fill="#161614"/>
+  <text x="610" y="630" font-size="20" fill="#F2EFE9" text-anchor="middle">model</text>
+  <text x="610" y="682" font-size="15" fill="#6E675E" text-anchor="middle">sees only what the harness lets through</text>
+</svg>

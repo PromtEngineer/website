@@ -1,0 +1,62 @@
+<svg viewBox="0 0 1200 560" xmlns="http://www.w3.org/2000/svg" font-family="Menlo, Consolas, monospace">
+  <rect width="1200" height="560" fill="#FAF9F5"/>
+
+  <!-- converging lines -->
+  <g stroke="#8A8377" stroke-width="1" opacity="0.6">
+    <line x1="500" y1="124" x2="660" y2="270" />
+    <line x1="500" y1="230" x2="660" y2="278" />
+    <line x1="500" y1="336" x2="660" y2="286" />
+    <line x1="500" y1="442" x2="660" y2="294" />
+    <line x1="256" y1="124" x2="660" y2="266" />
+    <line x1="256" y1="230" x2="660" y2="274" />
+    <line x1="256" y1="336" x2="660" y2="290" />
+    <line x1="256" y1="442" x2="660" y2="298" />
+  </g>
+
+  <!-- parallel agents -->
+  <text x="56" y="56" font-size="16" letter-spacing="4" fill="#6E675E">PARALLEL AGENTS</text>
+  <g>
+    <rect x="56" y="84" width="200" height="80" rx="8" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+    <text x="80" y="118" font-size="16" fill="#1C1A17">agent 1</text>
+    <text x="80" y="144" font-size="15" fill="#6E675E">PR ready</text>
+    <rect x="56" y="190" width="200" height="80" rx="8" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+    <text x="80" y="224" font-size="16" fill="#1C1A17">agent 2</text>
+    <text x="80" y="250" font-size="15" fill="#6E675E">PR ready</text>
+    <rect x="56" y="296" width="200" height="80" rx="8" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+    <text x="80" y="330" font-size="16" fill="#1C1A17">agent 3</text>
+    <text x="80" y="356" font-size="15" fill="#6E675E">PR ready</text>
+    <rect x="56" y="402" width="200" height="80" rx="8" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+    <text x="80" y="436" font-size="16" fill="#1C1A17">agent 4</text>
+    <text x="80" y="462" font-size="15" fill="#6E675E">PR ready</text>
+
+    <rect x="300" y="84" width="200" height="80" rx="8" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+    <text x="324" y="118" font-size="16" fill="#1C1A17">agent 5</text>
+    <text x="324" y="144" font-size="15" fill="#6E675E">PR ready</text>
+    <rect x="300" y="190" width="200" height="80" rx="8" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+    <text x="324" y="224" font-size="16" fill="#1C1A17">agent 6</text>
+    <text x="324" y="250" font-size="15" fill="#6E675E">PR ready</text>
+    <rect x="300" y="296" width="200" height="80" rx="8" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+    <text x="324" y="330" font-size="16" fill="#1C1A17">agent 7</text>
+    <text x="324" y="356" font-size="15" fill="#6E675E">PR ready</text>
+    <rect x="300" y="402" width="200" height="80" rx="8" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+    <text x="324" y="436" font-size="16" fill="#1C1A17">agent 8</text>
+    <text x="324" y="462" font-size="15" fill="#6E675E">PR ready</text>
+  </g>
+
+
+  <!-- the gate -->
+  <rect x="660" y="200" width="14" height="160" rx="7" fill="#1D9E75"/>
+  <text x="667" y="176" font-size="16" fill="#0F6E56" text-anchor="middle">your review bandwidth</text>
+
+  <line x1="674" y1="280" x2="754" y2="280" stroke="#6E675E" stroke-width="1.5"/>
+  <path d="M754 280 l-10 -5 v10 z" fill="#6E675E"/>
+
+  <!-- you -->
+  <rect x="764" y="190" width="380" height="180" rx="12" fill="#161614"/>
+  <text x="796" y="240" font-size="22" fill="#F2EFE9">you</text>
+  <text x="796" y="276" font-size="16" fill="#A8A39A">review, understand, merge,</text>
+  <text x="796" y="302" font-size="16" fill="#A8A39A">stay responsible</text>
+  <text x="796" y="340" font-size="15" fill="#A8A39A">one person, fixed hours</text>
+
+  <text x="600" y="532" font-size="16" fill="#6E675E" text-anchor="middle">the ceiling is your bandwidth, not the tool</text>
+</svg>

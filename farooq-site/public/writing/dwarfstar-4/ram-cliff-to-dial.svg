@@ -1,0 +1,44 @@
+<svg viewBox="0 0 1200 560" xmlns="http://www.w3.org/2000/svg" font-family="Menlo, Consolas, monospace">
+  <rect width="1200" height="560" fill="#FAF9F5"/>
+
+  <!-- left panel: the cliff -->
+  <text x="80" y="64" font-size="20" fill="#1C1A17">before: the cliff</text>
+  <text x="80" y="94" font-size="15" fill="#6E675E">fits in RAM, or does not run at all</text>
+
+  <line x1="80" y1="440" x2="540" y2="440" stroke="#1C1A17" stroke-width="1.5"/>
+  <line x1="80" y1="440" x2="80" y2="140" stroke="#1C1A17" stroke-width="1.5"/>
+  <text x="60" y="290" font-size="15" fill="#6E675E" transform="rotate(-90 60 290)" text-anchor="middle">speed</text>
+  <text x="310" y="478" font-size="15" fill="#6E675E" text-anchor="middle">RAM</text>
+
+  <line x1="80" y1="190" x2="330" y2="190" stroke="#1C1A17" stroke-width="3"/>
+  <line x1="330" y1="190" x2="330" y2="440" stroke="#8A8377" stroke-width="2" stroke-dasharray="6 5"/>
+  <text x="205" y="172" font-size="15" fill="#1C1A17" text-anchor="middle">enough RAM: runs</text>
+  <text x="435" y="408" font-size="15" fill="#6E675E" text-anchor="middle">one byte short:</text>
+  <text x="435" y="430" font-size="15" fill="#6E675E" text-anchor="middle">nothing</text>
+
+  <!-- divider -->
+  <line x1="600" y1="60" x2="600" y2="500" stroke="#1C1A17" stroke-width="1" opacity="0.15"/>
+
+  <!-- right panel: the dial -->
+  <text x="660" y="64" font-size="20" fill="#0F6E56">with SSD streaming: a dial</text>
+  <text x="660" y="94" font-size="15" fill="#6E675E">less RAM means slower, never nothing</text>
+
+  <line x1="660" y1="440" x2="1120" y2="440" stroke="#1C1A17" stroke-width="1.5"/>
+  <line x1="660" y1="440" x2="660" y2="140" stroke="#1C1A17" stroke-width="1.5"/>
+  <text x="640" y="290" font-size="15" fill="#6E675E" transform="rotate(-90 640 290)" text-anchor="middle">speed</text>
+  <text x="890" y="478" font-size="15" fill="#6E675E" text-anchor="middle">RAM</text>
+
+  <path d="M 700 400 C 800 390 880 330 950 270 C 1010 220 1060 195 1100 190" fill="none" stroke="#1D9E75" stroke-width="3"/>
+
+  <circle cx="1100" cy="190" r="6" fill="#1D9E75"/>
+  <text x="1086" y="168" font-size="15" fill="#1C1A17" text-anchor="end">128 GB: full speed</text>
+
+  <circle cx="950" cy="270" r="6" fill="#1D9E75"/>
+  <text x="936" y="250" font-size="15" fill="#1C1A17" text-anchor="end">96 GB: slightly slower</text>
+
+  <circle cx="760" cy="382" r="6" fill="#1D9E75"/>
+  <text x="778" y="418" font-size="15" fill="#1C1A17">64 GB: slower, still runs</text>
+
+  <text x="890" y="528" font-size="16" fill="#0F6E56" text-anchor="middle">"can I run it?" becomes "how fast?"</text>
+  <text x="310" y="528" font-size="16" fill="#6E675E" text-anchor="middle">"can I run it?" yes or no</text>
+</svg>

@@ -1,0 +1,49 @@
+<svg viewBox="0 0 1200 560" xmlns="http://www.w3.org/2000/svg" font-family="Menlo, Consolas, monospace">
+  <rect width="1200" height="560" fill="#FAF9F5"/>
+
+  <!-- model header -->
+  <text x="56" y="64" font-size="16" letter-spacing="4" fill="#6E675E">DEEPSEEK V4 FLASH</text>
+  <text x="56" y="90" font-size="15" fill="#6E675E">284B total parameters, 13B active per token</text>
+
+  <!-- routed experts card -->
+  <rect x="56" y="116" width="400" height="280" rx="10" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+  <text x="82" y="158" font-size="18" fill="#1C1A17">routed MoE experts</text>
+  <text x="82" y="186" font-size="15" fill="#6E675E">most of the mass, mostly idle</text>
+
+  <!-- expert grid -->
+  <g fill="#8A8377">
+    <rect x="82" y="212" width="38" height="24" rx="4"/><rect x="128" y="212" width="38" height="24" rx="4"/><rect x="174" y="212" width="38" height="24" rx="4"/><rect x="220" y="212" width="38" height="24" rx="4"/><rect x="266" y="212" width="38" height="24" rx="4"/><rect x="312" y="212" width="38" height="24" rx="4"/><rect x="358" y="212" width="38" height="24" rx="4"/>
+    <rect x="82" y="244" width="38" height="24" rx="4"/><rect x="128" y="244" width="38" height="24" rx="4"/><rect x="174" y="244" width="38" height="24" rx="4"/><rect x="220" y="244" width="38" height="24" rx="4"/><rect x="266" y="244" width="38" height="24" rx="4"/><rect x="312" y="244" width="38" height="24" rx="4"/><rect x="358" y="244" width="38" height="24" rx="4"/>
+    <rect x="82" y="276" width="38" height="24" rx="4"/><rect x="128" y="276" width="38" height="24" rx="4"/><rect x="174" y="276" width="38" height="24" rx="4"/><rect x="220" y="276" width="38" height="24" rx="4"/><rect x="266" y="276" width="38" height="24" rx="4"/><rect x="312" y="276" width="38" height="24" rx="4"/><rect x="358" y="276" width="38" height="24" rx="4"/>
+    <rect x="82" y="308" width="38" height="24" rx="4"/><rect x="128" y="308" width="38" height="24" rx="4"/><rect x="174" y="308" width="38" height="24" rx="4"/><rect x="220" y="308" width="38" height="24" rx="4"/><rect x="266" y="308" width="38" height="24" rx="4"/><rect x="312" y="308" width="38" height="24" rx="4"/><rect x="358" y="308" width="38" height="24" rx="4"/>
+  </g>
+  <text x="82" y="368" font-size="15" fill="#6E675E">a few experts consulted per token</text>
+
+  <!-- everything else card -->
+  <rect x="56" y="416" width="400" height="96" rx="10" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+  <text x="82" y="452" font-size="18" fill="#1C1A17">everything else</text>
+  <text x="82" y="480" font-size="15" fill="#6E675E">shared experts, projections, routing</text>
+
+  <!-- 2-bit arrow (focal) -->
+  <text x="600" y="222" font-size="18" fill="#0F6E56" text-anchor="middle">quantized to 2-bit</text>
+  <line x1="456" y1="256" x2="736" y2="256" stroke="#1D9E75" stroke-width="2"/>
+  <path d="M746 256 l-12 -6 v12 z" fill="#1D9E75"/>
+  <text x="600" y="288" font-size="15" fill="#6E675E" text-anchor="middle">IQ2_XXS up/gate, Q2_K down</text>
+
+  <!-- untouched arrow -->
+  <text x="600" y="430" font-size="18" fill="#1C1A17" text-anchor="middle">left untouched</text>
+  <line x1="456" y1="464" x2="736" y2="464" stroke="#6E675E" stroke-width="1.5"/>
+  <path d="M746 464 l-10 -5 v10 z" fill="#6E675E"/>
+  <text x="600" y="496" font-size="15" fill="#6E675E" text-anchor="middle">stays at 8-bit</text>
+
+  <!-- machine block -->
+  <rect x="756" y="116" width="388" height="396" rx="12" fill="#161614"/>
+  <text x="786" y="164" font-size="16" letter-spacing="4" fill="#A8A39A">YOUR MACHINE</text>
+  <text x="786" y="216" font-size="20" fill="#F2EFE9">DwarfStar q2 build</text>
+  <text x="786" y="248" font-size="16" fill="#F2EFE9">284B params in 96 GB of RAM</text>
+  <text x="786" y="274" font-size="15" fill="#A8A39A">or less with SSD streaming</text>
+  <text x="786" y="352" font-size="15" fill="#A8A39A">MacBook Pro M5 Max, 128 GB</text>
+  <text x="786" y="380" font-size="16" fill="#F2EFE9">generation: 25.90 t/s</text>
+  <text x="786" y="406" font-size="15" fill="#A8A39A">prefill: 463.44 t/s, long prompt</text>
+  <text x="786" y="470" font-size="15" fill="#A8A39A">Metal, CUDA, ROCm</text>
+</svg>

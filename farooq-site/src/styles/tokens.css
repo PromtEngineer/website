@@ -1,0 +1,52 @@
+:root {
+  /* the scientist — paper */
+  --paper: #faf9f5;
+  --ink: #1c1a17;
+  --ink-soft: #6e675e;
+  --rule-ink: rgba(28, 26, 23, 0.16);
+
+  /* the builder — coal */
+  --coal: #161614;
+  --bone: #f2efe9;
+  --bone-soft: #a8a39a;
+  --rule-bone: rgba(242, 239, 233, 0.18);
+
+  /* one accent, used like a cursor LED — nowhere else */
+  --phosphor: #93d9b1;
+
+  --serif: 'Newsreader Variable', 'Newsreader', Georgia, 'Times New Roman', serif;
+  --mono: 'JetBrains Mono Variable', 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  --noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  margin: 0;
+  padding: 0;
+  background: var(--coal);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--serif);
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  color: inherit;
+}
+
+::selection {
+  background: var(--ink);
+  color: var(--paper);
+}

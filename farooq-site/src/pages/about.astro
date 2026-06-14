@@ -1,0 +1,182 @@
+---
+import Base from '../layouts/Base.astro';
+import { profile } from '../data/profile';
+---
+
+<Base title={`About · ${profile.name}`}>
+  <main class="page">
+    <a class="back" href="/">&larr; home</a>
+
+    <header class="head">
+      <img class="portrait" src="/portrait.jpg" alt={`Portrait of ${profile.name}`} width="72" height="72" />
+      <div>
+        <p class="label">About</p>
+        <h1 class="name">{profile.name}</h1>
+      </div>
+    </header>
+
+    <p class="intro">
+      I'm a researcher and builder at heart, working on agentic and generative AI systems. I earned
+      a PhD in applied machine learning and I'm a Google Developer Expert in AI/ML.
+    </p>
+    <p class="intro">
+      <strong>Interests.</strong> I'm interested in building scalable agentic systems for retrieval
+      and analytics, with a special interest in open-weight models. Earlier, my research was in
+      machine learning applications in wearable systems and biomedical signal processing.
+    </p>
+    <p class="intro">
+      <strong>Open source.</strong> Most of my work is open source. I created
+      <a href="https://github.com/PromtEngineer/localGPT">localGPT</a>, one of the earliest fully
+      private, on-device retrieval systems and now one of the most widely used, which lets you chat
+      with your own documents without anything leaving your machine. I also built
+      <a href="https://github.com/PromtEngineer/Verbi">Verbi</a>, a provider-agnostic
+      speech-to-speech system. I'm currently building <a href="https://whryte.com">whryte</a>.
+    </p>
+    <p class="intro">
+      <strong>Industry.</strong> As an AI expert, I work with companies to strategize
+      and ship AI solutions, from early design through implementation, with a focus on agentic
+      systems and retrieval. I speak regularly at tech conferences, including Google Cloud Next
+      in <a href="https://cloud.withgoogle.com/next/25/developer-experiences?speaker=1559884#explore_and_build">2025</a>
+      and 2026, where my most recent talk was on
+      <a href="https://www.googlecloudevents.com/next-vegas/session/3909328/building-reliable-agents">building reliable agents</a>.
+      I have also appeared on Google's
+      <a href="https://www.youtube.com/watch?v=bvfTtLzWVPw">People of AI</a> podcast. I share what I
+      learn with a large community of engineers on my YouTube channel,
+      <a href={profile.links.youtube}>Prompt Engineering</a>.
+    </p>
+    <p class="intro">
+      <strong>Writing and research.</strong> My research has been
+      <a href={profile.links.scholar}>cited more than 2,000 times</a>, with
+      peer-reviewed work published in
+      <a href="https://www.nature.com/articles/s41598-018-37161-x">Scientific Reports</a>, part of
+      the Nature Portfolio. I also write essays on retrieval, reasoning, and local AI here on this
+      site.
+    </p>
+
+    <nav class="links" aria-label="Continue">
+      <a class="more" href="/writing">Writing<span class="arrow">&nbsp;&rarr;</span></a>
+      <a class="more" href="/consulting">AI consulting<span class="arrow">&nbsp;&rarr;</span></a>
+    </nav>
+  </main>
+</Base>
+
+<style>
+  .page {
+    min-height: 100vh;
+    min-height: 100svh;
+    background: var(--paper);
+    color: var(--ink);
+    padding: 3rem clamp(1.5rem, 6vw, 4rem) 5rem;
+    max-width: 44rem;
+    margin: 0 auto;
+  }
+
+  .back {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+    text-decoration: none;
+  }
+
+  .back:hover,
+  .back:focus-visible {
+    color: var(--ink);
+  }
+
+  .head {
+    display: flex;
+    align-items: center;
+    gap: 1.1rem;
+    margin: 3rem 0 2.2rem;
+  }
+
+  .portrait {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 0 0 1px rgba(110, 103, 94, 0.5);
+  }
+
+  .label {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin: 0 0 0.3rem;
+  }
+
+  .name {
+    font-family: var(--serif);
+    font-size: 1.8rem;
+    font-weight: 480;
+    letter-spacing: 0.02em;
+    margin: 0;
+  }
+
+  .intro {
+    font-size: 1.08rem;
+    line-height: 1.65;
+    margin: 0 0 1.2rem;
+    max-width: 38rem;
+  }
+
+  .intro a {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    text-decoration-color: var(--rule-ink);
+    transition: text-decoration-color 0.25s ease;
+  }
+
+  .intro a:hover,
+  .intro a:focus-visible {
+    text-decoration-color: var(--ink);
+  }
+
+  .intro strong {
+    font-weight: 600;
+    letter-spacing: 0.01em;
+  }
+
+  /* ——— continue ——— */
+
+  .links {
+    display: flex;
+    gap: 1.8rem;
+    margin-top: 3rem;
+  }
+
+  .more {
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .more:hover,
+  .more:focus-visible {
+    color: var(--ink);
+  }
+
+  .arrow {
+    display: inline-block;
+    transition: transform 0.3s ease;
+  }
+
+  .more:hover .arrow,
+  .more:focus-visible .arrow {
+    transform: translateX(4px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .arrow,
+    .more {
+      transition: none;
+    }
+  }
+</style>

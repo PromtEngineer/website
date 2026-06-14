@@ -1,0 +1,185 @@
+<svg viewBox="0 0 1200 900" xmlns="http://www.w3.org/2000/svg" font-family="Menlo, Consolas, monospace">
+  <rect width="1200" height="900" fill="#FAF9F5"/>
+
+  <!-- section: file context -->
+  <rect x="60" y="44" width="1080" height="28" rx="6" fill="#161614"/>
+  <text x="80" y="63" font-size="16" fill="#F2EFE9">file context</text>
+  <text x="620" y="63" font-size="16" fill="#F2EFE9" text-anchor="middle">Pi</text>
+  <text x="760" y="63" font-size="16" fill="#F2EFE9" text-anchor="middle">OpenClaw</text>
+  <text x="900" y="63" font-size="16" fill="#F2EFE9" text-anchor="middle">Claude Code</text>
+  <text x="1040" y="63" font-size="16" fill="#F2EFE9" text-anchor="middle">Letta</text>
+
+  <rect x="60" y="94" width="1080" height="22" fill="#F1EFE7"/>
+  <rect x="60" y="138" width="1080" height="22" fill="#F1EFE7"/>
+  <rect x="60" y="182" width="1080" height="22" fill="#F1EFE7"/>
+  <rect x="60" y="226" width="1080" height="22" fill="#F1EFE7"/>
+
+  <text x="80" y="88" font-size="16" fill="#1C1A17">hard read cap (lines or bytes)</text>
+  <text x="620" y="88" font-size="16" fill="#1D9E75" text-anchor="middle">&#10003;</text>
+  <text x="760" y="88" font-size="16" fill="#1D9E75" text-anchor="middle">&#10003;</text>
+  <text x="900" y="88" font-size="16" fill="#1D9E75" text-anchor="middle">&#10003;</text>
+  <text x="1040" y="88" font-size="16" fill="#1D9E75" text-anchor="middle">&#10003;</text>
+
+  <text x="80" y="110" font-size="16" fill="#1C1A17">offset/limit pagination</text>
+  <text x="620" y="110" font-size="16" fill="#1D9E75" text-anchor="middle">&#10003;</text>
+  <text x="760" y="110" font-size="16" fill="#1D9E75" text-anchor="middle">&#10003;</text>
+  <text x="900" y="110" font-size="16" fill="#1D9E75" text-anchor="middle">&#10003;</text>
+  <text x="1040" y="110" font-size="16" fill="#1D9E75" text-anchor="middle">&#10003;</text>
+
+  <text x="80" y="132" font-size="16" fill="#1C1A17">head truncation + continuation nudge</text>
+  <text x="620" y="132" font-size="16" fill="#1C1A17" text-anchor="middle">&#10003;</text>
+  <text x="760" y="132" font-size="16" fill="#1C1A17" text-anchor="middle">&#10003;</text>
+  <text x="900" y="132" font-size="16" fill="#1C1A17" text-anchor="middle">&#10003;</text>
+
+  <text x="80" y="154" font-size="16" fill="#1C1A17">file content dedup (skip re-read)</text>
+  <text x="900" y="154" font-size="16" fill="#1C1A17" text-anchor="middle">&#10003;</text>
+
+  <text x="80" y="176" font-size="16" fill="#1C1A17">post-read token budget</text>
+  <text x="900" y="176" font-size="16" fill="#1C1A17" text-anchor="middle">&#10003;</text>
+
+  <text x="80" y="198" font-size="16" fill="#1C1A17">bootstrap file char caps</text>
+  <text x="760" y="198" font-size="16" fill="#1C1A17" text-anchor="middle">&#10003;</text>
+
+  <text x="80" y="220" font-size="16" fill="#1C1A17">vector store + semantic search</text>
+  <text x="1040" y="220" font-size="16" fill="#1C1A17" text-anchor="middle">&#10003;</text>
+
+  <text x="80" y="242" font-size="16" fill="#1C1A17">context-scaled file view limits</text>
+  <text x="1040" y="242" font-size="16" fill="#1C1A17" text-anchor="middle">&#10003;</text>
+
+  <text x="80" y="264" font-size="16" fill="#1C1A17">LRU open-file eviction</text>
+  <text x="1040" y="264" font-size="16" fill="#1C1A17" text-anchor="middle">&#10003;</text>
+
+  <!-- section: tool context -->
+  <rect x="60" y="278" width="1080" height="28" rx="6" fill="#161614"/>
+  <text x="80" y="297" font-size="16" fill="#F2EFE9">tool context</text>
+  <text x="620" y="297" font-size="16" fill="#F2EFE9" text-anchor="middle">Pi</text>
+  <text x="760" y="297" font-size="16" fill="#F2EFE9" text-anchor="middle">OpenClaw</text>
+  <text x="900" y="297" font-size="16" fill="#F2EFE9" text-anchor="middle">Claude Code</text>
+  <text x="1040" y="297" font-size="16" fill="#F2EFE9" text-anchor="middle">Letta</text>
+
+  <rect x="60" y="328" width="1080" height="22" fill="#F1EFE7"/>
+  <rect x="60" y="372" width="1080" height="22" fill="#F1EFE7"/>
+
+  <text x="80" y="322" font-size="16" fill="#1C1A17">tool result size cap</text>
+  <text x="620" y="322" font-size="16" fill="#1D9E75" text-anchor="middle">&#10003;</text>
+  <text x="760" y="322" font-size="16" fill="#1D9E75" text-anchor="middle">&#10003;</text>
+  <text x="900" y="322" font-size="16" fill="#1D9E75" text-anchor="middle">&#10003;</text>
+  <text x="1040" y="322" font-size="16" fill="#1D9E75" text-anchor="middle">&#10003;</text>
+
+  <text x="80" y="344" font-size="16" fill="#1C1A17">persist oversized results to disk</text>
+  <text x="620" y="344" font-size="16" fill="#1C1A17" text-anchor="middle">&#10003;</text>
+  <text x="760" y="344" font-size="16" fill="#1C1A17" text-anchor="middle">&#10003;</text>
+  <text x="900" y="344" font-size="16" fill="#1C1A17" text-anchor="middle">&#10003;</text>
+
+  <text x="80" y="366" font-size="16" fill="#1C1A17">head+tail smart truncation</text>
+  <text x="760" y="366" font-size="16" fill="#1C1A17" text-anchor="middle">&#10003;</text>
+
+  <text x="80" y="388" font-size="16" fill="#1C1A17">per-tool + per-message aggregate caps</text>
+  <text x="900" y="388" font-size="16" fill="#1C1A17" text-anchor="middle">&#10003;</text>
+
+  <text x="80" y="410" font-size="16" fill="#1C1A17">non-destructive in-memory pruning</text>
+  <text x="760" y="410" font-size="16" fill="#1C1A17" text-anchor="middle">&#10003;</text>
+
+  <!-- section: sub-agent context -->
+  <rect x="60" y="424" width="1080" height="28" rx="6" fill="#161614"/>
+  <text x="80" y="443" font-size="16" fill="#F2EFE9">sub-agent context</text>
+  <text x="620" y="443" font-size="16" fill="#F2EFE9" text-anchor="middle">Pi</text>
+  <text x="760" y="443" font-size="16" fill="#F2EFE9" text-anchor="middle">OpenClaw</text>
+  <text x="900" y="443" font-size="16" fill="#F2EFE9" text-anchor="middle">Claude Code</text>
+  <text x="1040" y="443" font-size="16" fill="#F2EFE9" text-anchor="middle">Letta</text>
+
+  <rect x="60" y="474" width="1080" height="22" fill="#F1EFE7"/>
+  <rect x="60" y="518" width="1080" height="22" fill="#F1EFE7"/>
+
+  <text x="80" y="468" font-size="16" fill="#1C1A17">sub-agent session isolation</text>
+  <text x="620" y="468" font-size="16" fill="#1D9E75" text-anchor="middle">&#10003;</text>
+  <text x="760" y="468" font-size="16" fill="#1D9E75" text-anchor="middle">&#10003;</text>
+  <text x="900" y="468" font-size="16" fill="#1D9E75" text-anchor="middle">&#10003;</text>
+  <text x="1040" y="468" font-size="16" fill="#1D9E75" text-anchor="middle">&#10003;</text>
+
+  <text x="80" y="490" font-size="16" fill="#1C1A17">fork mode (parent transcript)</text>
+  <text x="760" y="490" font-size="16" fill="#1C1A17" text-anchor="middle">&#10003;</text>
+  <text x="900" y="490" font-size="16" fill="#1C1A17" text-anchor="middle">&#10003;</text>
+  <text x="1040" y="490" font-size="16" fill="#1C1A17" text-anchor="middle">&#10003;</text>
+
+  <text x="80" y="512" font-size="16" fill="#1C1A17">tool / permission allowlist</text>
+  <text x="620" y="512" font-size="16" fill="#1C1A17" text-anchor="middle">&#10003;</text>
+  <text x="760" y="512" font-size="16" fill="#1C1A17" text-anchor="middle">&#10003;</text>
+  <text x="900" y="512" font-size="16" fill="#1C1A17" text-anchor="middle">&#10003;</text>
+
+  <text x="80" y="534" font-size="16" fill="#1C1A17">skills injected into prompt</text>
+  <text x="620" y="534" font-size="16" fill="#1D9E75" text-anchor="middle">&#10003;</text>
+  <text x="760" y="534" font-size="16" fill="#1D9E75" text-anchor="middle">&#10003;</text>
+  <text x="900" y="534" font-size="16" fill="#1D9E75" text-anchor="middle">&#10003;</text>
+  <text x="1040" y="534" font-size="16" fill="#1D9E75" text-anchor="middle">&#10003;</text>
+
+  <text x="80" y="556" font-size="16" fill="#1C1A17">multi-agent HTTP messaging</text>
+  <text x="1040" y="556" font-size="16" fill="#1C1A17" text-anchor="middle">&#10003;</text>
+
+  <!-- section: session context management -->
+  <rect x="60" y="570" width="1080" height="28" rx="6" fill="#161614"/>
+  <text x="80" y="589" font-size="16" fill="#F2EFE9">session context management</text>
+  <text x="620" y="589" font-size="16" fill="#F2EFE9" text-anchor="middle">Pi</text>
+  <text x="760" y="589" font-size="16" fill="#F2EFE9" text-anchor="middle">OpenClaw</text>
+  <text x="900" y="589" font-size="16" fill="#F2EFE9" text-anchor="middle">Claude Code</text>
+  <text x="1040" y="589" font-size="16" fill="#F2EFE9" text-anchor="middle">Letta</text>
+
+  <rect x="60" y="620" width="1080" height="22" fill="#F1EFE7"/>
+  <rect x="60" y="664" width="1080" height="22" fill="#F1EFE7"/>
+  <rect x="60" y="708" width="1080" height="22" fill="#F1EFE7"/>
+  <rect x="60" y="752" width="1080" height="22" fill="#F1EFE7"/>
+  <rect x="60" y="796" width="1080" height="22" fill="#F1EFE7"/>
+  <rect x="60" y="840" width="1080" height="22" fill="#F1EFE7"/>
+
+  <text x="80" y="614" font-size="16" fill="#1C1A17">LLM-powered summarization</text>
+  <text x="620" y="614" font-size="16" fill="#1D9E75" text-anchor="middle">&#10003;</text>
+  <text x="760" y="614" font-size="16" fill="#1D9E75" text-anchor="middle">&#10003;</text>
+  <text x="900" y="614" font-size="16" fill="#1D9E75" text-anchor="middle">&#10003;</text>
+  <text x="1040" y="614" font-size="16" fill="#1D9E75" text-anchor="middle">&#10003;</text>
+
+  <text x="80" y="636" font-size="16" fill="#1C1A17">token threshold trigger</text>
+  <text x="620" y="636" font-size="16" fill="#1D9E75" text-anchor="middle">&#10003;</text>
+  <text x="760" y="636" font-size="16" fill="#1D9E75" text-anchor="middle">&#10003;</text>
+  <text x="900" y="636" font-size="16" fill="#1D9E75" text-anchor="middle">&#10003;</text>
+  <text x="1040" y="636" font-size="16" fill="#1D9E75" text-anchor="middle">&#10003;</text>
+
+  <text x="80" y="658" font-size="16" fill="#1C1A17">context usage estimation</text>
+  <text x="620" y="658" font-size="16" fill="#1D9E75" text-anchor="middle">&#10003;</text>
+  <text x="760" y="658" font-size="16" fill="#1D9E75" text-anchor="middle">&#10003;</text>
+  <text x="900" y="658" font-size="16" fill="#1D9E75" text-anchor="middle">&#10003;</text>
+  <text x="1040" y="658" font-size="16" fill="#1D9E75" text-anchor="middle">&#10003;</text>
+
+  <text x="80" y="680" font-size="16" fill="#1C1A17">tool-call boundary safety</text>
+  <text x="620" y="680" font-size="16" fill="#1C1A17" text-anchor="middle">&#10003;</text>
+  <text x="760" y="680" font-size="16" fill="#1C1A17" text-anchor="middle">&#10003;</text>
+  <text x="900" y="680" font-size="16" fill="#1C1A17" text-anchor="middle">&#10003;</text>
+
+  <text x="80" y="702" font-size="16" fill="#1C1A17">pre-compaction state flush</text>
+  <text x="620" y="702" font-size="16" fill="#1C1A17" text-anchor="middle">&#10003;</text>
+  <text x="760" y="702" font-size="16" fill="#1C1A17" text-anchor="middle">&#10003;</text>
+
+  <text x="80" y="724" font-size="16" fill="#1C1A17">deterministic fallback (no LLM)</text>
+  <text x="900" y="724" font-size="16" fill="#1C1A17" text-anchor="middle">&#10003;</text>
+
+  <text x="80" y="746" font-size="16" fill="#1C1A17">post-compact file restoration</text>
+  <text x="900" y="746" font-size="16" fill="#1C1A17" text-anchor="middle">&#10003;</text>
+
+  <text x="80" y="768" font-size="16" fill="#1C1A17">summarizer overflow fallback</text>
+  <text x="900" y="768" font-size="16" fill="#1C1A17" text-anchor="middle">&#10003;</text>
+  <text x="1040" y="768" font-size="16" fill="#1C1A17" text-anchor="middle">&#10003;</text>
+
+  <text x="80" y="790" font-size="16" fill="#1C1A17">microcompact / time-based clearing</text>
+  <text x="900" y="790" font-size="16" fill="#1C1A17" text-anchor="middle">&#10003;</text>
+
+  <text x="80" y="812" font-size="16" fill="#1C1A17">memory-as-tool (recall + archival)</text>
+  <text x="1040" y="812" font-size="16" fill="#1C1A17" text-anchor="middle">&#10003;</text>
+
+  <text x="80" y="834" font-size="16" fill="#1C1A17">sliding window eviction</text>
+  <text x="1040" y="834" font-size="16" fill="#1C1A17" text-anchor="middle">&#10003;</text>
+
+  <text x="80" y="856" font-size="16" fill="#1C1A17">feature flags for remote tuning</text>
+  <text x="900" y="856" font-size="16" fill="#1C1A17" text-anchor="middle">&#10003;</text>
+
+  <!-- legend -->
+  <text x="80" y="888" font-size="15"><tspan fill="#1D9E75">&#10003;</tspan><tspan fill="#6E675E"> in green: feature shared by all four harnesses</tspan></text>
+</svg>

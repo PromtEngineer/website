@@ -1,0 +1,66 @@
+---
+import '@fontsource-variable/newsreader';
+import '@fontsource-variable/newsreader/wght-italic.css';
+import '@fontsource-variable/jetbrains-mono';
+import '../styles/tokens.css';
+import { profile } from '../data/profile';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = profile.name,
+  description = `${profile.tagline} Creator of localGPT, ${profile.scholar.citations} research citations, 200k students on YouTube.`,
+} = Astro.props;
+
+const personLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: profile.name,
+  alternateName: 'engineerprompt',
+  description: profile.tagline,
+  email: `mailto:${profile.email}`,
+  sameAs: Object.values(profile.links),
+};
+
+// same GA4 property as the current engineerprompt.ai; production builds only,
+// so local preview traffic never reaches the stats
+const GA_ID = 'G-QQPL8W86KM';
+const enableAnalytics = import.meta.env.PROD;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/portrait.jpg" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json" set:html={JSON.stringify(personLd)} />
+    {
+      enableAnalytics && (
+        <>
+          <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} />
+          <script is:inline define:vars={{ GA_ID }}>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+              dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+            gtag('config', GA_ID);
+          </script>
+        </>
+      )
+    }
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

@@ -1,0 +1,58 @@
+<svg viewBox="0 0 1200 620" xmlns="http://www.w3.org/2000/svg" font-family="Menlo, Consolas, monospace">
+  <rect width="1200" height="620" fill="#FAF9F5"/>
+
+  <!-- harness boundary -->
+  <rect x="56" y="84" width="640" height="486" rx="16" fill="none" stroke="#1C1A17" stroke-width="2" stroke-dasharray="10 7"/>
+  <text x="88" y="122" font-size="21" fill="#1C1A17">the harness</text>
+
+  <!-- skills layer -->
+  <rect x="92" y="158" width="568" height="140" rx="10" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+  <text x="120" y="192" font-size="20" fill="#1C1A17">skills</text>
+  <text x="216" y="192" font-size="16" fill="#6E675E">knowledge</text>
+  <text x="120" y="222" font-size="16" fill="#6E675E">procedures and conventions, usually markdown</text>
+  <text x="120" y="246" font-size="16" fill="#6E675E">built-in: git commit, run tests</text>
+  <text x="120" y="270" font-size="16" fill="#6E675E">user-added: how your team works</text>
+
+  <!-- skills-to-tools arrow -->
+  <line x1="376" y1="302" x2="376" y2="338" stroke="#6E675E" stroke-width="2"/>
+  <polygon points="376,346 370,334 382,334" fill="#6E675E"/>
+  <text x="396" y="326" font-size="15" fill="#6E675E">skills say when and how</text>
+
+  <!-- tools layer -->
+  <rect x="92" y="348" width="568" height="150" rx="10" fill="#161614"/>
+  <text x="120" y="384" font-size="20" fill="#F2EFE9">tools</text>
+  <text x="200" y="384" font-size="16" fill="#A8A39A">primitives</text>
+  <text x="120" y="416" font-size="17" fill="#F2EFE9">read   edit   bash   search   fetch</text>
+  <text x="120" y="446" font-size="15" fill="#A8A39A">defined by schema, gated by permissions</text>
+  <text x="120" y="470" font-size="15" fill="#A8A39A">shipped by the harness or registered at runtime</text>
+
+  <!-- registry line -->
+  <text x="376" y="532" font-size="16" fill="#6E675E" text-anchor="middle">a registry binds it all: names, permissions, dispatch</text>
+
+  <!-- outside the harness -->
+  <text x="1012" y="120" font-size="18" fill="#1C1A17" text-anchor="middle">external tool servers</text>
+  <text x="1012" y="144" font-size="15" fill="#6E675E" text-anchor="middle">outside the harness</text>
+
+  <rect x="880" y="158" width="264" height="84" rx="10" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+  <text x="904" y="192" font-size="18" fill="#1C1A17">github server</text>
+  <text x="904" y="218" font-size="15" fill="#6E675E">issues, PRs, CI</text>
+
+  <rect x="880" y="254" width="264" height="84" rx="10" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+  <text x="904" y="288" font-size="18" fill="#1C1A17">database server</text>
+  <text x="904" y="314" font-size="15" fill="#6E675E">query, schema</text>
+
+  <rect x="880" y="350" width="264" height="84" rx="10" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+  <text x="904" y="384" font-size="18" fill="#1C1A17">browser server</text>
+  <text x="904" y="410" font-size="15" fill="#6E675E">navigate, click, read</text>
+
+  <!-- MCP connector crossing the boundary -->
+  <line x1="880" y1="200" x2="856" y2="200" stroke="#1D9E75" stroke-width="2.5"/>
+  <line x1="880" y1="296" x2="856" y2="296" stroke="#1D9E75" stroke-width="2.5"/>
+  <line x1="880" y1="392" x2="856" y2="392" stroke="#1D9E75" stroke-width="2.5"/>
+  <line x1="856" y1="200" x2="856" y2="420" stroke="#1D9E75" stroke-width="2.5"/>
+  <line x1="856" y1="420" x2="684" y2="420" stroke="#1D9E75" stroke-width="2.5"/>
+  <polygon points="664,420 682,412 682,428" fill="#1D9E75"/>
+  <text x="788" y="402" font-size="19" fill="#0F6E56" text-anchor="middle">MCP</text>
+  <text x="788" y="450" font-size="15" fill="#6E675E" text-anchor="middle">an open protocol</text>
+  <text x="788" y="472" font-size="15" fill="#6E675E" text-anchor="middle">crosses the boundary</text>
+</svg>

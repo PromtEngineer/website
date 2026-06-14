@@ -1,0 +1,306 @@
+---
+import Base from '../layouts/Base.astro';
+import { profile } from '../data/profile';
+
+const mailto = `mailto:${profile.email}?subject=AI%20consulting`;
+---
+
+<Base
+  title={`AI consulting · ${profile.name}`}
+  description="I help companies design, build, and ship agentic AI systems, from strategy through working software. Advisory, hands-on builds, and team enablement."
+>
+  <main class="page">
+    <a class="back" href="/">&larr; home</a>
+
+    <header class="head">
+      <p class="label">AI consulting</p>
+      <h1 class="title">I help teams ship AI systems that work</h1>
+    </header>
+
+    <p class="intro">
+      Most teams can get a demo running. The hard part is shipping something
+      reliable: an agent that uses tools without going off the rails, a retrieval
+      system that returns the right context, a model that runs where your data is
+      allowed to live. That is the work I do with a small number of companies at a
+      time, from early strategy through software in production.
+    </p>
+    <p class="intro">
+      I've spent over a decade building and scaling machine learning systems. I'm a
+      Google Developer Expert in AI/ML, I created
+      <a href="https://github.com/PromtEngineer/localGPT">localGPT</a>, and I teach
+      these methods to a large community of engineers on
+      <a href={profile.links.youtube}>YouTube</a>. I bring that depth directly to
+      your problem.
+    </p>
+
+    <section class="block" aria-label="What I help with">
+      <h2 class="block-title">What I help with</h2>
+      <dl class="defs">
+        <div class="def">
+          <dt>Agentic systems</dt>
+          <dd>
+            Designing agents that plan, use tools, and act, with the
+            <a href="/writing/what-is-an-agent-harness/">harness</a>, evaluation,
+            and guardrails that make them dependable instead of demo-only.
+          </dd>
+        </div>
+        <div class="def">
+          <dt>Retrieval and RAG</dt>
+          <dd>
+            Grounding models in your own data with retrieval that goes
+            <a href="/writing/rag-beyond-similarity-search/">beyond naive similarity
+            search</a>, tuned for accuracy on the questions that matter to you.
+          </dd>
+        </div>
+        <div class="def">
+          <dt>Local and open-weight models</dt>
+          <dd>
+            Running capable models privately, on your own hardware or inside your
+            cloud, for the cases where data cannot leave the building.
+          </dd>
+        </div>
+        <div class="def">
+          <dt>Strategy and enablement</dt>
+          <dd>
+            Helping leadership and engineering cut through the hype, choose the right
+            approach, and level up through workshops and hands-on guidance.
+          </dd>
+        </div>
+      </dl>
+    </section>
+
+    <section class="block" aria-label="How I work">
+      <h2 class="block-title">How I work</h2>
+      <dl class="defs">
+        <div class="def">
+          <dt>Advisory</dt>
+          <dd>Ongoing strategic guidance for founders and teams building with AI.</dd>
+        </div>
+        <div class="def">
+          <dt>Hands-on builds</dt>
+          <dd>Architecting and building a system alongside your engineers.</dd>
+        </div>
+        <div class="def">
+          <dt>Workshops</dt>
+          <dd>Focused, practical training to bring a team up to speed quickly.</dd>
+        </div>
+      </dl>
+    </section>
+
+    <section class="cta" aria-label="Get in touch">
+      <p class="cta-line">Tell me what you're building.</p>
+      <p class="cta-note">
+        The best place to start is a short email about your problem, your stack, and
+        your timeline. I read every one.
+      </p>
+      <a class="cta-button" href={mailto}>Start a conversation<span class="arrow">&nbsp;&rarr;</span></a>
+    </section>
+
+    <nav class="links" aria-label="Continue">
+      <a class="more" href="/about">About<span class="arrow">&nbsp;&rarr;</span></a>
+      <a class="more" href="/writing">Writing<span class="arrow">&nbsp;&rarr;</span></a>
+    </nav>
+  </main>
+</Base>
+
+<style>
+  .page {
+    min-height: 100vh;
+    min-height: 100svh;
+    background: var(--paper);
+    color: var(--ink);
+    padding: 3rem clamp(1.5rem, 6vw, 4rem) 5rem;
+    max-width: 44rem;
+    margin: 0 auto;
+  }
+
+  .back {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+    text-decoration: none;
+  }
+
+  .back:hover,
+  .back:focus-visible {
+    color: var(--ink);
+  }
+
+  .head {
+    margin: 3rem 0 2.2rem;
+  }
+
+  .label {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin: 0 0 0.6rem;
+  }
+
+  .title {
+    font-family: var(--serif);
+    font-size: clamp(1.7rem, 4.5vw, 2.3rem);
+    font-weight: 480;
+    line-height: 1.15;
+    letter-spacing: 0.01em;
+    margin: 0;
+    max-width: 32rem;
+  }
+
+  .intro {
+    font-size: 1.08rem;
+    line-height: 1.65;
+    margin: 0 0 1.2rem;
+    max-width: 38rem;
+  }
+
+  .page a:not(.back):not(.cta-button):not(.more) {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    text-decoration-color: var(--rule-ink);
+    transition: text-decoration-color 0.25s ease;
+  }
+
+  .page a:not(.back):not(.cta-button):not(.more):hover,
+  .page a:not(.back):not(.cta-button):not(.more):focus-visible {
+    text-decoration-color: var(--ink);
+  }
+
+  /* ——— blocks ——— */
+
+  .block {
+    margin: 3rem 0 0;
+  }
+
+  .block-title {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin: 0 0 1.4rem;
+    padding-bottom: 0.9rem;
+    border-bottom: 1px solid var(--rule-ink);
+  }
+
+  .defs {
+    margin: 0;
+  }
+
+  .def {
+    display: grid;
+    grid-template-columns: 13rem 1fr;
+    gap: 0.4rem 1.5rem;
+    padding: 0 0 1.5rem;
+  }
+
+  .def dt {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    color: var(--ink);
+  }
+
+  .def dd {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    max-width: 30rem;
+  }
+
+  /* ——— cta ——— */
+
+  .cta {
+    margin: 3.4rem 0 0;
+    padding: 2rem 0 0;
+    border-top: 1px solid var(--rule-ink);
+  }
+
+  .cta-line {
+    font-family: var(--serif);
+    font-size: 1.35rem;
+    font-weight: 480;
+    margin: 0 0 0.6rem;
+  }
+
+  .cta-note {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    margin: 0 0 1.6rem;
+    max-width: 32rem;
+  }
+
+  .cta-button {
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+    color: var(--paper);
+    background: var(--ink);
+    text-decoration: none;
+    padding: 0.7rem 1.2rem;
+    border-radius: 2px;
+    transition: background 0.25s ease;
+  }
+
+  .cta-button:hover,
+  .cta-button:focus-visible {
+    background: #000;
+  }
+
+  /* ——— continue ——— */
+
+  .links {
+    display: flex;
+    gap: 1.8rem;
+    margin-top: 3.4rem;
+  }
+
+  .more {
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .more:hover,
+  .more:focus-visible {
+    color: var(--ink);
+  }
+
+  .arrow {
+    display: inline-block;
+    transition: transform 0.3s ease;
+  }
+
+  .more:hover .arrow,
+  .more:focus-visible .arrow,
+  .cta-button:hover .arrow,
+  .cta-button:focus-visible .arrow {
+    transform: translateX(4px);
+  }
+
+  @media (max-width: 560px) {
+    .def {
+      grid-template-columns: 1fr;
+      gap: 0.3rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .arrow,
+    .more,
+    .cta-button {
+      transition: none;
+    }
+  }
+</style>

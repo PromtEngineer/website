@@ -1,0 +1,47 @@
+<svg viewBox="0 0 1200 660" xmlns="http://www.w3.org/2000/svg" font-family="Menlo, Consolas, monospace">
+  <rect width="1200" height="660" fill="#FAF9F5"/>
+  <!-- outer agent frame -->
+  <rect x="40" y="52" width="1120" height="430" rx="14" fill="none" stroke="#1C1A17" stroke-width="2"/>
+  <text x="76" y="40" font-size="22" letter-spacing="6" fill="#6E675E">AGENT</text>
+
+  <!-- model block -->
+  <rect x="86" y="120" width="280" height="300" rx="10" fill="#161614"/>
+  <text x="226" y="252" font-size="26" fill="#F2EFE9" text-anchor="middle">model</text>
+  <text x="226" y="290" font-size="19" fill="#A8A39A" text-anchor="middle">the weights</text>
+
+  <text x="412" y="276" font-size="30" fill="#6E675E" text-anchor="middle">+</text>
+
+  <!-- harness block -->
+  <rect x="458" y="86" width="650" height="362" rx="10" fill="#F1EFE7" stroke="#6E675E" stroke-width="1.5"/>
+  <rect x="458" y="86" width="6" height="362" rx="3" fill="#1D9E75"/>
+  <text x="506" y="136" font-size="26" fill="#1C1A17">harness</text>
+  <text x="506" y="168" font-size="19" fill="#6E675E">everything that isn't weights</text>
+
+  <g font-size="21" fill="#1C1A17">
+    <text x="506" y="222">system prompts</text>
+    <text x="506" y="258">tool definitions</text>
+    <text x="506" y="294">orchestration logic</text>
+    <text x="816" y="222">memory management</text>
+    <text x="816" y="258">verification loops</text>
+    <text x="816" y="294">safety guardrails</text>
+  </g>
+
+  <line x1="506" y1="330" x2="1060" y2="330" stroke="#6E675E" stroke-width="1" opacity="0.4"/>
+  <text x="506" y="372" font-size="19" fill="#6E675E">decides what the model sees,</text>
+  <text x="506" y="400" font-size="19" fill="#6E675E">when it runs, and what counts as done</text>
+
+  <!-- OS analogy strip -->
+  <text x="76" y="540" font-size="20" letter-spacing="5" fill="#6E675E">THE OPERATING SYSTEM ANALOGY</text>
+  <g font-size="20">
+    <text x="76" y="592" fill="#6E675E">cpu</text>
+    <text x="76" y="624" fill="#1C1A17">llm</text>
+    <text x="296" y="592" fill="#6E675E">ram</text>
+    <text x="296" y="624" fill="#1C1A17">context window</text>
+    <text x="516" y="592" fill="#6E675E">disk</text>
+    <text x="516" y="624" fill="#1C1A17">databases</text>
+    <text x="736" y="592" fill="#6E675E">drivers</text>
+    <text x="736" y="624" fill="#1C1A17">tools</text>
+    <text x="956" y="592" fill="#6E675E">os</text>
+    <text x="956" y="624" fill="#1D9E75">the harness</text>
+  </g>
+</svg>

@@ -1,0 +1,80 @@
+<svg viewBox="0 0 1200 660" xmlns="http://www.w3.org/2000/svg" font-family="Menlo, Consolas, monospace">
+  <rect width="1200" height="660" fill="#FAF9F5"/>
+
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#6E675E"/>
+    </marker>
+  </defs>
+
+  <!-- top: transcript growing toward the budget -->
+  <text x="80" y="52" font-size="16" fill="#6E675E">transcript grows every turn</text>
+  <text x="1020" y="52" font-size="16" fill="#1C1A17" text-anchor="middle">context budget</text>
+  <line x1="1020" y1="62" x2="1020" y2="136" stroke="#1C1A17" stroke-width="1.5" stroke-dasharray="6 5"/>
+
+  <rect x="80" y="72" width="620" height="44" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+  <text x="390" y="100" font-size="18" fill="#1C1A17" text-anchor="middle">older turns</text>
+  <rect x="700" y="72" width="240" height="44" fill="#161614"/>
+  <text x="820" y="100" font-size="17" fill="#F2EFE9" text-anchor="middle">recent turns</text>
+  <line x1="948" y1="94" x2="1004" y2="94" stroke="#6E675E" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <text x="80" y="150" font-size="16" fill="#6E675E">usage nears the threshold: compaction fires</text>
+
+  <!-- arrows from transcript into the three steps -->
+  <path d="M120 160 V192" fill="none" stroke="#6E675E" stroke-width="1.5" marker-end="url(#arr)"/>
+  <path d="M390 116 V160 H600 V192" fill="none" stroke="#6E675E" stroke-width="1.5" marker-end="url(#arr)"/>
+  <path d="M820 116 V192" fill="none" stroke="#6E675E" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- step 1: pre-compaction flush -->
+  <rect x="60" y="200" width="340" height="130" rx="10" fill="#F1EFE7" stroke="#1D9E75" stroke-width="2"/>
+  <text x="88" y="240" font-size="17" fill="#0F6E56">1</text>
+  <text x="114" y="240" font-size="20" fill="#0F6E56">pre-compaction flush</text>
+  <text x="88" y="272" font-size="16" fill="#6E675E">write critical state to disk:</text>
+  <text x="88" y="296" font-size="16" fill="#6E675E">paths, decisions, next steps,</text>
+  <text x="88" y="320" font-size="16" fill="#6E675E">before anything is summarized</text>
+
+  <!-- step 2: summarize older turns -->
+  <rect x="430" y="200" width="340" height="130" rx="10" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+  <text x="458" y="240" font-size="17" fill="#6E675E">2</text>
+  <text x="484" y="240" font-size="20" fill="#1C1A17">summarize older turns</text>
+  <text x="458" y="272" font-size="16" fill="#6E675E">LLM pass over old history</text>
+  <text x="458" y="296" font-size="16" fill="#6E675E">becomes one synthetic</text>
+  <text x="458" y="320" font-size="16" fill="#6E675E">message. lossy by design</text>
+
+  <!-- step 3: keep recent turns -->
+  <rect x="800" y="200" width="340" height="130" rx="10" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+  <text x="828" y="240" font-size="17" fill="#6E675E">3</text>
+  <text x="854" y="240" font-size="20" fill="#1C1A17">keep recent turns</text>
+  <text x="828" y="272" font-size="16" fill="#6E675E">verbatim, no rewriting:</text>
+  <text x="828" y="296" font-size="16" fill="#6E675E">the active working set</text>
+  <text x="828" y="320" font-size="16" fill="#6E675E">stays exact</text>
+
+  <!-- sequence arrows between steps -->
+  <line x1="402" y1="265" x2="424" y2="265" stroke="#6E675E" stroke-width="1.5" marker-end="url(#arr)"/>
+  <line x1="772" y1="265" x2="794" y2="265" stroke="#6E675E" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- flush output: files on disk -->
+  <path d="M230 330 V362" fill="none" stroke="#6E675E" stroke-width="1.5" marker-end="url(#arr)"/>
+  <rect x="80" y="370" width="180" height="56" fill="#FAF9F5" stroke="#1D9E75" stroke-width="1.5"/>
+  <rect x="96" y="382" width="180" height="56" fill="#FAF9F5" stroke="#1D9E75" stroke-width="1.5"/>
+  <rect x="112" y="394" width="180" height="56" fill="#FAF9F5" stroke="#1D9E75" stroke-width="1.5"/>
+  <text x="202" y="428" font-size="16" fill="#1C1A17" text-anchor="middle">NOTES.md</text>
+  <text x="320" y="400" font-size="16" fill="#6E675E">flushed state lives</text>
+  <text x="320" y="424" font-size="16" fill="#6E675E">outside the transcript:</text>
+  <text x="320" y="448" font-size="16" fill="#6E675E">compaction cannot lose it</text>
+
+  <!-- arrows from steps 2 and 3 into the rebuilt context -->
+  <path d="M600 330 V520 H175 V552" fill="none" stroke="#6E675E" stroke-width="1.5" marker-end="url(#arr)"/>
+  <path d="M970 330 V536 H390 V552" fill="none" stroke="#6E675E" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- bottom: rebuilt context -->
+  <rect x="80" y="560" width="190" height="44" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+  <text x="175" y="588" font-size="17" fill="#1C1A17" text-anchor="middle">summary</text>
+  <rect x="270" y="560" width="240" height="44" fill="#161614"/>
+  <text x="390" y="588" font-size="17" fill="#F2EFE9" text-anchor="middle">recent turns</text>
+  <rect x="510" y="560" width="510" height="44" fill="none" stroke="#6E675E" stroke-width="1" stroke-dasharray="5 5"/>
+  <text x="765" y="588" font-size="16" fill="#6E675E" text-anchor="middle">reclaimed headroom</text>
+  <line x1="1020" y1="528" x2="1020" y2="612" stroke="#1C1A17" stroke-width="1.5" stroke-dasharray="6 5"/>
+
+  <text x="80" y="636" font-size="16" fill="#6E675E">after compaction: rebuilt context, well under budget</text>
+</svg>

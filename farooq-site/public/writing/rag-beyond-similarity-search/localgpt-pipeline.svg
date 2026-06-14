@@ -1,0 +1,108 @@
+<svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg" font-family="Menlo, Consolas, monospace">
+  <rect width="1200" height="800" fill="#FAF9F5"/>
+
+  <!-- indexing lane -->
+  <text x="56" y="56" font-size="16" letter-spacing="4" fill="#6E675E">INDEXING, ONCE</text>
+
+  <rect x="56" y="84" width="200" height="92" rx="10" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+  <text x="80" y="122" font-size="17" fill="#1C1A17">pdf &#8594; markdown</text>
+  <text x="80" y="148" font-size="15" fill="#6E675E">docling + tables</text>
+
+  <line x1="256" y1="130" x2="290" y2="130" stroke="#6E675E" stroke-width="1.5"/>
+  <path d="M290 130 l-10 -5 v10 z" fill="#6E675E"/>
+
+  <rect x="300" y="84" width="180" height="92" rx="10" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+  <text x="324" y="122" font-size="17" fill="#1C1A17">chunk</text>
+  <text x="324" y="148" font-size="15" fill="#6E675E">512 tokens</text>
+
+  <line x1="480" y1="130" x2="514" y2="130" stroke="#6E675E" stroke-width="1.5"/>
+  <path d="M514 130 l-10 -5 v10 z" fill="#6E675E"/>
+
+  <rect x="524" y="84" width="220" height="92" rx="10" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+  <text x="548" y="122" font-size="17" fill="#1C1A17">enrich</text>
+  <text x="548" y="148" font-size="15" fill="#6E675E">context summary, 0.6B</text>
+
+  <line x1="744" y1="130" x2="778" y2="130" stroke="#6E675E" stroke-width="1.5"/>
+  <path d="M778 130 l-10 -5 v10 z" fill="#6E675E"/>
+
+  <rect x="788" y="84" width="200" height="92" rx="10" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+  <text x="812" y="122" font-size="17" fill="#1C1A17">late-chunk embed</text>
+  <text x="812" y="148" font-size="15" fill="#6E675E">whole-doc context</text>
+
+  <line x1="988" y1="130" x2="1012" y2="130" stroke="#6E675E" stroke-width="1.5"/>
+  <path d="M1012 130 l-10 -5 v10 z" fill="#6E675E"/>
+
+  <rect x="1022" y="84" width="122" height="92" rx="10" fill="#161614"/>
+  <text x="1046" y="122" font-size="17" fill="#F2EFE9">lancedb</text>
+  <text x="1046" y="148" font-size="15" fill="#A8A39A">overviews</text>
+
+  <!-- divider -->
+  <line x1="56" y1="232" x2="1144" y2="232" stroke="#1C1A17" stroke-width="1" opacity="0.15"/>
+
+  <!-- query lane -->
+  <text x="56" y="282" font-size="16" letter-spacing="4" fill="#6E675E">EVERY QUERY</text>
+
+  <rect x="56" y="312" width="240" height="100" rx="10" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+  <text x="80" y="350" font-size="17" fill="#1C1A17">1 &#183; triage</text>
+  <text x="80" y="376" font-size="15" fill="#6E675E">rag, direct, or graph?</text>
+  <text x="80" y="398" font-size="15" fill="#6E675E">overviews checked first</text>
+
+  <line x1="296" y1="362" x2="330" y2="362" stroke="#6E675E" stroke-width="1.5"/>
+  <path d="M330 362 l-10 -5 v10 z" fill="#6E675E"/>
+
+  <rect x="340" y="312" width="240" height="100" rx="10" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+  <text x="364" y="350" font-size="17" fill="#1C1A17">2 &#183; decompose</text>
+  <text x="364" y="376" font-size="15" fill="#6E675E">up to 3 sub-queries,</text>
+  <text x="364" y="398" font-size="15" fill="#6E675E">history-aware, parallel</text>
+
+  <line x1="580" y1="362" x2="614" y2="362" stroke="#6E675E" stroke-width="1.5"/>
+  <path d="M614 362 l-10 -5 v10 z" fill="#6E675E"/>
+
+  <rect x="624" y="312" width="240" height="100" rx="10" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+  <text x="648" y="350" font-size="17" fill="#1C1A17">3 &#183; hybrid search</text>
+  <text x="648" y="376" font-size="15" fill="#6E675E">vector + keyword legs,</text>
+  <text x="648" y="398" font-size="15" fill="#6E675E">~20 candidates, fused</text>
+
+  <line x1="864" y1="362" x2="898" y2="362" stroke="#6E675E" stroke-width="1.5"/>
+  <path d="M898 362 l-10 -5 v10 z" fill="#6E675E"/>
+
+  <rect x="908" y="312" width="236" height="100" rx="10" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+  <text x="932" y="350" font-size="17" fill="#1C1A17">4 &#183; rerank + prune</text>
+  <text x="932" y="376" font-size="15" fill="#6E675E">colbert keeps 10, then</text>
+  <text x="932" y="398" font-size="15" fill="#6E675E">provence trims filler</text>
+
+  <line x1="1026" y1="412" x2="1026" y2="466" stroke="#6E675E" stroke-width="1.5"/>
+  <path d="M1026 466 l-5 -10 h10 z" fill="#6E675E"/>
+
+  <rect x="908" y="476" width="236" height="100" rx="10" fill="#161614"/>
+  <text x="932" y="514" font-size="17" fill="#F2EFE9">5 &#183; generate</text>
+  <text x="932" y="540" font-size="15" fill="#A8A39A">qwen3:8b, local,</text>
+  <text x="932" y="562" font-size="15" fill="#A8A39A">with recent turns</text>
+
+  <line x1="908" y1="526" x2="874" y2="526" stroke="#6E675E" stroke-width="1.5"/>
+  <path d="M874 526 l10 -5 v10 z" fill="#6E675E"/>
+
+  <rect x="624" y="476" width="240" height="100" rx="10" fill="#F1EFE7" stroke="#1D9E75" stroke-width="2.5"/>
+  <text x="648" y="514" font-size="17" fill="#0F6E56">6 &#183; verify</text>
+  <text x="648" y="540" font-size="15" fill="#6E675E">answer vs evidence:</text>
+  <text x="648" y="562" font-size="15" fill="#6E675E">supported or not + score</text>
+
+  <line x1="624" y1="526" x2="590" y2="526" stroke="#6E675E" stroke-width="1.5"/>
+  <path d="M590 526 l10 -5 v10 z" fill="#6E675E"/>
+
+  <rect x="340" y="476" width="240" height="100" rx="10" fill="#FAF9F5" stroke="#1C1A17" stroke-width="1.5"/>
+  <text x="364" y="514" font-size="17" fill="#1C1A17">answer</text>
+  <text x="364" y="540" font-size="15" fill="#6E675E">grounded, cited,</text>
+  <text x="364" y="562" font-size="15" fill="#6E675E">cached semantically</text>
+
+  <!-- cache note -->
+  <rect x="56" y="476" width="240" height="100" rx="10" fill="#F1EFE7" stroke="#6E675E" stroke-width="1" stroke-dasharray="6 5"/>
+  <text x="80" y="514" font-size="17" fill="#1C1A17">semantic cache</text>
+  <text x="80" y="540" font-size="15" fill="#6E675E">cosine 0.98 match,</text>
+  <text x="80" y="562" font-size="15" fill="#6E675E">rephrasings are free</text>
+  <line x1="176" y1="476" x2="176" y2="412" stroke="#6E675E" stroke-width="1" stroke-dasharray="6 5"/>
+
+  <!-- model split note -->
+  <text x="600" y="668" font-size="16" fill="#6E675E" text-anchor="middle">small model (0.6B) does enrichment, overviews, routing &#183; big model (8B) only generates and verifies</text>
+  <text x="600" y="700" font-size="16" fill="#0F6E56" text-anchor="middle">every model runs locally through ollama</text>
+</svg>
