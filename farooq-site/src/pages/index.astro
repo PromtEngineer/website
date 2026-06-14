@@ -10,7 +10,7 @@ import { profile } from '../data/profile';
       <div class="content">
         <p class="label">The scientist</p>
         <p class="lede">{profile.scholar.summary}</p>
-        <p class="stat">{profile.scholar.credentials}</p>
+        <p class="stat">PhD, applied machine learning &middot; <a class="stat-link" href={profile.links.scholar} target="_blank" rel="noopener">{profile.scholar.citations} citations</a> &middot; h-index {profile.scholar.hIndex}</p>
         <hr class="rule" />
         <ul class="list">
           {
@@ -24,7 +24,6 @@ import { profile } from '../data/profile';
         </ul>
         <nav class="links" aria-label="Scientist pages">
           <a class="more" href="/writing">Writing<span class="arrow">&nbsp;&rarr;</span></a>
-          <a class="more" href="/research">Research<span class="arrow">&nbsp;&rarr;</span></a>
         </nav>
       </div>
     </section>
@@ -173,6 +172,20 @@ import { profile } from '../data/profile';
     font-size: 0.85rem;
     color: var(--ink-soft);
     margin: 0 0 1.8rem;
+  }
+
+  .stat-link {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+    text-decoration-color: var(--rule-ink);
+    transition: text-decoration-color 0.25s ease;
+  }
+
+  .stat-link:hover,
+  .stat-link:focus-visible {
+    text-decoration-color: var(--ink);
   }
 
   .rule {
