@@ -1,0 +1,94 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Not found · Muhammad Farooq" description="That page could not be found.">
+  <main class="page">
+    <p class="code">404</p>
+    <h1 class="title">This page wandered off.</h1>
+    <p class="sub">The link may be broken, or the page may have moved.</p>
+    <nav class="links" aria-label="Go elsewhere">
+      <a class="more" href="/">Home<span class="arrow">&nbsp;&rarr;</span></a>
+      <a class="more" href="/writing">Writing<span class="arrow">&nbsp;&rarr;</span></a>
+      <a class="more" href="/about">About<span class="arrow">&nbsp;&rarr;</span></a>
+    </nav>
+  </main>
+</Base>
+
+<style>
+  .page {
+    min-height: 100vh;
+    min-height: 100svh;
+    background: var(--paper);
+    color: var(--ink);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem clamp(1.5rem, 6vw, 4rem);
+    gap: 0.4rem;
+  }
+
+  .code {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.3em;
+    color: var(--ink-soft);
+    margin: 0 0 0.6rem;
+  }
+
+  .title {
+    font-family: var(--serif);
+    font-size: clamp(1.8rem, 5vw, 2.6rem);
+    font-weight: 480;
+    letter-spacing: 0.01em;
+    margin: 0;
+  }
+
+  .sub {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    margin: 0.4rem 0 0;
+    max-width: 26rem;
+  }
+
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.6rem;
+    margin-top: 2.2rem;
+  }
+
+  .more {
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .more:hover,
+  .more:focus-visible {
+    color: var(--ink);
+  }
+
+  .arrow {
+    display: inline-block;
+    transition: transform 0.3s ease;
+  }
+
+  .more:hover .arrow,
+  .more:focus-visible .arrow {
+    transform: translateX(4px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .arrow,
+    .more {
+      transition: none;
+    }
+  }
+</style>

@@ -15,7 +15,7 @@ export const profile = {
   ],
   projects: [
     { name: 'whryte', detail: 'private voice-to-text for Mac, 100% offline', href: 'https://whryte.com' },
-    { name: 'localGPT', detail: '22,000+ stars on GitHub', href: 'https://github.com/PromtEngineer/localGPT' },
+    { name: 'localGPT', detail: 'private, on-device document chat', href: 'https://github.com/PromtEngineer/localGPT' },
     { name: 'Prompt Engineering', detail: '200,000+ subscribers on YouTube', href: 'https://www.youtube.com/@engineerprompt' },
     { name: 'RAG Beyond Basics', detail: 'a course on production-grade RAG', href: 'https://prompt-s-site.thinkific.com/courses/rag' },
   ],
