@@ -16,47 +16,39 @@ import { profile } from '../data/profile';
     </header>
 
     <p class="intro">
-      I'm a researcher who became a builder. Over more than a decade building and scaling
-      machine learning systems, one idea kept getting stronger: the most powerful AI should
-      run on hardware you own. Your documents, your voice, your models, all on your machine,
-      with nothing leaving it.
+      I'm a researcher and builder working on generative AI systems. My focus is agentic systems
+      and applying large language models to analytics and retrieval, with particular expertise in
+      running capable, open-weight models locally. I earned a PhD in applied machine learning and
+      I'm a Google Developer Expert in AI/ML.
     </p>
     <p class="intro">
-      That bet runs through everything I make. <a href="https://github.com/PromtEngineer/localGPT">localGPT</a>
-      was an early proof that a private, fully offline retrieval system could actually be good.
-      <a href="https://whryte.com">whryte</a> is the same idea for voice, transcription that never
-      sends your audio anywhere. The wager doesn't change: you shouldn't have to hand your data to
-      a server to use frontier-grade AI.
+      <strong>Interests.</strong> I work on generative AI and agentic systems: models that reason,
+      use tools, and act, along with the retrieval and analytics systems that ground them in real
+      data. A constant across my work is local, open-weight models, running frontier-grade AI on
+      hardware you own rather than behind an API. Earlier, my research was in wearable systems and
+      biomedical signal processing, inferring human behavior from physiological signals.
     </p>
     <p class="intro">
-      I came to this through research. I earned a PhD in applied machine learning, working on
-      wearable sensors and biomedical signal processing, problems where the data is about your own
-      body and keeping it on-device isn't a preference but a requirement. That work led to a patent
-      and a decade of published research, and the path from there runs through retrieval-augmented
-      generation to the agentic systems I build today.
+      <strong>Open source.</strong> Most of my work is open source. I created
+      <a href="https://github.com/PromtEngineer/localGPT">localGPT</a>, one of the earliest fully
+      private, on-device retrieval systems and now one of the most widely used, which lets you chat
+      with your own documents without anything leaving your machine. I'm currently building
+      <a href="https://whryte.com">whryte</a>, a voice-to-text app for the Mac that transcribes
+      entirely offline.
     </p>
     <p class="intro">
-      These days I help companies build agentic systems and grow with them, as a consultant and an
-      advisor, and I'm always chasing new things these systems can do. I share what I learn on my
-      YouTube channel, <a href={profile.links.youtube}>Prompt Engineering</a>, where a community of
-      engineers follows along.
+      <strong>Industry.</strong> As a Google Developer Expert, I work with companies to strategize
+      and ship AI solutions, from early design through implementation, with a focus on agentic
+      systems and retrieval. I share what I learn with a large community of engineers on my YouTube
+      channel, <a href={profile.links.youtube}>Prompt Engineering</a>.
     </p>
-
-    <p class="proof-kicker">the record</p>
-    <ul class="proof">
-      <li><span class="k">PhD</span> applied machine learning</li>
-      <li>
-        <a href={profile.links.scholar}><span class="k">2,154</span> citations, h-index 21</a>
-      </li>
-      <li>
-        <a href="https://github.com/PromtEngineer/localGPT"><span class="k">22,000&#9733;</span> localGPT on GitHub</a>
-      </li>
-      <li>
-        <a href={profile.links.youtube}><span class="k">200,000</span> subscribers on YouTube</a>
-      </li>
-      <li><span class="k">Google Developer Expert</span>, AI/ML</li>
-      <li><span class="k">Google Cloud NEXT 2025</span> speaker</li>
-    </ul>
+    <p class="intro">
+      <strong>Writing and research.</strong> My research has been cited more than 2,000 times, with
+      peer-reviewed work published in
+      <a href="https://www.nature.com/articles/s41598-018-37161-x">Scientific Reports</a>, part of
+      the Nature Portfolio. I also write essays on retrieval, reasoning, and local AI here on this
+      site.
+    </p>
 
     <nav class="links" aria-label="Continue">
       <a class="more" href="/writing">Writing<span class="arrow">&nbsp;&rarr;</span></a>
@@ -142,57 +134,9 @@ import { profile } from '../data/profile';
     text-decoration-color: var(--ink);
   }
 
-  /* ——— the record ——— */
-
-  .proof-kicker {
-    font-family: var(--mono);
-    font-size: 0.66rem;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-    margin: 3rem 0 1rem;
-  }
-
-  .proof {
-    list-style: none;
-    margin: 0;
-    padding: 1.5rem 0;
-    border-top: 1px solid var(--rule-ink);
-    border-bottom: 1px solid var(--rule-ink);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem 2.5rem;
-    font-family: var(--mono);
-    font-size: 0.8rem;
-    line-height: 1.4;
-    color: var(--ink-soft);
-  }
-
-  .proof li {
-    margin: 0;
-  }
-
-  .proof .k {
-    color: var(--ink);
-    font-weight: 500;
-  }
-
-  .proof a {
-    color: inherit;
-    text-decoration: none;
-  }
-
-  .proof a:hover .k,
-  .proof a:focus-visible .k {
-    text-decoration: underline;
-    text-underline-offset: 3px;
-  }
-
-  @media (max-width: 560px) {
-    .proof {
-      grid-template-columns: 1fr;
-      gap: 0.85rem;
-    }
+  .intro strong {
+    font-weight: 600;
+    letter-spacing: 0.01em;
   }
 
   /* ——— continue ——— */
