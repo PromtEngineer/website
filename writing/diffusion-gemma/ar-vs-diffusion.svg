@@ -1,0 +1,105 @@
+<svg viewBox="0 0 1200 640" xmlns="http://www.w3.org/2000/svg" font-family="Menlo, Consolas, monospace">
+  <rect width="1200" height="640" fill="#FAF9F5"/>
+
+  <!-- Panel A: autoregressive -->
+  <text x="60" y="64" font-size="18" fill="#1C1A17">Autoregressive (Gemma 4): one token per forward pass</text>
+  <text x="1140" y="64" font-size="16" fill="#6E675E" text-anchor="end">400 tokens = 400 forward passes</text>
+
+  <!-- committed tokens -->
+  <rect x="60" y="88" width="56" height="56" rx="6" fill="#161614"/>
+  <rect x="124" y="88" width="56" height="56" rx="6" fill="#161614"/>
+  <rect x="188" y="88" width="56" height="56" rx="6" fill="#161614"/>
+  <rect x="252" y="88" width="56" height="56" rx="6" fill="#161614"/>
+  <rect x="316" y="88" width="56" height="56" rx="6" fill="#161614"/>
+  <rect x="380" y="88" width="56" height="56" rx="6" fill="#161614"/>
+  <rect x="444" y="88" width="56" height="56" rx="6" fill="#161614"/>
+  <rect x="508" y="88" width="56" height="56" rx="6" fill="#161614"/>
+  <rect x="572" y="88" width="56" height="56" rx="6" fill="#161614"/>
+  <!-- current token -->
+  <rect x="636" y="88" width="56" height="56" rx="6" fill="#F1EFE7" stroke="#1C1A17" stroke-width="2"/>
+  <!-- future tokens -->
+  <rect x="700" y="88" width="56" height="56" rx="6" fill="none" stroke="#6E675E" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <rect x="764" y="88" width="56" height="56" rx="6" fill="none" stroke="#6E675E" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <rect x="828" y="88" width="56" height="56" rx="6" fill="none" stroke="#6E675E" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <rect x="892" y="88" width="56" height="56" rx="6" fill="none" stroke="#6E675E" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <rect x="956" y="88" width="56" height="56" rx="6" fill="none" stroke="#6E675E" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <rect x="1020" y="88" width="56" height="56" rx="6" fill="none" stroke="#6E675E" stroke-width="1.5" stroke-dasharray="5 4"/>
+
+  <text x="348" y="174" font-size="16" fill="#6E675E" text-anchor="middle">committed, cannot change</text>
+  <text x="664" y="174" font-size="16" fill="#1C1A17" text-anchor="middle">pass 10</text>
+  <text x="888" y="174" font-size="16" fill="#6E675E" text-anchor="middle">not yet generated</text>
+
+  <!-- Panel B: block diffusion -->
+  <text x="60" y="248" font-size="18" fill="#1C1A17">Block diffusion (DiffusionGemma): refine the whole canvas in parallel</text>
+  <text x="1140" y="248" font-size="16" fill="#6E675E" text-anchor="end">256-token canvas, abridged</text>
+
+  <!-- pass 1 -->
+  <text x="60" y="301" font-size="16" fill="#6E675E">pass 1</text>
+  <rect x="180" y="276" width="52" height="40" rx="6" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+  <rect x="240" y="276" width="52" height="40" rx="6" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+  <rect x="300" y="276" width="52" height="40" rx="6" fill="#1D9E75"/>
+  <rect x="360" y="276" width="52" height="40" rx="6" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+  <rect x="420" y="276" width="52" height="40" rx="6" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+  <rect x="480" y="276" width="52" height="40" rx="6" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+  <rect x="540" y="276" width="52" height="40" rx="6" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+  <rect x="600" y="276" width="52" height="40" rx="6" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+  <rect x="660" y="276" width="52" height="40" rx="6" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+  <rect x="720" y="276" width="52" height="40" rx="6" fill="#1D9E75"/>
+  <rect x="780" y="276" width="52" height="40" rx="6" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+  <rect x="840" y="276" width="52" height="40" rx="6" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+  <rect x="900" y="276" width="52" height="40" rx="6" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+  <rect x="960" y="276" width="52" height="40" rx="6" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+  <rect x="1020" y="276" width="52" height="40" rx="6" fill="#1D9E75"/>
+  <rect x="1080" y="276" width="52" height="40" rx="6" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+
+  <!-- pass 8 -->
+  <text x="60" y="353" font-size="16" fill="#6E675E">pass 8</text>
+  <rect x="180" y="328" width="52" height="40" rx="6" fill="#161614"/>
+  <rect x="240" y="328" width="52" height="40" rx="6" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+  <rect x="300" y="328" width="52" height="40" rx="6" fill="#161614"/>
+  <rect x="360" y="328" width="52" height="40" rx="6" fill="#1D9E75"/>
+  <rect x="420" y="328" width="52" height="40" rx="6" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+  <rect x="480" y="328" width="52" height="40" rx="6" fill="#161614"/>
+  <rect x="540" y="328" width="52" height="40" rx="6" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+  <rect x="600" y="328" width="52" height="40" rx="6" fill="#1D9E75"/>
+  <rect x="660" y="328" width="52" height="40" rx="6" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+  <rect x="720" y="328" width="52" height="40" rx="6" fill="#161614"/>
+  <rect x="780" y="328" width="52" height="40" rx="6" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+  <rect x="840" y="328" width="52" height="40" rx="6" fill="#1D9E75"/>
+  <rect x="900" y="328" width="52" height="40" rx="6" fill="#161614"/>
+  <rect x="960" y="328" width="52" height="40" rx="6" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+  <rect x="1020" y="328" width="52" height="40" rx="6" fill="#161614"/>
+  <rect x="1080" y="328" width="52" height="40" rx="6" fill="#1D9E75"/>
+
+  <!-- done -->
+  <text x="60" y="405" font-size="16" fill="#6E675E">done</text>
+  <rect x="180" y="380" width="52" height="40" rx="6" fill="#161614"/>
+  <rect x="240" y="380" width="52" height="40" rx="6" fill="#161614"/>
+  <rect x="300" y="380" width="52" height="40" rx="6" fill="#161614"/>
+  <rect x="360" y="380" width="52" height="40" rx="6" fill="#161614"/>
+  <rect x="420" y="380" width="52" height="40" rx="6" fill="#161614"/>
+  <rect x="480" y="380" width="52" height="40" rx="6" fill="#161614"/>
+  <rect x="540" y="380" width="52" height="40" rx="6" fill="#161614"/>
+  <rect x="600" y="380" width="52" height="40" rx="6" fill="#161614"/>
+  <rect x="660" y="380" width="52" height="40" rx="6" fill="#161614"/>
+  <rect x="720" y="380" width="52" height="40" rx="6" fill="#161614"/>
+  <rect x="780" y="380" width="52" height="40" rx="6" fill="#161614"/>
+  <rect x="840" y="380" width="52" height="40" rx="6" fill="#161614"/>
+  <rect x="900" y="380" width="52" height="40" rx="6" fill="#161614"/>
+  <rect x="960" y="380" width="52" height="40" rx="6" fill="#161614"/>
+  <rect x="1020" y="380" width="52" height="40" rx="6" fill="#161614"/>
+  <rect x="1080" y="380" width="52" height="40" rx="6" fill="#161614"/>
+
+  <!-- legend -->
+  <rect x="180" y="438" width="18" height="18" rx="4" fill="#1D9E75"/>
+  <text x="206" y="453" font-size="16" fill="#1C1A17">locked this pass (lowest entropy)</text>
+  <rect x="560" y="438" width="18" height="18" rx="4" fill="#161614"/>
+  <text x="586" y="453" font-size="16" fill="#1C1A17">locked earlier</text>
+  <rect x="760" y="438" width="18" height="18" rx="4" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+  <text x="786" y="453" font-size="16" fill="#1C1A17">noise, redrawn next pass</text>
+
+  <!-- notes -->
+  <text x="180" y="512" font-size="16" fill="#6E675E">Up to 48 denoising passes per block; generation stops early when the canvas settles.</text>
+  <text x="180" y="540" font-size="16" fill="#6E675E">Temperature cools from 0.8 to 0.4: explore early, commit late.</text>
+  <text x="180" y="568" font-size="16" fill="#6E675E">A finished block is committed like ordinary context; the next block conditions on it.</text>
+</svg>

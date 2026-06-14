@@ -1,0 +1,101 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>How agent harnesses manage context: cap, slice, search, store · Muhammad Farooq</title><meta name="description" content="What occupies an agent's context window and the four moves harnesses use when content does not fit: cap it, slice it, search it, or store it elsewhere."><meta property="og:title" content="How agent harnesses manage context: cap, slice, search, store · Muhammad Farooq"><meta property="og:description" content="What occupies an agent's context window and the four moves harnesses use when content does not fit: cap it, slice it, search it, or store it elsewhere."><meta property="og:type" content="website"><meta property="og:image" content="/portrait.jpg"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Muhammad Farooq","alternateName":"engineerprompt","description":"I research, build, and teach AI systems.","email":"mailto:engineerprompt@gmail.com","sameAs":["https://whryte.com","https://scholar.google.com/citations?user=vQcpPPAAAAAJ&hl=en","https://github.com/PromtEngineer","https://www.youtube.com/@engineerprompt","https://x.com/engineerrprompt","https://www.linkedin.com/in/mhfarooq/"]}</script><script async src="https://www.googletagmanager.com/gtag/js?id=G-QQPL8W86KM"></script><script>(function(){const GA_ID = "G-QQPL8W86KM";
+
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+              dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+            gtag('config', GA_ID);
+          })();</script><link rel="stylesheet" href="/_astro/Base.DFu6d-0c.css">
+<link rel="stylesheet" href="/_astro/_id_.Ca-OZxaH.css"></head> <body>  <main class="page" data-astro-cid-oodgithn> <a class="back" href="/writing/" data-astro-cid-oodgithn>&larr; writing</a> <article data-astro-cid-oodgithn> <header class="head" data-astro-cid-oodgithn> <h1 class="title" data-astro-cid-oodgithn>How agent harnesses manage context: cap, slice, search, store</h1> <p class="meta" data-astro-cid-oodgithn> <span data-astro-cid-oodgithn>June 11, 2026</span> <span class="sep" data-astro-cid-oodgithn>·</span> <span data-astro-cid-oodgithn>8 min read</span>  </p> </header> <div class="prose" data-astro-cid-oodgithn> <aside class="tldr">
+  <p>TL;DR</p>
+  <ul>
+    <li>The context window fills from all sides: a fixed system prompt and tool definitions, growing history, file reads, tool results, sub-agent output, and memory state. Only one slice is untouchable: room for the model to answer.</li>
+    <li>When content does not fit, harnesses converge on four moves: cap it, slice it, search it, or store it somewhere else.</li>
+    <li>Tool results are the quiet offender. Modern harnesses treat them as artifacts on disk, with a preview and a pointer in the transcript, not as messages.</li>
+    <li>The right mental model is virtual memory. The harness pages context in and out so a fixed-size working set feels infinite.</li>
+  </ul>
+</aside>
+<p>Every serious agent eventually hits the same wall. Not model quality. Not reasoning. Not tools. Memory. The context window is too small for everything the model might want to see. A few long file reads, a grep result, a sub-agent response, a growing chat history, and the model is no longer reasoning about the task. It is swimming through its own transcript.</p>
+<p>Modern harnesses no longer treat context as a passive chat log. They treat it as memory that has to be managed. In <a href="/writing/what-is-an-agent-harness/">the harness anatomy essay</a> I listed context management as component two of nine. This post is the deep dive: what actually occupies the window, the four moves harnesses make when content does not fit, how file truncation works across four real harnesses, and why tool results deserve special treatment.</p>
+<h2 id="what-fills-the-context-window">What fills the context window</h2>
+<p>Think about what sits in the window on any given turn:</p>
+<ul>
+<li><strong>Fixed context.</strong> The system prompt, tool definitions, policies, and skills. Loaded once at session start.</li>
+<li><strong>Conversation history.</strong> Grows every turn, without bound.</li>
+<li><strong>File contents.</strong> A single read can be ten thousand, fifty thousand, sometimes hundreds of thousands of tokens. Often the largest single occupant.</li>
+<li><strong>Tool results.</strong> Grep, bash, search, database output. Every call writes another object into the transcript, so these accumulate fast.</li>
+<li><strong>Sub-agent responses, summaries, and memory state.</strong> Forked task output and compaction artifacts.</li>
+</ul>
+<p>All of it competes with the one budget you cannot touch: room for the model to answer.</p>
+<figure>
+  <img src="/writing/agent-context-management/01-context-window-fill.svg" alt="Diagram of a context window stacked with system prompt and tool definitions, conversation history, file contents, tool results, sub-agent responses, session memory, and a reserved slice for model output, with file reads of 10K to 250K tokens flowing in and a column of harness countermeasures: cap file reads, truncate tool results, compact history, evict stale data, nudge to search, restore after compaction" width="1200" height="700">
+  <figcaption>The window fills from all sides. The model sees only what the harness lets through.</figcaption>
+</figure>
+<p>So the harness starts acting like an operating system. It decides what stays close to the model, what gets compressed, what gets paged out, and what can be retrieved later. The rest of this post is that decision process, piece by piece.</p>
+<h2 id="large-files-are-the-first-stress-test">Large files are the first stress test</h2>
+<p>Large files make the problem concrete. If the model asks to read a file bigger than the available context, somebody has to decide what happens. For the research behind this post I traced that decision through four harnesses: Pi, OpenClaw, Claude Code, and Letta. None of them just reads the file. The answer is always some combination of four moves:</p>
+<ul>
+<li><strong>Cap it.</strong> Enforce a hard limit on lines or bytes and show the head of the file.</li>
+<li><strong>Slice it.</strong> Let the model page through the rest with offset and limit parameters.</li>
+<li><strong>Search it.</strong> Point the model at grep or semantic search instead of a full read.</li>
+<li><strong>Store it elsewhere.</strong> Keep the full content on disk or in a vector store and show only a managed view.</li>
+</ul>
+<p>Here is how each harness combines them:</p>
+<ul>
+<li><strong>Pi</strong> is harness-first and simple. File reads are capped at 2,000 lines or 50 KB. The model sees the beginning of the file plus an explicit continuation nudge: use offset and limit to continue.</li>
+<li><strong>OpenClaw</strong> layers defense on top of the same idea. It keeps Pi-style truncation, adds character budgets for bootstrap files, caps tool results, and uses head-plus-tail truncation when the end of the output looks important.</li>
+<li><strong>Claude Code</strong> is the most aggressive. It checks file size before opening. If the file is too large, the read is rejected outright and the model is pointed toward offset, limit, or grep. After a successful read it token-counts the output, truncates long lines, deduplicates repeated reads of the same file, and can tune all of these limits remotely.</li>
+<li><strong>Letta</strong> takes a different path. It parses, chunks, and embeds files into a vector store. The model gets direct viewing, exact search, and semantic search, and the window only ever shows a managed view of the file.</li>
+</ul>
+<figure>
+  <img src="/writing/agent-context-management/02-large-file-handling.svg" alt="Four-column comparison of how Pi, OpenClaw, Claude Code, and Letta handle large files: Pi caps reads at 2K lines or 50KB with a continuation nudge, OpenClaw adds bootstrap file caps and head plus tail truncation, Claude Code gates reads by size, budgets tokens, and dedupes repeated reads with remotely tunable limits, and Letta chunks and embeds files into a vector store with semantic search" width="1200" height="640">
+  <figcaption>Four harnesses, four mixes of cap, slice, search, and store. None of them dumps the file into the model.</figcaption>
+</figure>
+<p>Different architectures, same lesson: file context is not dumped into the model. It is mediated.</p>
+<h2 id="tool-results-are-context-pollution">Tool results are context pollution</h2>
+<p>The same pattern shows up with tool calls. Tool results feel harmless because each one looks useful in isolation. But a few large grep outputs, JSON payloads, logs, or dataframe previews can consume the working set faster than the conversation itself.</p>
+<p>That is why harnesses increasingly treat tool outputs as artifacts, not messages:</p>
+<ul>
+<li>Oversized results are persisted to disk. The model sees a small preview and a pointer.</li>
+<li>Repeated previews are deduplicated.</li>
+<li>Long values are truncated head-and-tail.</li>
+<li>Search results are summarized, paginated, or capped per tool and per message.</li>
+</ul>
+<p>Anthropic’s <a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents">context engineering guidance</a> points the same way: treat context as a finite resource and clear raw tool outputs from history once they have served their purpose.</p>
+<p>This is virtual memory thinking. The model does not need the entire payload in the prompt. It needs enough visible state to decide what to fetch next.</p>
+<h2 id="compaction-handles-old-history">Compaction handles old history</h2>
+<p>Long sessions add a deeper problem: deciding what old history still matters. When context pressure crosses a threshold, the harness keeps the recent tail of the conversation and summarizes the older transcript into a synthetic message. Each of the four harnesses does this differently. OpenClaw flushes important state to memory before compacting. Claude Code offloads oversized tool results before each call and can restore recently read files after compaction. Letta warns before the window is full, evicts with a sliding window, and falls back to stronger truncation if the summary itself overflows. Compaction done badly can quietly ruin a session, so I wrote <a href="/writing/compaction/">a separate deep dive</a> on how each harness triggers, summarizes, and recovers.</p>
+<h2 id="sub-agents-are-isolated-processes">Sub-agents are isolated processes</h2>
+<p>Sub-agents reveal another convergence. Most harnesses do not copy the parent conversation into every child. Pi starts a fresh process with just the task string. OpenClaw starts a fresh session and passes only filtered workspace context. Claude Code’s typed agents start blank: the delegated prompt becomes the first user message, with restricted tools and permissions. Letta mostly avoids forking and keeps execution inside the main loop, with history reachable through recall and archival tools. Sub-agents are closer to isolated processes than shared threads. They get the task, the permissions, and the workspace slice they need, not the parent’s whole mental state. I cover the pattern properly in <a href="/writing/sub-agents/">the sub-agents essay</a>.</p>
+<h2 id="the-same-primitives-everywhere">The same primitives everywhere</h2>
+<p>None of this is a coding-agent quirk. A data exploration agent hits the same wall with tables, traces, JSON, notebooks, and charts. Arize’s Alyx converged on near-identical answers: cap tool results, binary-search for the largest slice that fits, deduplicate repeated previews, keep full payloads server-side, expose drill-down tools, and force checkpoints when token pressure climbs. Cursor, Aider, Continue, LangGraph, and OpenAI’s Agents SDK all point in the same direction.</p>
+<figure>
+  <img src="/writing/agent-context-management/05-feature-matrix.svg" alt="Feature matrix comparing Pi, OpenClaw, Claude Code, and Letta across file context, tool context, sub-agent context, and session management, with rows for read caps, pagination, result offloading, deduplication, isolation, and summarization triggers, where green checks mark features all four harnesses share" width="1200" height="900">
+  <figcaption>The full feature matrix. Four very different architectures converge on the same context primitives.</figcaption>
+</figure>
+<p>Bigger windows do not dissolve the problem either. <a href="https://arxiv.org/abs/2307.03172">Lost in the Middle</a> showed that models use information at the start and end of a long context far better than information buried in the middle. Chroma’s <a href="https://www.trychroma.com/research/context-rot">Context Rot</a> report measured 18 models getting less reliable as input grows, even on simple tasks. Putting more tokens in the window does not guarantee the model uses them well.</p>
+<h2 id="the-mental-model-is-virtual-memory">The mental model is virtual memory</h2>
+<p>The best frame for all of this is not prompt engineering. It is virtual memory:</p>
+<ul>
+<li>The prompt is registers and cache: what the model needs right now.</li>
+<li>Recent conversation is RAM.</li>
+<li>Summaries are compressed pages.</li>
+<li>Files, vector stores, databases, logs, and tool artifacts are disk.</li>
+<li>Grep, semantic search, offsets, limits, and recall tools are page lookup.</li>
+<li>Compaction is garbage collection.</li>
+<li>Sub-agent isolation is process management.</li>
+</ul>
+<p>This analogy is not new. The <a href="https://arxiv.org/abs/2310.08560">MemGPT paper</a>, the research behind Letta, proposed exactly this in 2023: manage memory tiers inside and outside the window the way an operating system moves pages between RAM and disk. What has changed is that every serious harness now implements some version of it.</p>
+<p>The agent looks like one continuous intelligence. Underneath, the harness is constantly moving memory around.</p>
+<h2 id="where-this-fits">Where this fits</h2>
+<p>The future of agents is not just better models with bigger windows. It is harnesses that make a fixed-size working set feel infinite. They cap, slice, search, store, summarize, restore, and isolate, and the model sees the right working set at the right time. <a href="/writing/harness-engineering/">The research evidence</a> keeps finding that the harness drives more of an agent’s performance than the model. Context management is a large part of where that gap comes from.</p>
+<h2 id="sources">Sources</h2>
+<ul>
+<li><a href="https://arxiv.org/abs/2307.03172">Lost in the Middle: How Language Models Use Long Contexts</a>, Liu et al., 2023</li>
+<li><a href="https://www.trychroma.com/research/context-rot">Context Rot: How Increasing Input Tokens Impacts LLM Performance</a>, Chroma research, 2025</li>
+<li><a href="https://arxiv.org/abs/2310.08560">MemGPT: Towards LLMs as Operating Systems</a>, Packer et al., 2023, the paper behind Letta</li>
+<li><a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents">Effective context engineering for AI agents</a>, Anthropic</li>
+<li><a href="/writing/what-is-an-agent-harness/">What is an agent harness? The nine components of a great one</a>, the companion essay this post deepens</li>
+<li><a href="/writing/harness-engineering/">Harness engineering: why agent performance now lives outside the model</a>, the research evidence</li>
+</ul> </div>  <footer class="foot" data-astro-cid-oodgithn> <div class="who" data-astro-cid-oodgithn> <img src="/portrait.jpg" alt="Portrait of Muhammad Farooq" width="52" height="52" data-astro-cid-oodgithn> <div data-astro-cid-oodgithn> <p class="who-name" data-astro-cid-oodgithn>Muhammad Farooq</p> <p class="who-line" data-astro-cid-oodgithn>I research, build, and teach AI systems.</p> </div> </div> <nav class="links" aria-label="Continue" data-astro-cid-oodgithn> <a class="more" href="/writing/" data-astro-cid-oodgithn>More writing<span class="arrow" data-astro-cid-oodgithn>&nbsp;&rarr;</span></a> <a class="more" href="mailto:engineerprompt@gmail.com?subject=AI%20consulting" data-astro-cid-oodgithn>AI consulting<span class="arrow" data-astro-cid-oodgithn>&nbsp;&rarr;</span></a> </nav> </footer> </article> <div class="lightbox" id="lightbox" hidden data-astro-cid-oodgithn> <img alt="" data-astro-cid-oodgithn> </div> </main>  </body></html> <script type="module">const e=document.getElementById("lightbox"),o=e?e.querySelector("img"):null;if(e&&o){for(const t of document.querySelectorAll(".prose figure img"))t.addEventListener("click",()=>{o.setAttribute("src",t.getAttribute("src")||""),o.setAttribute("alt",t.getAttribute("alt")||""),e.hidden=!1,document.body.style.overflow="hidden"});const i=()=>{e.hidden=!0,document.body.style.overflow=""};e.addEventListener("click",i),window.addEventListener("keydown",t=>{t.key==="Escape"&&i()})}</script>

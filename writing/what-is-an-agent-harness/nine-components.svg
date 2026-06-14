@@ -1,0 +1,69 @@
+<svg viewBox="0 0 1200 700" xmlns="http://www.w3.org/2000/svg" font-family="Menlo, Consolas, monospace">
+  <rect width="1200" height="700" fill="#FAF9F5"/>
+
+  <!-- left column: components 2-5 -->
+  <g>
+    <rect x="56" y="70" width="324" height="118" rx="10" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+    <text x="84" y="112" font-size="17" fill="#6E675E">2</text>
+    <text x="110" y="112" font-size="20" fill="#1C1A17">context management</text>
+    <text x="84" y="144" font-size="16" fill="#6E675E">keep, summarize, discard;</text>
+    <text x="84" y="168" font-size="16" fill="#6E675E">compaction near the limit</text>
+
+    <rect x="56" y="224" width="324" height="118" rx="10" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+    <text x="84" y="266" font-size="17" fill="#6E675E">3</text>
+    <text x="110" y="266" font-size="20" fill="#1C1A17">tools &amp; skills</text>
+    <text x="84" y="298" font-size="16" fill="#6E675E">primitives + encoded knowledge</text>
+    <text x="84" y="322" font-size="16" fill="#6E675E">bound by a registry</text>
+
+    <rect x="56" y="378" width="324" height="118" rx="10" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+    <text x="84" y="420" font-size="17" fill="#6E675E">4</text>
+    <text x="110" y="420" font-size="20" fill="#1C1A17">sub-agents</text>
+    <text x="84" y="452" font-size="16" fill="#6E675E">spawn, restrict, collect</text>
+
+    <rect x="56" y="532" width="324" height="118" rx="10" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+    <text x="84" y="574" font-size="17" fill="#6E675E">5</text>
+    <text x="110" y="574" font-size="20" fill="#1C1A17">built-in skills</text>
+    <text x="84" y="606" font-size="16" fill="#6E675E">files, shell, navigation,</text>
+    <text x="84" y="630" font-size="16" fill="#6E675E">git commit, run tests</text>
+  </g>
+
+  <!-- center: the loop around the model -->
+  <rect x="430" y="200" width="340" height="320" rx="16" fill="none" stroke="#1D9E75" stroke-width="2.5"/>
+  <text x="458" y="246" font-size="17" fill="#0F6E56">1</text>
+  <text x="484" y="246" font-size="21" fill="#0F6E56">the loop</text>
+  <rect x="490" y="290" width="220" height="120" rx="10" fill="#161614"/>
+  <text x="600" y="346" font-size="23" fill="#F2EFE9" text-anchor="middle">model</text>
+  <text x="600" y="378" font-size="15" fill="#A8A39A" text-anchor="middle">one-shot text generator</text>
+  <text x="600" y="462" font-size="16" fill="#1C1A17" text-anchor="middle">read &#8594; act &#8594; observe &#8594; repeat</text>
+  <text x="600" y="490" font-size="15" fill="#6E675E" text-anchor="middle">until done or iteration cap</text>
+
+  <text x="600" y="120" font-size="20" fill="#6E675E" text-anchor="middle">the harness</text>
+  <text x="600" y="148" font-size="16" fill="#6E675E" text-anchor="middle">everything on this canvas except the model</text>
+
+  <!-- right column: components 6-9 -->
+  <g>
+    <rect x="820" y="70" width="324" height="118" rx="10" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+    <text x="848" y="112" font-size="17" fill="#6E675E">6</text>
+    <text x="874" y="112" font-size="20" fill="#1C1A17">session persistence</text>
+    <text x="848" y="144" font-size="16" fill="#6E675E">append-only JSONL,</text>
+    <text x="848" y="168" font-size="16" fill="#6E675E">crash-safe, replayable</text>
+
+    <rect x="820" y="224" width="324" height="118" rx="10" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+    <text x="848" y="266" font-size="17" fill="#6E675E">7</text>
+    <text x="874" y="266" font-size="20" fill="#1C1A17">prompt assembly</text>
+    <text x="848" y="298" font-size="16" fill="#6E675E">CLAUDE.md, AGENTS.md;</text>
+    <text x="848" y="322" font-size="16" fill="#6E675E">static first, dynamic second</text>
+
+    <rect x="820" y="378" width="324" height="118" rx="10" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+    <text x="848" y="420" font-size="17" fill="#6E675E">8</text>
+    <text x="874" y="420" font-size="20" fill="#1C1A17">lifecycle hooks</text>
+    <text x="848" y="452" font-size="16" fill="#6E675E">pre-tool: allow, deny, modify;</text>
+    <text x="848" y="476" font-size="16" fill="#6E675E">post-tool: audit</text>
+
+    <rect x="820" y="532" width="324" height="118" rx="10" fill="#F1EFE7" stroke="#6E675E" stroke-width="1"/>
+    <text x="848" y="574" font-size="17" fill="#6E675E">9</text>
+    <text x="874" y="574" font-size="20" fill="#1C1A17">permissions &amp; safety</text>
+    <text x="848" y="606" font-size="16" fill="#6E675E">read-only &#8594; workspace &#8594; full;</text>
+    <text x="848" y="630" font-size="16" fill="#6E675E">enforced at dispatch</text>
+  </g>
+</svg>
