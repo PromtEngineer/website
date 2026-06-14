@@ -18,7 +18,6 @@ export const profile = {
     { name: 'localGPT', detail: '22,000+ stars on GitHub', href: 'https://github.com/PromtEngineer/localGPT' },
     { name: 'Prompt Engineering', detail: '200,000+ subscribers on YouTube', href: 'https://www.youtube.com/@engineerprompt' },
     { name: 'RAG Beyond Basics', detail: 'a course on production-grade RAG', href: 'https://prompt-s-site.thinkific.com/courses/rag' },
-    { name: 'speaker & advisor', detail: 'Google Developer Expert, AI/ML', href: 'mailto:engineerprompt@gmail.com?subject=Speaking%20inquiry' },
   ],
   links: {
     whryte: 'https://whryte.com',
