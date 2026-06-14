@@ -4,17 +4,17 @@ import { profile } from '../data/profile';
 
 <div class="seam">
   <img class="portrait" src="/portrait.jpg" alt={`Portrait of ${profile.name}`} width="144" height="144" />
-  <p class="name">{profile.name}</p>
-  <p class="tagline">{profile.tagline}</p>
-  <div class="hire-row">
-    <a class="hire" href="/about">About&nbsp;&rarr;</a>
-    <a class="hire" href="/consulting">AI consulting&nbsp;&rarr;</a>
+  <div class="plate">
+    <p class="name">{profile.name}</p>
+    <p class="tagline">{profile.tagline}</p>
+    <div class="hire-row">
+      <a class="hire" href="/about">About&nbsp;&rarr;</a>
+      <a class="hire" href="/consulting">AI consulting&nbsp;&rarr;</a>
+    </div>
   </div>
 </div>
 
 <style>
-  /* no transform / z-index here: either would create a stacking context and
-     trap the children's mix-blend-mode away from the page backdrop */
   .seam {
     position: absolute;
     inset: 0;
@@ -32,17 +32,30 @@ import { profile } from '../data/profile';
     border-radius: 50%;
     object-fit: cover;
     display: block;
+    position: relative;
+    z-index: 2;
     box-shadow:
       0 0 0 1px rgba(110, 103, 94, 0.5),
-      0 0 0 7px var(--paper-or-coal, transparent);
+      0 10px 28px -10px rgba(0, 0, 0, 0.55);
   }
 
-  /* ink on paper, bone on coal — one rule handles both halves */
-  .name,
-  .tagline,
-  .hire {
-    color: #fff;
-    mix-blend-mode: difference;
+  /* a single warm surface under the identity, so the text never straddles
+     the paper|coal seam — readable on either half, and on the mobile stack */
+  .plate {
+    position: relative;
+    z-index: 1;
+    margin-top: -36px;
+    padding: 3.4rem 2.4rem 1.5rem;
+    background: var(--paper);
+    border: 1px solid var(--rule-ink);
+    border-radius: 14px;
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.6) inset,
+      0 30px 70px -34px rgba(0, 0, 0, 0.6);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    pointer-events: none;
   }
 
   .name {
@@ -50,21 +63,22 @@ import { profile } from '../data/profile';
     font-size: 1.55rem;
     font-weight: 480;
     letter-spacing: 0.045em;
-    margin: 1.1rem 0 0.3rem;
+    color: var(--ink);
+    margin: 0 0 0.35rem;
   }
 
   .tagline {
     font-family: var(--mono);
     font-size: 0.72rem;
     letter-spacing: 0.06em;
+    color: var(--ink-soft);
     margin: 0;
-    opacity: 0.72;
   }
 
   .hire-row {
     display: flex;
     gap: 1.6rem;
-    margin-top: 1rem;
+    margin-top: 1.15rem;
   }
 
   .hire {
@@ -72,22 +86,13 @@ import { profile } from '../data/profile';
     font-family: var(--mono);
     font-size: 0.7rem;
     letter-spacing: 0.12em;
+    color: var(--ink-soft);
     text-decoration: none;
-    opacity: 0.6;
-    transition: opacity 0.25s ease;
+    transition: color 0.25s ease;
   }
 
   .hire:hover,
   .hire:focus-visible {
-    opacity: 1;
-  }
-
-  @supports not (mix-blend-mode: difference) {
-    .name,
-    .tagline,
-    .hire {
-      color: var(--ink);
-      text-shadow: 0 0 12px var(--paper);
-    }
+    color: var(--ink);
   }
 </style>

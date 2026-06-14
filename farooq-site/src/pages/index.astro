@@ -411,8 +411,8 @@ import { profile } from '../data/profile';
     }
 
     /* flex `order` also reorders painting, so the coal half (order 3) would
-       paint over the seam; z-index is safe here because on mobile the
-       nameplate sits fully on coal and doesn't need the blend trick */
+       paint over the seam; z-index keeps the plate on top. The plate carries
+       its own paper surface, so no blend trick or color override is needed. */
     .split :global(.seam) {
       order: 2;
       position: relative;
@@ -420,13 +420,6 @@ import { profile } from '../data/profile';
       z-index: 1;
       align-self: center;
       margin: -4.5rem 0 -7.25rem;
-    }
-
-    .split :global(.seam .name),
-    .split :global(.seam .tagline),
-    .split :global(.seam .hire) {
-      mix-blend-mode: normal;
-      color: var(--bone);
     }
 
     .half--coal {
