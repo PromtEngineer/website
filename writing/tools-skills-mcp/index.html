@@ -7,7 +7,7 @@
             gtag('js', new Date());
             gtag('config', GA_ID);
           })();</script><link rel="stylesheet" href="/_astro/Base.DFu6d-0c.css">
-<link rel="stylesheet" href="/_astro/_id_.Ca-OZxaH.css"></head> <body>  <main class="page" data-astro-cid-oodgithn> <a class="back" href="/writing/" data-astro-cid-oodgithn>&larr; writing</a> <article data-astro-cid-oodgithn> <header class="head" data-astro-cid-oodgithn> <h1 class="title" data-astro-cid-oodgithn>Tools vs skills vs MCP: how agents acquire capabilities</h1> <p class="meta" data-astro-cid-oodgithn> <span data-astro-cid-oodgithn>June 11, 2026</span> <span class="sep" data-astro-cid-oodgithn>·</span> <span data-astro-cid-oodgithn>6 min read</span>  </p> </header> <div class="prose" data-astro-cid-oodgithn> <aside class="tldr">
+<link rel="stylesheet" href="/_astro/_id_.Ca-OZxaH.css"></head> <body>  <main class="page" data-astro-cid-oodgithn> <a class="back" href="/writing/" data-astro-cid-oodgithn>&larr; writing</a> <article data-astro-cid-oodgithn> <header class="head" data-astro-cid-oodgithn> <h1 class="title" data-astro-cid-oodgithn>Tools vs skills vs MCP: how agents acquire capabilities</h1> <p class="meta" data-astro-cid-oodgithn> <span data-astro-cid-oodgithn>June 11, 2026</span> <span class="sep" data-astro-cid-oodgithn>·</span> <span data-astro-cid-oodgithn>8 min read</span>  </p> </header> <div class="prose" data-astro-cid-oodgithn> <aside class="tldr">
   <p>TL;DR</p>
   <ul>
     <li>Tools are the primitives a harness ships or registers: read, edit, bash, search. Each is defined by a schema and gated by permissions.</li>
@@ -16,29 +16,29 @@
     <li>Every capability you add is attack surface. One audit found one in four community-contributed agent skills contains a vulnerability.</li>
   </ul>
 </aside>
-<p>Agents acquire capabilities through three mechanisms: tools, skills, and MCP. The terms get used interchangeably, and they name three different things. A tool is not a skill. A skill is not just a prompt. And MCP is not a capability at all.</p>
-<p>This post is a taxonomy: what each layer actually is, how the three interact inside a harness, the confusions worth untangling, and a short list for deciding which one you need.</p>
-<h2 id="tools-are-primitives">Tools are primitives</h2>
-<p>A tool is a function the model can call. Read a file. Edit a file. Run a bash command. Search the codebase. Fetch a URL.</p>
-<p>Three properties define the tool layer:</p>
+<p>Here’s a situation you’ve probably been in. Your agent can’t do something you need it to do, and you’re staring at three options that all sound like the answer: write a tool, write a skill, or wire up an MCP server. The terms get used interchangeably, so it feels like a coin flip. But they name three different things. A tool is not a skill. A skill is not just a prompt. And MCP, despite how people talk about it, is not a capability at all.</p>
+<p>So this post walks the three layers in order, from the bottom up, and by the end you’ll have a short set of rules for picking one. Two things to hold onto along the way: there’s a moment where all this structure disappears from the model’s point of view, and there’s a security bill for every layer you add, with one number attached that should change how you install things. We’ll get to both.</p>
+<h2 id="start-at-the-floor-tools-are-primitives">Start at the floor: tools are primitives</h2>
+<p>The place to start is the action itself. A tool is a function the model can call, and that’s the whole definition: read a file, edit a file, run a bash command, search the codebase, fetch a URL. Strip away everything else and a tool is just code the model is allowed to invoke.</p>
+<p>Now, “code the model can invoke” needs guardrails, so three properties define the layer:</p>
 <ul>
-<li><strong>A schema.</strong> Every tool declares a name, a description, and an input schema. The schema is the contract: the model fills in arguments, the harness validates them, the handler runs.</li>
-<li><strong>A registry.</strong> The harness keeps one table of everything callable: what is available, what permission each entry needs, and how calls get dispatched.</li>
-<li><strong>Permissions.</strong> Each tool declares the minimum access it needs, and the harness enforces that at dispatch time, before anything runs.</li>
+<li><strong>A schema.</strong> The model can’t call a function it can’t describe, so every tool declares a name, a description, and an input schema. The schema is the contract: the model fills in arguments, the harness validates them, the handler runs.</li>
+<li><strong>A registry.</strong> With more than a handful of tools, the harness needs one table of everything callable: what is available, what permission each entry needs, and how calls get dispatched.</li>
+<li><strong>Permissions.</strong> You don’t want an agent running arbitrary actions unchecked, so each tool declares the minimum access it needs and the harness enforces that at dispatch time, before anything runs.</li>
 </ul>
-<p>Tools are universal. Every coding agent needs read, edit, and bash, which is why every harness ships them as built-ins. They change rarely, and adding one means writing real code with error handling and tests. Tools are component three of the nine I covered in <a href="/writing/what-is-an-agent-harness/">the harness essay</a>.</p>
-<h2 id="skills-are-knowledge">Skills are knowledge</h2>
-<p>Skills sit on top of tools. A skill adds no new actions. It encodes how and when to use the actions the agent already has, and it is usually markdown.</p>
-<p>Anthropic’s agent skills are the most developed version of the idea. In their words: “Skills are folders that include instructions, scripts, and resources that Claude can load when needed.” A folder, a SKILL.md file, optional scripts and references. The harness scans the available skills during a task and loads only the ones that match, so a large library costs almost no context. Anthropic shipped the feature in October 2025 and published the format as an open standard that December.</p>
-<p>Skills come in two kinds:</p>
+<p>Notice what tools have in common: they’re universal. Every coding agent needs read, edit, and bash, which is why every harness ships them as built-ins. They change rarely, and adding one means writing real code with error handling and tests. Tools are component three of the nine I covered in <a href="/writing/what-is-an-agent-harness/">the harness essay</a>. But universal is exactly the problem: tools know nothing about your team, your deploy process, or your conventions. Something has to carry that knowledge, and that’s the next layer up.</p>
+<h2 id="skills-knowledge-about-the-tools-you-already-have">Skills: knowledge about the tools you already have</h2>
+<p>Say your agent has all the right tools but keeps deploying the wrong way. The missing piece isn’t an action, it’s know-how, and that’s what a skill is. A skill sits on top of tools, adds no new actions, and encodes how and when to use the actions the agent already has. In its simplest form, a skill is a document.</p>
+<p>Anthropic’s agent skills are the most developed version of the idea. In their words: “Skills are folders that include instructions, scripts, and resources that Claude can load when needed.” A folder, a SKILL.md file, optional scripts and references. The catch with any knowledge layer is context cost, so the format solves for that: the harness scans the available skills during a task and loads only the ones that match, which means a large library costs almost no context. Anthropic shipped the feature in October 2025 and published the format as an open standard that December.</p>
+<p>In practice you’ll meet two kinds:</p>
 <ul>
 <li><strong>Built-in.</strong> Every harness ships a baseline: how to make a git commit, open a pull request, run the tests and read the results.</li>
 <li><strong>User-added.</strong> These encode your team: the deploy procedure, the review checklist, the way your migrations work.</li>
 </ul>
-<p>The economics are the appeal. A new tool is a software project. A new skill is a document. If you can write a runbook, you can write a skill. Tools are universal; skills are specific to you.</p>
-<p>A close cousin is <a href="https://agents.md">AGENTS.md</a>, “a README for agents,” now in over 60,000 open-source repositories. Same idea, knowledge as markdown, but different scope: AGENTS.md is project context the harness loads every session, while a skill is a procedure pulled in on demand.</p>
-<h2 id="mcp-is-a-protocol-not-a-capability">MCP is a protocol, not a capability</h2>
-<p>MCP is the most misfiled of the three. It is not a tool and it is not a skill. The Model Context Protocol describes itself as “an open-source standard for connecting AI applications to external systems,” and its own analogy is the right one: MCP is like a USB-C port. A standardized connector, not a device.</p>
+<p>The economics are why the second kind matters. A new tool is a software project. A new skill is a document. If you can write a runbook, you can write a skill, and that’s the fastest path from “the agent uses our stack wrong” to “the agent uses it our way.”</p>
+<p>A close cousin is <a href="https://agents.md">AGENTS.md</a>, “a README for agents,” now in over 60,000 open-source repositories. Same idea, knowledge as markdown, but different scope: AGENTS.md is project context the harness loads every session, while a skill is a procedure pulled in on demand. So far everything we’ve covered lives inside one harness. The obvious next question is what happens when the capability you need lives somewhere else.</p>
+<h2 id="mcp-a-connector-not-a-capability">MCP: a connector, not a capability</h2>
+<p>This is where MCP comes in, and it’s the most misfiled of the three. It is not a tool and it is not a skill. The Model Context Protocol describes itself as “an open-source standard for connecting AI applications to external systems,” and its own analogy is the right one: MCP is like a USB-C port. A standardized connector, not a device. Reduced to its floor, MCP is a wire format for tools that live in another process.</p>
 <p>The mechanics, briefly:</p>
 <ul>
 <li>The harness acts as an MCP host and opens one client connection per server.</li>
@@ -46,19 +46,19 @@
 <li>The harness calls <code>tools/list</code> to discover what a server offers and <code>tools/call</code> to execute.</li>
 <li>Servers run locally over stdio or remotely over HTTP.</li>
 </ul>
-<p>What the protocol buys you is portability. Without a standard, every harness needs its own GitHub integration, its own database integration, its own browser integration: N harnesses times M systems. With MCP, someone writes one GitHub server and it works in Claude Code, VS Code, Cursor, ChatGPT, and anything else that speaks the protocol. Build once, connect everywhere.</p>
+<p>Why bother with a protocol at all? Without a standard, every harness needs its own GitHub integration, its own database integration, its own browser integration: N harnesses times M systems, and that multiplication is the pain MCP removes. With it, someone writes one GitHub server and it works in Claude Code, VS Code, Cursor, ChatGPT, and anything else that speaks the protocol. Build once, connect everywhere. Which leaves one question standing: when a session is running, how do these three layers actually behave together?</p>
 <h2 id="how-the-three-fit-together">How the three fit together</h2>
 <figure>
   <img src="/writing/tools-skills-mcp/capability-stack.svg" alt="Layer diagram: inside a dashed harness boundary, a skills layer (procedures and conventions in markdown) sits above a tools layer (read, edit, bash, search primitives defined by schema and gated by permissions), bound by a registry; outside the boundary, external tool servers for GitHub, databases, and the browser connect in through MCP, an open protocol whose arrow crosses the harness boundary into the tool layer" width="1200" height="620">
   <figcaption>Tools inside, knowledge on top, MCP crossing the boundary.</figcaption>
 </figure>
-<p>In a real session the layers compose:</p>
+<p>In a real session the layers compose, and the picture above is the whole story:</p>
 <ol>
-<li><strong>An MCP server exposes tools.</strong> The harness discovers them at connection time and merges them into the same registry as the built-ins.</li>
-<li><strong>Skills say when and how.</strong> A database skill might tell the agent to query the read replica, never production, and to check the schema resource before writing SQL.</li>
+<li><strong>An MCP server exposes tools.</strong> The harness discovers them at connection time and merges them into the same registry as the built-ins, so a remote tool ends up sitting next to <code>read</code> and <code>bash</code> in one table.</li>
+<li><strong>Skills say when and how.</strong> A database skill might tell the agent to query the read replica, never production, and to check the schema resource before writing SQL. The skill steers; the tools act.</li>
 <li><strong>The registry and permissions govern everything.</strong> A tool that arrived over MCP passes the same permission checks, the same hooks, and the same approval prompts as a tool the harness shipped.</li>
 </ol>
-<p>To the model, none of this structure is visible. It sees one flat list of callable things. The taxonomy exists for the people building and securing the system.</p>
+<p>And here’s the first payoff I promised: to the model, none of this structure is visible. It sees one flat list of callable things. The taxonomy exists for the people building and securing the system, not for the agent using it. That’s also why the terms blur so easily in conversation, which brings us to the confusions worth untangling.</p>
 <h2 id="common-confusions">Common confusions</h2>
 <ul>
 <li><strong>“MCP replaces tools.”</strong> No. MCP transports tools. The tool is still a schema-defined function; the protocol just moved its definition and execution to another process. Every MCP tool ends its journey as an ordinary entry in the harness registry.</li>
@@ -66,7 +66,8 @@
 <li><strong>“An MCP server is an agent.”</strong> No. A server has no loop and no model. It sits and waits for <code>tools/call</code>. The agency stays in the harness.</li>
 <li><strong>“Skills and AGENTS.md are the same thing.”</strong> Cousins, not twins. AGENTS.md is always-on project context. A skill is an on-demand procedure. You want both, for different jobs.</li>
 </ul>
-<h2 id="which-one-do-you-need">Which one do you need</h2>
+<p>With the confusions cleared, the coin flip from the opening turns into a short decision list.</p>
+<h2 id="so-which-one-do-you-need">So which one do you need?</h2>
 <ul>
 <li>The agent cannot perform an action at all: write a <strong>tool</strong>.</li>
 <li>The capability lives in an external system, or you want it in more than one harness: stand up or install an <strong>MCP server</strong>.</li>
@@ -74,9 +75,10 @@
 <li>Every session in this repo needs the same context: put it in <strong>AGENTS.md</strong>.</li>
 <li>You need to enforce a rule rather than suggest it: that is <strong>permissions and hooks</strong>, not any of the three.</li>
 </ul>
+<p>Before you go apply that list, though, there’s the bill I mentioned at the start.</p>
 <h2 id="more-capability-means-more-attack-surface">More capability means more attack surface</h2>
 <p>Each mechanism widens what the agent can do, which widens what an attacker can do through the agent.</p>
-<p>Tools are the most contained: code you wrote or vetted, behind schema validation and permission checks. Skills are instructions the model will follow, so a malicious or sloppy skill is prompt injection with a version number. One audit found that one in four community-contributed agent skills contains a vulnerability; I covered that finding in <a href="/writing/harness-engineering/">the harness engineering essay</a>. MCP imports both risks at once: you are running someone else’s code or trusting someone else’s server, and its tool descriptions flow straight into your context.</p>
+<p>Tools are the most contained: code you wrote or vetted, behind schema validation and permission checks. Skills are instructions the model will follow, so a malicious or sloppy skill is prompt injection with a version number. And here’s the number I promised: one audit found that one in four community-contributed agent skills contains a vulnerability. I covered that finding in <a href="/writing/harness-engineering/">the harness engineering essay</a>. MCP imports both risks at once: you are running someone else’s code or trusting someone else’s server, and its tool descriptions flow straight into your context.</p>
 <p>The defenses live in the harness, not in the capability layers themselves: one registry, permission checks at dispatch, hooks that can deny a call before it runs. And treat third-party skills and servers the way you treat dependencies. Read them before you install them, pin what you can, and grant the least access that still does the job.</p>
 <h2 id="sources">Sources</h2>
 <ul>
