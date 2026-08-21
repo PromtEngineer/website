@@ -1,0 +1,113 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Qwen3.8-27B reasoning levels are prompt driven, not enforced · Muhammad Farooq</title><meta name="description" content="Qwen3.8-27B ships four reasoning effort levels: off, low, medium, and xhigh. They are not enforced budgets, they are sentences in the system prompt. I ran 84 experiments to measure what each level does, what drives thinking length, and how to set them."><meta property="og:title" content="Qwen3.8-27B reasoning levels are prompt driven, not enforced · Muhammad Farooq"><meta property="og:description" content="Qwen3.8-27B ships four reasoning effort levels: off, low, medium, and xhigh. They are not enforced budgets, they are sentences in the system prompt. I ran 84 experiments to measure what each level does, what drives thinking length, and how to set them."><meta property="og:type" content="website"><meta property="og:url" content="https://engineerprompt.ai/writing/qwen-reasoning-budget/"><meta property="og:image" content="https://engineerprompt.ai/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Qwen3.8-27B reasoning levels are prompt driven, not enforced · Muhammad Farooq"><meta name="twitter:description" content="Qwen3.8-27B ships four reasoning effort levels: off, low, medium, and xhigh. They are not enforced budgets, they are sentences in the system prompt. I ran 84 experiments to measure what each level does, what drives thinking length, and how to set them."><meta name="twitter:image" content="https://engineerprompt.ai/og.png"><link rel="canonical" href="https://engineerprompt.ai/writing/qwen-reasoning-budget/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Muhammad Farooq","alternateName":"engineerprompt","description":"I research, build, and teach AI systems.","email":"mailto:engineerprompt@gmail.com","sameAs":["https://whryte.com","https://scholar.google.com/citations?user=vQcpPPAAAAAJ&hl=en","https://github.com/PromtEngineer","https://www.youtube.com/@engineerprompt","https://x.com/engineerrprompt","https://www.linkedin.com/in/mhfarooq/"]}</script><script async src="https://www.googletagmanager.com/gtag/js?id=G-QQPL8W86KM"></script><script>(function(){const GA_ID = "G-QQPL8W86KM";
+
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+              dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+            gtag('config', GA_ID);
+          })();</script><link rel="stylesheet" href="/_astro/Base.DFu6d-0c.css">
+<link rel="stylesheet" href="/_astro/_id_.Ca-OZxaH.css"></head> <body>  <main class="page" data-astro-cid-oodgithn> <a class="back" href="/writing/" data-astro-cid-oodgithn>&larr; writing</a> <article data-astro-cid-oodgithn> <header class="head" data-astro-cid-oodgithn> <h1 class="title" data-astro-cid-oodgithn>Qwen3.8-27B reasoning levels are prompt driven, not enforced</h1> <p class="meta" data-astro-cid-oodgithn> <span data-astro-cid-oodgithn>August 20, 2026</span> <span class="sep" data-astro-cid-oodgithn>·</span> <span data-astro-cid-oodgithn>11 min read</span>  </p> </header> <div class="prose" data-astro-cid-oodgithn> <aside class="tldr">
+  <p>TL;DR</p>
+  <ul>
+    <li>Qwen3.8-27B's reasoning levels are not enforced budgets. The chat template adds one sentence for xhigh, a different sentence for low, and nothing at all for medium.</li>
+    <li>Because of that, the levels bind weakly. In my tests a low run generated 49K thinking tokens while the same task at xhigh generated 38K, and two identical runs differed by 4.5x.</li>
+    <li>The type of task predicts thinking better than the difficulty. Python script tasks scaled with complexity (Spearman 1.00 at every level). Web app tasks drew a large thinking budget no matter how hard they were (0.20).</li>
+    <li>An explicit number in the prompt works like a magnet, not a wall. A 2,000-token cap was overshot 10x on average. A 24,000-token floor was met in 6 of 8 tasks.</li>
+    <li>Answer length never changes. Every extra token you pay for is thinking, and your client throws that part away.</li>
+  </ul>
+</aside>
+<p>Qwen3.8-27B is one of the best local models you can run on consumer hardware. It comes with four reasoning levels: off, low, medium, and xhigh. However, these levels are not what you might think. They are not enforced limits. They are prompt driven, and that can confuse you, because in some situations a low reasoning effort generates more tokens than xhigh. In this post I want to show you exactly what these levels do, the experiments I ran to measure them, and how I recommend setting them.</p>
+<p>Quick background on my setup: I serve this model with vLLM on a two-node DGX Spark cluster, and everything below is measured on that stack. All the runs are single turn, and I count reasoning and answer tokens separately with the server’s own tokenizer.</p>
+<h2 id="what-the-four-levels-actually-do">What the four levels actually do</h2>
+<p>When thinking is on, the model generates in two phases: a private reasoning trace inside <code>&#x3C;think></code> tags, then the visible answer. Your client shows the answer and discards the trace, but you pay for every token of the trace in time and compute. The reasoning levels are supposed to control how long that trace gets.</p>
+<p>Here is how they actually work. The chat template, the Jinja file that assembles your messages into the final prompt, handles <code>reasoning_effort</code> in one short block. You can read it yourself in <a href="https://huggingface.co/Qwen/Qwen3.8-27B/blob/main/chat_template.jinja">the model’s chat_template.jinja on Hugging Face</a>. The structure is a plain if/elif:</p>
+<pre style="background:#161614;color:#F2EFE9;padding:16px 20px;border-radius:8px;overflow-x:auto;font-family:Menlo,Consolas,monospace;font-size:15px;line-height:1.7"><code style="background:transparent;color:#F2EFE9;padding:0;border:none;font-family:inherit;font-size:inherit">if reasoning_effort == 'xhigh':
+    reasoning_instructions = &#x3C;the xhigh sentence>
+elif reasoning_effort == 'low':
+    reasoning_instructions = &#x3C;the low sentence></code></pre>
+<p>For xhigh, the injected sentence is, verbatim:</p>
+<blockquote>
+<p>Reasoning effort is set to xhigh. Please think carefully through the task, validate key assumptions, consider plausible alternatives, and prioritize correctness, consistency, and clarity in the final answer.</p>
+</blockquote>
+<p>For low:</p>
+<blockquote>
+<p>Reasoning effort is set to low. Keep your thinking brief and focused, moving directly to the conclusion without unnecessary elaboration.</p>
+</blockquote>
+<p>That string gets prepended to your system message, and that is the entire mechanism. Setting xhigh asks the model to think carefully. Setting low asks it to keep things brief. There is no token budget and no decoding constraint.</p>
+<p>Notice there is no medium branch. If you pick medium, the template injects nothing. Medium is the model’s natural behavior with thinking enabled and no instruction at all. So the four levels reduce to: thinking disabled, a sentence asking for less, no instruction, and a sentence asking for more. Only the off setting is structural, because the template closes the think block before the model can write into it.</p>
+<h2 id="how-other-models-set-their-thinking-budget">How other models set their thinking budget</h2>
+<p>For context, it helps to know what the rest of the industry does, because Qwen’s approach is the weakest of four mechanisms in use.</p>
+<p>The first mechanism is a hard numeric budget. Google’s Gemini 2.5 models take a <code>thinkingBudget</code> parameter, an integer between 0 and 24,576 that sets an upper limit on thinking tokens, and 0 disables thinking. Anthropic’s earlier Claude models worked the same way with <code>budget_tokens</code>, an enforced ceiling on the thinking block.</p>
+<p>The second mechanism is trained effort levels, and this is where the industry is converging. OpenAI’s <code>reasoning_effort</code> uses the same words as Qwen, low, medium, high, but it is not a prompt sentence. It is an API parameter that conditions how many reasoning tokens the model generates, and that behavior is trained into the model. Google moved the same direction: Gemini 3 replaced the numeric budget with a discrete <code>thinking_level</code>. Anthropic did too: current Claude models combine effort levels with adaptive thinking, where the model decides on its own how much to think, and the old hard budget is deprecated. Both companies retired their enforced numbers, and my data suggests why: the right budget depends heavily on the task, so a fixed number is the wrong abstraction.</p>
+<p>The third mechanism is server-injected awareness, and Anthropic’s task budgets are the interesting middle ground. You declare a token budget for a task and the server injects a live countdown that the model sees while it generates, so it can pace itself. It is still advisory, but the model knows how much budget remains. That is exactly the information Qwen’s sentence does not carry.</p>
+<p>The fourth mechanism is the prompt sentence you saw above. There is also a fifth option that no API exposes but local serving makes possible: because the trace lives inside think tags, the inference server can force-close the tag when a token counter hits your limit. That is a true cap that needs no cooperation from the model, and nothing stops you from adding it to vLLM.</p>
+<p>A sentence can still steer a model. The question is how well, and that is measurable. I ran three experiments to find out.</p>
+<h2 id="experiment-1-the-levels-against-seven-coding-tasks">Experiment 1: the levels against seven coding tasks</h2>
+<p>First I wanted to see how the levels behave on real work. I wrote seven coding prompts of increasing complexity, from a Pomodoro timer widget up to a full analytics dashboard, and ran each one at all four levels. That is 28 runs, with a 96K token limit so nothing truncates.</p>
+<figure>
+  <img src="/writing/qwen-reasoning-budget/fig1-effort-dial.png" alt="Grouped bar chart of thinking tokens for seven coding tasks at the low, medium, and xhigh presets. Bars do not increase with task complexity, and several low bars tower over their xhigh neighbors" width="1200" height="531">
+  <figcaption>Thinking tokens across seven tasks of increasing complexity. The bars do not step up with difficulty, and the low bars are not consistently below the xhigh bars.</figcaption>
+</figure>
+<p>The averages move in the right direction: 22K thinking tokens at low, 28K at medium, 43K at xhigh. But look at the individual tasks and the picture falls apart:</p>
+<ul>
+<li>On the typing benchmark, low generated 49,179 thinking tokens and xhigh generated 38,413. The low run out-thought the xhigh run.</li>
+<li>On the particle sandbox, medium and xhigh were the same: 65K against 63K.</li>
+<li>I re-ran one low cell with identical settings and got 24,606 tokens the first time and 5,456 the second. That is a 4.5x difference on the same input.</li>
+<li>Task difficulty predicted nothing. The correlation between complexity and thinking length was flat to negative at every level, and the hardest prompt drew the smallest xhigh budget of the whole set.</li>
+</ul>
+<p>This is what prompt-driven control looks like. The sentence shifts the average, but when the model reads a task that feels hard, the request to be brief loses. A low run that thinks for 49K tokens is not a bug. It is the model weighing a suggestion against its own judgment.</p>
+<p>One task in this set behaved differently, and it turned out to matter. The one prompt that was not a web app, a Blender Python script, barely thought at all on low and medium, around 500 tokens, then jumped 80x at xhigh. That pattern is what the second experiment is about.</p>
+<h2 id="experiment-2-task-type-against-task-difficulty">Experiment 2: task type against task difficulty</h2>
+<p>The Blender result suggested that the type of task matters more than the difficulty. To test that properly I built a paired benchmark: four complexity tiers, and at each tier one web app task and one Python script task of matched difficulty. Tier 1 is a lava lamp animation and a spirograph poster. Tier 4 is a from-scratch 3D planet renderer and a numpy ray tracer. Eight prompts, four levels each, 32 runs.</p>
+<figure>
+  <img src="/writing/qwen-reasoning-budget/fig2-modality.png" alt="Two line charts sharing a y axis. Left panel, web apps: thinking token lines start high and wander with no relationship to tier. Right panel, Python scripts: three green lines rise monotonically from tier one to tier four" width="1200" height="552">
+  <figcaption>The same complexity ladder, two task types. Python thinking rises with difficulty at every level. Web thinking starts high and stays high.</figcaption>
+</figure>
+<p>The result is about as clean as experiments get:</p>
+<ul>
+<li>On Python scripts, thinking scales with difficulty perfectly. The Spearman correlation is 1.00 at low, at medium, and at xhigh, three independent times. At low, the progression reads 2,152 tokens, 6,001, 19,888, 38,027, tier by tier.</li>
+<li>On web apps, the correlation drops to 0.20. The tier-1 lava lamp drew 39,586 thinking tokens at low. The much harder tier-3 flocking simulation drew 1,033 at the same setting.</li>
+</ul>
+<p>My read on why: a Python script is one file with one job, so the model can size the work up front. A web app prompt bundles layout, styling, state, and interaction into one request, and the model treats all of it as open questions. Whatever the cause, the practical rule is simple. Web app prompts are expensive at every level, and Python script prompts cost roughly what they look like they should cost.</p>
+<h2 id="experiment-3-writing-the-budget-yourself">Experiment 3: writing the budget yourself</h2>
+<p>The levels are just sentences, and sentences are text you control. So the third experiment replaces them with explicit numbers. I took the same eight tasks and ran three instructions in the system message: thinking must not exceed 2,000 tokens, thinking must not exceed 8,000 tokens, and thinking must be at least 24,000 tokens. All three ran on top of the low preset, so the only variable is the stated number. That is 24 more runs.</p>
+<figure>
+  <img src="/writing/qwen-reasoning-budget/fig3-budget-magnet.png" alt="Dot plot with four columns: no budget, a 2,000-token cap, an 8,000-token cap, and a 24,000-token floor. Dashed green lines mark each stated budget. Dots sit far above the 2,000 line, closer to the 8,000 line, and cluster at or above the 24,000 line" width="1200" height="555">
+  <figcaption>Actual thinking against three stated budgets, eight tasks each. The tight cap is ignored, the loose cap attracts, and the floor mostly binds.</figcaption>
+</figure>
+<p>The pattern across all 24 runs: a stated number acts like a magnet, not a wall.</p>
+<ul>
+<li>The 2,000-token cap failed. The median run overshot it 10x, and the worst case was 16.8x.</li>
+<li>The 8,000-token cap pulled thinking toward 8K from both directions. One task complied at 0.86x the budget. Another task that naturally used 2K tokens got pulled up 4.4x just because the prompt mentioned a bigger number.</li>
+<li>The 24,000-token floor worked best. Six of eight tasks met it, and one task whose natural appetite was 1,033 tokens rose to 52,906 on request.</li>
+</ul>
+<p>The insight here is the asymmetry. You can reliably talk this model into thinking more. You cannot talk it into thinking less when the task pulls the other way. If you need cheap, the only setting that binds is turning thinking off.</p>
+<p>There is one more result that held across all 84 runs, and it changes how you should think about cost. Answer length never moved. The mean answer stayed between 8.5K and 11K tokens at every level and under every budget instruction. The dial only changes the size of the trace you throw away. At xhigh, roughly three out of every four tokens you generate are discarded reasoning.</p>
+<figure>
+  <img src="/writing/qwen-reasoning-budget/fig4-preset-cost.png" alt="Horizontal stacked bars for the four presets. Green answer segments stay near 9 to 11K tokens on every row while gray thinking segments grow from zero at off to 47K at xhigh" width="1200" height="379">
+  <figcaption>Mean cost per task across 60 preset runs. The answer, in green, is the same size on every row. The level only resizes the gray thinking segment.</figcaption>
+</figure>
+<h2 id="two-settings-that-matter-in-multi-turn-use">Two settings that matter in multi-turn use</h2>
+<p>Everything above is single turn. If you run this model in an agent loop, one more template setting comes into play: <code>preserve_thinking</code>, which is on by default.</p>
+<p>With <code>preserve_thinking</code> on, the template re-embeds the full think block of every previous assistant turn into the next prompt. Each turn’s context grows by that turn’s complete reasoning trace. At xhigh, where a turn generates 30 to 60K thinking tokens, a 262K context window fills in about four to five turns.</p>
+<p>The natural fix is to turn it off, but there is a trade. With the flag on, each turn’s prompt is an exact prefix extension of the previous one, so the server’s prefix cache hits and prefill stays cheap. With the flag off, the template re-renders history without the thinking that was originally there, the cached KV diverges at every turn boundary, and every turn pays full re-prefill. You save context or you save prefill, not both. The practical answer is to keep per-turn thinking small in agent loops, off or low, so the default stays affordable on both axes.</p>
+<h2 id="how-i-set-it-up-now">How I set it up now</h2>
+<p>Based on these 84 runs, here is my configuration:</p>
+<ul>
+<li>Interactive chat runs with thinking off or low. The answer is the same size either way, and the latency difference is the entire user experience.</li>
+<li>Hard problems get an explicit floor in the system message, “reason for at least N tokens.” That binds better than the xhigh sentence.</li>
+<li>I never rely on a cap. A cap below the model’s natural appetite gets ignored. When I need cheap, I turn thinking off.</li>
+<li>Agent loops keep thinking off or low so <code>preserve_thinking</code> can stay on and the prefix cache keeps working.</li>
+<li>Any time a web app prompt goes in, I expect heavy thinking no matter what the level says.</li>
+</ul>
+<p>The general lesson applies beyond this one model. When a provider gives you a knob, check whether it is enforced in code or requested in prose. Code fails loudly at the boundary. Prose fails quietly in the middle, and you only find out by measuring. That is what the reasoning levels on Qwen3.8-27B are: a request, not a rule. Set them accordingly.</p>
+<h2 id="sources">Sources</h2>
+<ul>
+<li><a href="https://huggingface.co/Qwen/Qwen3.8-27B">Qwen/Qwen3.8-27B</a> on Hugging Face, and <a href="https://huggingface.co/Qwen/Qwen3.8-27B/blob/main/chat_template.jinja">the chat_template.jinja file</a> with the reasoning effort block</li>
+<li><a href="https://x.com/moskstraum21745/status/2090114485423927611">The X thread that flagged the template mechanism</a>, which these experiments verify and quantify</li>
+<li>The raw data for all 84 runs: <a href="/writing/qwen-reasoning-budget/data/round1-presets.jsonl">round 1</a>, <a href="/writing/qwen-reasoning-budget/data/round2-visualbench.jsonl">round 2</a>, <a href="/writing/qwen-reasoning-budget/data/round3-budgetbench.jsonl">round 3</a>, and <a href="/writing/qwen-reasoning-budget/data/full-report.md">the full report</a></li>
+<li><a href="https://ai.google.dev/gemini-api/docs/thinking">Gemini thinking documentation</a>, the numeric <code>thinkingBudget</code> and the newer <code>thinking_level</code></li>
+<li><a href="https://developers.openai.com/api/docs/guides/reasoning">OpenAI reasoning models guide</a>, the <code>reasoning_effort</code> parameter</li>
+<li><a href="https://docs.claude.com/en/docs/build-with-claude/extended-thinking">Anthropic extended thinking documentation</a>, adaptive thinking and effort levels</li>
+</ul> </div>  <footer class="foot" data-astro-cid-oodgithn> <div class="who" data-astro-cid-oodgithn> <img src="/portrait.jpg" alt="Portrait of Muhammad Farooq" width="52" height="52" data-astro-cid-oodgithn> <div data-astro-cid-oodgithn> <p class="who-name" data-astro-cid-oodgithn>Muhammad Farooq</p> <p class="who-line" data-astro-cid-oodgithn>I research, build, and teach AI systems.</p> </div> </div> <nav class="links" aria-label="Continue" data-astro-cid-oodgithn> <a class="more" href="/writing/" data-astro-cid-oodgithn>More writing<span class="arrow" data-astro-cid-oodgithn>&nbsp;&rarr;</span></a> <a class="more" href="mailto:engineerprompt@gmail.com?subject=AI%20consulting" data-astro-cid-oodgithn>AI consulting<span class="arrow" data-astro-cid-oodgithn>&nbsp;&rarr;</span></a> </nav> </footer> </article> <div class="lightbox" id="lightbox" hidden data-astro-cid-oodgithn> <img alt="" data-astro-cid-oodgithn> </div> </main>  </body></html> <script type="module">const e=document.getElementById("lightbox"),o=e?e.querySelector("img"):null;if(e&&o){for(const t of document.querySelectorAll(".prose figure img"))t.addEventListener("click",()=>{o.setAttribute("src",t.getAttribute("src")||""),o.setAttribute("alt",t.getAttribute("alt")||""),e.hidden=!1,document.body.style.overflow="hidden"});const i=()=>{e.hidden=!0,document.body.style.overflow=""};e.addEventListener("click",i),window.addEventListener("keydown",t=>{t.key==="Escape"&&i()})}</script>
