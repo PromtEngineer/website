@@ -15,39 +15,35 @@ tags: ['agents', 'harness engineering']
   </ul>
 </aside>
 
-Picture an agent an hour into a real task. It has read fifty files, run a hundred searches, and its context window is nearly full of things it no longer needs. You give it one more question and the answers get vague. The window is one fixed-size box, and the task is bigger than the box. So what does a harness do when one context window is not enough?
-
-The answer the major harnesses converged on is sub-agents: the parent agent spawns child agents that work in isolation, each with its own session, a restricted set of tools, and a focused prompt scoped to one task. In this post I want to walk the whole idea from that failure to the fix: why single-context agents hit a wall, how the isolation model works, the spawn, restrict, collect pattern, what comes back to the parent, and when delegation is the wrong call. There is also a catch hiding inside the isolation itself, and we'll get to it near the end. This expands component four from my essay on [the anatomy of a harness](/writing/what-is-an-agent-harness/).
+Sub-agents are how a harness handles tasks that do not fit in one context window. The parent agent spawns child agents that work in isolation, each with its own session, a restricted set of tools, and a focused prompt scoped to one task. All the major harnesses converged on this design. In this post I want to show you why single-context agents hit a wall, how the isolation model works, the spawn, restrict, collect pattern, what comes back to the parent, and when delegation is the wrong call. This expands component four from my essay on [the anatomy of a harness](/writing/what-is-an-agent-harness/).
 
 ## Why one window is not enough
 
-Before the fix makes sense, we need to be precise about the failure, and there are two of them.
+A single-context agent fails in two ways.
 
 The first is exhaustion. Every turn adds messages and tool results, so the transcript only ever grows. One file read can be tens of thousands of tokens. Grep output, search results, and command logs pile up, because every tool call writes another object into the transcript. Long before the hard limit, quality degrades: the model is no longer reasoning over the task. It is swimming through its own transcript.
 
-The second is interference, and it is sneakier. When one thread carries several pieces of work, the residue of one step pollutes the next. The fifty files the agent read to answer question A are still sitting in context while it works on question B, competing for attention with the details that actually matter.
+The second is interference. When one thread carries several pieces of work, the residue of one step pollutes the next. The fifty files the agent read to answer question A are still sitting in context while it works on question B, competing for attention with the details that matter.
 
-Now, some tasks will not fit no matter how careful you are. Anthropic built their research system around delegation precisely because serious research involves "information that exceeds single context windows." No amount of pruning fixes that. You need more windows, which raises the next question: how should those windows relate to each other?
+Some tasks will not fit no matter how careful you are. Anthropic built their research system around delegation because serious research involves "information that exceeds single context windows." No amount of pruning fixes that. You need more windows.
 
 ## Isolation, not sharing
 
-Your first instinct might be to share: give the child a copy of the parent's conversation so it has full context. The harnesses all went the other way. A sub-agent is closer to an isolated process than to a shared thread, a fresh box rather than a fork of the old one.
+Once you have multiple windows, the design question is how they relate. You might expect the harness to give the child a copy of the parent's conversation so it has full context. The harnesses all went the other way. A sub-agent is closer to an isolated process than to a shared thread, a fresh box rather than a fork of the old one.
 
-Look at how the major harnesses spawn children:
+Here is how the major harnesses spawn children:
 
 - Pi starts a fresh process with just the task string.
 - OpenClaw starts a fresh session by default and passes only filtered workspace context.
 - Claude Code's typed-agent path starts blank: the delegated prompt becomes the first user message, with restricted tools and permissions.
 
-Nobody copies the parent's conversation into the child. The child gets the task, the permissions, and the workspace slice it needs. Not the parent's whole mental state, because inheriting that transcript would just recreate the exhaustion problem one level down.
+Nobody copies the parent's conversation into the child. The child gets the task, the permissions, and the workspace slice it needs, not the parent's whole mental state. Inheriting the parent's transcript would recreate the exhaustion problem one level down.
 
 The isolation has three parts:
 
 - **Own session.** A clean context window, with the full budget available for one task. The interference problem disappears because there is nothing else in the box.
 - **Restricted tools.** An exploration agent gets read and search, not edit and bash. Restriction keeps the child focused and limits the damage if it goes wrong.
 - **Scoped prompt.** The child has no memory of the parent's conversation, so the prompt must stand alone: the task, the constraints, and what to return.
-
-That is the shape of one child. The lifecycle that manages it is even simpler.
 
 ## Spawn, restrict, collect
 
@@ -64,29 +60,29 @@ The whole lifecycle fits in three verbs.
   <figcaption>The parent's window stays clean. The children's windows fill up and get thrown away.</figcaption>
 </figure>
 
-Notice the shape of the diagram: the mess happens in the children and dies with them. That "collect" step is doing more work than it looks like, and we'll come back to it. First, does this pattern hold up outside a diagram?
+The mess happens in the children and dies with them. The parent's window stays clean because it only ever receives the compact results.
 
 ## Orchestrator and workers
 
-It does, and Anthropic has a name for it: the orchestrator-workers pattern, "a central LLM dynamically breaks down tasks, delegates them to worker LLMs, and synthesizes their results." The key word is dynamically. The parent decides the subtasks at runtime, based on the task in front of it, not from a predetermined fan-out.
+Anthropic has a name for this pattern: orchestrator-workers, "a central LLM dynamically breaks down tasks, delegates them to worker LLMs, and synthesizes their results." The key word is dynamically. The parent decides the subtasks at runtime, based on the task in front of it, not from a predetermined fan-out.
 
 Their multi-agent research system is the clearest production example. A lead agent running Claude Opus 4 plans the research and spawns subagents running Claude Sonnet 4. Each subagent searches in its own context window, with its own tools and its own trajectory, then feeds the essential findings back. The lead agent synthesizes and decides whether to spawn more.
 
-So does all this machinery pay off? The numbers say yes, and loudly. The multi-agent system outperformed single-agent Claude Opus 4 by 90.2% on Anthropic's internal research eval. And parallelizing the work, three to five subagents at once with three or more tool calls inside each, cut research time by up to 90% for complex queries. Those gains hinge on one detail we promised to return to: what exactly travels back from child to parent.
+The results are large. The multi-agent system outperformed single-agent Claude Opus 4 by 90.2% on Anthropic's internal research eval. Parallelizing the work, three to five subagents at once with three or more tool calls inside each, cut research time by up to 90% for complex queries.
 
 ## What comes back
 
 The child returns a summary or an artifact. Never its transcript.
 
-This is the detail that makes the whole pattern work. A child might burn hundreds of thousands of tokens reading files and running searches. If all of that flowed back, the parent would inherit exactly the debris the child was spawned to absorb, and we would be right back at the exhaustion failure from the top of this post. So the harness collapses the child's entire run into a few hundred tokens of result: the findings, the file paths, the pass or fail.
+This is the detail that makes the whole pattern work. A child might burn hundreds of thousands of tokens reading files and running searches. If all of that flowed back, the parent would inherit exactly the debris the child was spawned to absorb, which is the exhaustion failure again. So the harness collapses the child's entire run into a few hundred tokens of result: the findings, the file paths, the pass or fail.
 
 For large outputs, even a summary is the wrong channel. Anthropic has subagents write their output to a filesystem and pass back a pointer, to avoid what they call a game of telephone: results degrading as they get copied through conversation history.
 
-The accounting is asymmetric by design. The child spends a full window. The parent pays a paragraph. That asymmetry is what you are buying, and it does not come free.
+The accounting is asymmetric by design. The child spends a full window. The parent pays a paragraph. That asymmetry is what you are buying.
 
 ## When not to use sub-agents
 
-Here is the catch I flagged at the start: isolation has costs, and they are not small.
+Isolation has costs, and they are not small.
 
 - **Tokens.** Multi-agent systems use about 15 times more tokens than a chat interaction, by Anthropic's measurement. The task has to be valuable enough to justify that.
 - **Latency.** Every delegation is a full agent loop. In Anthropic's current system the lead agent executes subagents synchronously, waiting on each batch before it can proceed.
@@ -94,15 +90,15 @@ Here is the catch I flagged at the start: isolation has costs, and they are not 
 
 Anthropic's guidance on poor fits is direct: domains where every agent needs the same context, tasks with many dependencies between agents, and most coding work, which involves "fewer truly parallelizable tasks than research." They also note that LLM agents "are not yet great at coordinating and delegating to other agents in real time."
 
-My rule of thumb: delegate work that is self-contained and read-heavy. Keep tightly coupled edits in the parent. With the costs on the table, one last piece of research shows how central this pattern has already become.
+My rule of thumb: delegate work that is self-contained and read-heavy. Keep tightly coupled edits in the parent.
 
 ## The research signal
 
-One number from the Tsinghua harness paper puts the pattern in perspective: roughly 90% of all compute flows through delegated child agents, not the parent. Sit with that for a second. A modern harness is an orchestration pattern, not a reasoning pattern. It decomposes, delegates, and verifies. I covered that paper in [the harness engineering essay](/writing/harness-engineering/).
+One number from the Tsinghua harness paper shows how central this pattern has become: roughly 90% of all compute flows through delegated child agents, not the parent. A modern harness is an orchestration pattern, not a reasoning pattern. It decomposes, delegates, and verifies. I covered that paper in [the harness engineering essay](/writing/harness-engineering/).
 
 Anthropic's variance analysis points the same way. On the BrowseComp eval, token usage alone explained 80% of the performance variance. Spending more tokens wins, and once a task outgrows one window, sub-agents are the mechanism for spending them well.
 
-So the answer to the question we opened with, what a harness does when the task outgrows the box, is that it stops trying to fit everything in one box. Sub-agent isolation is process management: the harness acting as an operating system, again. The other half of that story is what happens inside a single window: capping file reads, compacting history, paging tool results to disk. That is the subject of the [companion post on context management](/writing/agent-context-management/).
+Sub-agent isolation is process management: the harness acting as an operating system. When a task outgrows the box, the harness stops trying to fit everything in one box. The other half of the story is what happens inside a single window: capping file reads, compacting history, paging tool results to disk. That is the subject of the [companion post on context management](/writing/agent-context-management/).
 
 ## Sources
 
