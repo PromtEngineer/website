@@ -3,7 +3,6 @@ title: 'Qwen3.8-27B reasoning levels are prompt driven, not enforced'
 description: 'Qwen3.8-27B ships four reasoning effort levels: off, low, medium, and xhigh. They are not enforced budgets, they are sentences in the system prompt. I ran 84 experiments to measure what each level does, what drives thinking length, and how to set them.'
 date: 2026-08-20
 tags: ['research notes', 'local ai']
-pinned: true
 ---
 
 <aside class="tldr">

@@ -3,7 +3,6 @@ title: 'OX Alpha: The harness matters more than you think'
 description: 'I ran the same model inside nine coding harnesses on the same 40 tasks. Scores ranged from 21/40 to 37/40 and token use varied 6x, with nothing changed except the harness. A breakdown of who solved what, where the tokens went, and why minimal harnesses shine on easy work and lose their edge on hard work.'
 date: 2026-08-22
 tags: ['agents', 'harness engineering']
-pinned: true
 ---
 
 <aside class="tldr">

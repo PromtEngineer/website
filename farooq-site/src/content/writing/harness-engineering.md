@@ -2,7 +2,6 @@
 title: 'Harness engineering: why agent performance now lives outside the model'
 description: 'Same model, same benchmark, six times the performance difference. Two March 2026 papers show the code around the model now matters more than the model. Here is what they found.'
 date: 2026-06-10
-pinned: true
 tags: ['agents', 'harness engineering']
 ---
 

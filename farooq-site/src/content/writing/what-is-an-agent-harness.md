@@ -2,7 +2,6 @@
 title: 'What is an agent harness? The nine components of a great one'
 description: 'A harness is the fixed architecture that turns a model into an agent. What it is, how it differs from a framework, and the nine components every modern harness needs.'
 date: 2026-06-10
-pinned: true
 video: 'nWzXyjXCoCE'
 videoLength: '21 min'
 tags: ['agents', 'harness engineering']
